@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.msMenu = new System.Windows.Forms.MenuStrip();
             this.tsmiAvailableExams = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiTestStatus = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,6 +61,7 @@
             this.tsmiTestStatus.Name = "tsmiTestStatus";
             this.tsmiTestStatus.Size = new System.Drawing.Size(67, 20);
             this.tsmiTestStatus.Text = "&Start Test";
+            this.tsmiTestStatus.Click += new System.EventHandler(this.tsmiTestStatus_Click);
             // 
             // tsmiHelp
             // 
@@ -77,12 +79,15 @@
             // 
             // ctkConfig
             // 
-            this.ctkConfig.LanguageList = null;
+            this.ctkConfig.LanguageDict = null;
+            this.ctkConfig.LanguageSelected = null;
             this.ctkConfig.Location = new System.Drawing.Point(12, 39);
+            this.ctkConfig.MinutesSelected = null;
             this.ctkConfig.Name = "ctkConfig";
-            this.ctkConfig.Size = new System.Drawing.Size(483, 276);
+            this.ctkConfig.Size = new System.Drawing.Size(483, 297);
             this.ctkConfig.TabIndex = 1;
             this.ctkConfig.TopicList = null;
+            this.ctkConfig.TopicsSelected = ((System.Collections.Generic.List<string>)(resources.GetObject("ctkConfig.TopicsSelected")));
             // 
             // frmMain
             // 

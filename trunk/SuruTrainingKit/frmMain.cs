@@ -29,7 +29,7 @@ namespace Suru.TrainingKit.UI
         private String ExamsDirectory = null;
         private FormStatus Status;
 
-        private List<String> LanguageList = null;
+        Dictionary<String, Int16> LanguageDict = null;
         private List<String> TopicList = null;
 
         #endregion
@@ -51,7 +51,7 @@ namespace Suru.TrainingKit.UI
                     tsmiTestStatus.Enabled = true;
                     tsmiTestStatus.Text = "Start Test";
                     ctkConfig.Visible = true;
-                    ctkConfig.LanguageList = LanguageList;
+                    ctkConfig.LanguageDict = LanguageDict;
                     ctkConfig.TopicList = TopicList;
                     ctkConfig.RefreshContent();
                     break;
@@ -142,10 +142,10 @@ namespace Suru.TrainingKit.UI
             
             this.Text = "Suru Training Kit - " + tsmi.Text;
 
-            LanguageList = new List<String>();
-            LanguageList.Add("C#");
-            LanguageList.Add("C++");
-            LanguageList.Add("ASM");
+            LanguageDict = new Dictionary<String, Int16>();
+            LanguageDict.Add("C#", 10);
+            LanguageDict.Add("C++", 15);
+            LanguageDict.Add("ASM", 23);
 
             TopicList = new List<String>();
             TopicList.Add("chan");
@@ -158,6 +158,23 @@ namespace Suru.TrainingKit.UI
             SetControlStatus(FormStatus.ConfiguratingExam);
         }
 
+        //tsmiTestStatus Event Handler
+        private void tsmiTestStatus_Click(object sender, EventArgs e)
+        {
+            if (Status == FormStatus.TakingTest)
+            {
+                //End test. Warn user and calculate results.
+                SetControlStatus(FormStatus.TestEnded);
+
+                //FALTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            }
+            else
+                SetControlStatus(FormStatus.TakingTest);
+
+
+        }
+
         #endregion
+
     }
 }

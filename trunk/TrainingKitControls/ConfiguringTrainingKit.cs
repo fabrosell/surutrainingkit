@@ -9,13 +9,29 @@ using System.Collections.Generic;
 
 namespace Suru.TrainingKit.Controls
 {
+    /// <summary>
+    /// User control to configure an exam.
+    /// </summary>
     public partial class ConfiguringTrainingKit : UserControl
     {
+        #region Constants and Variables
+
         private const String CheckColName = "[Checked]";
         private const String TopicColName = "[Column]";
-        
-        public List<String> LanguageList { get; set; }
+
+        //"Input Variables" --> To show in form
+        public Dictionary<String, Int16> LanguageDict { get; set; }        
         public List<String> TopicList    { get; set; }
+
+        //"Output Variables" --> Selected info to form
+        public String LanguageSelected { get; set; }
+        public Nullable<Int16> MinutesSelected { get; set; }
+        public List<String> TopicsSelected { get; set; }
+        public Nullable<Int16> QuestionNumber { get; set; }
+
+        #endregion
+
+        #region Class Methods
 
         /// <summary>
         /// Refresh content of the Exam
@@ -27,11 +43,11 @@ namespace Suru.TrainingKit.Controls
 
             #region Load Language List
 
-            if (LanguageList != null)
+            if (LanguageDict != null)
             {
-                cmbLanguages.Items.Clear();
+                cmbLanguages.Items.Clear();                
 
-                foreach (String s in LanguageList)
+                foreach (String s in LanguageDict.Keys)
                     cmbLanguages.Items.Add(s);
 
                 if (cmbLanguages.Items.Count > 0)
@@ -40,7 +56,8 @@ namespace Suru.TrainingKit.Controls
 
             #endregion
 
-            //Load Topic List
+            #region Load Topic List
+
             if (TopicList != null)
             {
                 #region Create Columns if they don't exist - Set basic DataGridView properties
@@ -80,13 +97,24 @@ namespace Suru.TrainingKit.Controls
                     TextBoxCell = new DataGridViewTextBoxCell();
                     TextBoxCell.Value = s;
                     dgvTopics[TopicColName, Position] = TextBoxCell;
+
+                    if (!TopicsSelected.Contains(s))
+                        TopicsSelected.Add(s);
                 }
             }
+
+            #endregion
         }
+
+        #endregion
+
+        #region Constructors and Event Handlers
 
         //Class Constructor
         public ConfiguringTrainingKit()
         {
+            TopicsSelected = new List<String>();
+
             InitializeComponent();
         }
 
@@ -98,12 +126,14 @@ namespace Suru.TrainingKit.Controls
                 nudMinutes.Value = 90;
                 nudMinutes.Minimum = 1;
                 nudMinutes.Enabled = true;
+                MinutesSelected = (Int16)nudMinutes.Value;
             }
             else
             {
                 nudMinutes.Minimum = 0;
                 nudMinutes.Value = 0;
                 nudMinutes.Enabled = false;
+                MinutesSelected = null;
             }
         }
 
@@ -117,6 +147,52 @@ namespace Suru.TrainingKit.Controls
         private void dgvTopics_CellContentClick(Object sender, DataGridViewCellEventArgs e)
         {
             dgvTopics[CheckColName, e.RowIndex].Value = !((Boolean)dgvTopics[CheckColName, e.RowIndex].Value);
+
+            if (!((Boolean)dgvTopics[CheckColName, e.RowIndex].Value))
+                TopicsSelected.Remove((String)dgvTopics[TopicColName, e.RowIndex].Value);
         }
+
+        //cmbLanguages Selected Index Changed Event Handler
+        private void cmbLanguages_SelectedIndexChanged(Object sender, EventArgs e)
+        {
+            if (LanguageDict.ContainsKey((String)cmbLanguages.SelectedItem))
+            {
+                nudQuestions.Minimum = 1;
+                nudQuestions.Maximum = LanguageDict[(String)cmbLanguages.SelectedItem];
+                nudQuestions.Value = nudQuestions.Maximum;
+                nudQuestions.Enabled = true;
+
+                lblQuestions.Text = "Questions (" + nudQuestions.Maximum.ToString() + " questions max)";
+
+                LanguageSelected = (String)cmbLanguages.SelectedItem;
+                QuestionNumber = (Int16)nudQuestions.Value;
+            }
+            else
+            {
+                lblQuestions.Text = "Questions (0 questions)";
+                nudQuestions.Minimum = 0;
+                nudQuestions.Maximum = 0;
+                nudQuestions.Value = 0;
+                nudQuestions.Enabled = false;
+
+                LanguageSelected = null;
+                QuestionNumber = null;
+            }
+        }
+
+        //nudMinutes Value Changed Event Handler
+        private void nudMinutes_ValueChanged(Object sender, EventArgs e)
+        {
+            MinutesSelected = (Int16)nudMinutes.Value;
+        }
+
+        //nudQuestions Value Changed Event Handler
+        private void nudQuestions_ValueChanged(Object sender, EventArgs e)
+        {
+            QuestionNumber = (Int16)nudQuestions.Value;
+        }
+
+
+        #endregion
     }
 }
