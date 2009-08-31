@@ -5,11 +5,14 @@
     <Setting Name="LastExamen" Type="System.String" Scope="User">
       <Value Profile="(Default)">Sample.xml</Value>
     </Setting>
+    <Setting Name="ExamDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Exams</Value>
+    </Setting>
     <Setting Name="MinorBracketSubstitution" Type="System.String" Scope="User">
-      <Value Profile="(Default)">#i#</Value>
+      <Value Profile="(Default)">#min#</Value>
     </Setting>
     <Setting Name="MayorBracketSubstitution" Type="System.String" Scope="User">
-      <Value Profile="(Default)">#d#</Value>
+      <Value Profile="(Default)">#may#</Value>
     </Setting>
   </Settings>
 </SettingsFile>

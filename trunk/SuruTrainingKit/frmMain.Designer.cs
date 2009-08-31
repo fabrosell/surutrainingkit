@@ -29,31 +29,67 @@
         private void InitializeComponent()
         {
             this.msMenu = new System.Windows.Forms.MenuStrip();
-            this.availableExamsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAvailableExams = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiTestStatus = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctkConfig = new Suru.TrainingKit.Controls.ConfiguringTrainingKit();
             this.msMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // msMenu
             // 
             this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.availableExamsToolStripMenuItem});
+            this.tsmiAvailableExams,
+            this.tsmiTestStatus,
+            this.tsmiHelp});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
-            this.msMenu.Size = new System.Drawing.Size(292, 24);
+            this.msMenu.Size = new System.Drawing.Size(507, 24);
             this.msMenu.TabIndex = 0;
             this.msMenu.Text = "menuStrip1";
             // 
-            // availableExamsToolStripMenuItem
+            // tsmiAvailableExams
             // 
-            this.availableExamsToolStripMenuItem.Name = "availableExamsToolStripMenuItem";
-            this.availableExamsToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
-            this.availableExamsToolStripMenuItem.Text = "&Available Exams";
+            this.tsmiAvailableExams.Name = "tsmiAvailableExams";
+            this.tsmiAvailableExams.Size = new System.Drawing.Size(96, 20);
+            this.tsmiAvailableExams.Text = "&Available Exams";
+            // 
+            // tsmiTestStatus
+            // 
+            this.tsmiTestStatus.Name = "tsmiTestStatus";
+            this.tsmiTestStatus.Size = new System.Drawing.Size(67, 20);
+            this.tsmiTestStatus.Text = "&Start Test";
+            // 
+            // tsmiHelp
+            // 
+            this.tsmiHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiAbout});
+            this.tsmiHelp.Name = "tsmiHelp";
+            this.tsmiHelp.Size = new System.Drawing.Size(40, 20);
+            this.tsmiHelp.Text = "&Help";
+            // 
+            // tsmiAbout
+            // 
+            this.tsmiAbout.Name = "tsmiAbout";
+            this.tsmiAbout.Size = new System.Drawing.Size(114, 22);
+            this.tsmiAbout.Text = "&About";
+            // 
+            // ctkConfig
+            // 
+            this.ctkConfig.LanguageList = null;
+            this.ctkConfig.Location = new System.Drawing.Point(12, 39);
+            this.ctkConfig.Name = "ctkConfig";
+            this.ctkConfig.Size = new System.Drawing.Size(483, 276);
+            this.ctkConfig.TabIndex = 1;
+            this.ctkConfig.TopicList = null;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 266);
+            this.ClientSize = new System.Drawing.Size(507, 451);
+            this.Controls.Add(this.ctkConfig);
             this.Controls.Add(this.msMenu);
             this.MainMenuStrip = this.msMenu;
             this.Name = "frmMain";
@@ -69,7 +105,11 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip msMenu;
-        private System.Windows.Forms.ToolStripMenuItem availableExamsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAvailableExams;
+        private System.Windows.Forms.ToolStripMenuItem tsmiHelp;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
+        private System.Windows.Forms.ToolStripMenuItem tsmiTestStatus;
+        private Suru.TrainingKit.Controls.ConfiguringTrainingKit ctkConfig;
     }
 }
 

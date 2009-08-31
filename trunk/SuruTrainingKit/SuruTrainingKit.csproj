@@ -33,7 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -101,6 +106,10 @@
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{1AC4979A-AD69-4F12-BB5B-897A8752BD13}</Project>
       <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrainingKitControls\TrainingKitControls.csproj">
+      <Project>{5BC2777A-BDC9-4451-B8C5-D78538B6B7F1}</Project>
+      <Name>TrainingKitControls</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -37,7 +37,19 @@ namespace Suru.TrainingKit.UI {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("#i#")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Exams")]
+        public string ExamDirectory {
+            get {
+                return ((string)(this["ExamDirectory"]));
+            }
+            set {
+                this["ExamDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#min#")]
         public string MinorBracketSubstitution {
             get {
                 return ((string)(this["MinorBracketSubstitution"]));
@@ -49,7 +61,7 @@ namespace Suru.TrainingKit.UI {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("#d#")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#may#")]
         public string MayorBracketSubstitution {
             get {
                 return ((string)(this["MayorBracketSubstitution"]));

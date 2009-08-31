@@ -1,0 +1,36 @@
+----------------------------------------
+Timestamp: 31/08/2009 19:27:06
+Message: HandlingInstanceID: 838a9cc3-ee1e-43b5-9cf3-a0ebd8597876
+An exception of type 'System.ApplicationException' occurred and was caught.
+---------------------------------------------------------------------------
+08/31/2009 15:27:06
+Type : System.ApplicationException, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+Message : Error en la aplicación.
+Source : Suru.TrainingKit.BusinessLogic
+Help link : 
+Data : System.Collections.ListDictionaryInternal
+TargetSite : System.Collections.Generic.Dictionary`2[System.String,System.String] GetAvailableExams(System.String)
+Stack Trace :    en Suru.TrainingKit.BusinessLogic.ExamConfiguration.GetAvailableExams(String ExamFolder) en D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\BusinessLogic\Business.cs:línea 22
+
+Additional Info:
+
+MachineName : 09HW008115
+TimeStamp : 31/08/2009 19:27:06
+FullName : Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35
+AppDomainName : Suru.TrainingKit.UI.vshost.exe
+ThreadIdentity : 
+WindowsIdentity : TCS\frosell
+
+Category: General
+Priority: 0
+EventId: 100
+Severity: Error
+Title:Enterprise Library Exception Handling
+Machine: 09HW008115
+Application Domain: Suru.TrainingKit.UI.vshost.exe
+Process Id: 6596
+Process Name: D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\SuruTrainingKit\bin\Debug\Suru.TrainingKit.UI.vshost.exe
+Win32 Thread Id: 2708
+Thread Name: 
+Extended Properties: 
+----------------------------------------

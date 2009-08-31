@@ -3,18 +3,26 @@ using System.IO;
 using System.Xml;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
+using System.Configuration;
 using Suru.TrainingKit.Entities;
 using System.Collections.Generic;
+using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 
 namespace Suru.TrainingKit.BusinessLogic
 {
-    public class Configuration
+    public class ExamConfiguration
     {
-        public static Dictionary<String, String> GetAvailableExams(String ExamFolder)
+        /// <summary>
+        /// Loads the Available Exams and its xml configuration files. Will ignore xml with a different format.
+        /// </summary>
+        /// <param name="ExamFolder">Folder to check exam's xml.</param>
+        /// <returns>Dictionary with pairs ExamName and xml full file path.</returns>
+        public static SortedDictionary<String, String> GetAvailableExams(String ExamFolder)
         {
             try
             {
-                Dictionary<String, String> Exams = new Dictionary<String, String>();
+                SortedDictionary<String, String> Exams = new SortedDictionary<String, String>();                
 
                 DirectoryInfo di = new DirectoryInfo(ExamFolder);
 
@@ -34,18 +42,25 @@ namespace Suru.TrainingKit.BusinessLogic
 
                     xmlNodes = xmlRootNode.SelectNodes("//exam");
 
-                    //Only add valid files
-                    if (xmlNodes != null && xmlNodes.Count == 1)                    
-                        Exams.Add(xmlNodes[0].Attributes["name"].Value, fi.FullName);                    
+                    //Only add valid files, and distinct exam names
+                    if (xmlNodes != null && xmlNodes.Count == 1)    
+                        if (!Exams.ContainsKey(xmlNodes[0].Attributes["name"].Value))
+                            Exams.Add(xmlNodes[0].Attributes["name"].Value, fi.FullName);                    
                 }
 
                 return Exams;
             }
             catch (Exception ex)
             {
+                Boolean rethrow = ExceptionPolicy.HandleException(ex, ConfigurationManager.AppSettings.Get("DefaultPolicy"));
+
+                if (rethrow)
+                    throw ex;
+
                 return null;
             }
         }
+
 
     }
 
