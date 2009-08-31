@@ -9,3 +9,5 @@ D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\SuruTrainingKit\ob
 D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\SuruTrainingKit\obj\Debug\SuruTrainingKit.csproj.GenerateResource.Cache
 D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\SuruTrainingKit\obj\Debug\Suru.TrainingKit.UI.exe
 D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\SuruTrainingKit\obj\Debug\Suru.TrainingKit.UI.pdb
+D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\SuruTrainingKit\bin\Debug\Suru.TrainingKit.Entities.dll
+D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\SuruTrainingKit\bin\Debug\Suru.TrainingKit.Entities.pdb

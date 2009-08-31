@@ -22,5 +22,41 @@ namespace Suru.TrainingKit.UI {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Sample.xml")]
+        public string LastExamen {
+            get {
+                return ((string)(this["LastExamen"]));
+            }
+            set {
+                this["LastExamen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#i#")]
+        public string MinorBracketSubstitution {
+            get {
+                return ((string)(this["MinorBracketSubstitution"]));
+            }
+            set {
+                this["MinorBracketSubstitution"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#d#")]
+        public string MayorBracketSubstitution {
+            get {
+                return ((string)(this["MayorBracketSubstitution"]));
+            }
+            set {
+                this["MayorBracketSubstitution"] = value;
+            }
+        }
     }
 }
