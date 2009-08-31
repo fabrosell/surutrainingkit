@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace SuruTrainingKit
+namespace Suru.TrainingKit.UI
 {
     static class Program
     {
@@ -15,7 +15,7 @@ namespace SuruTrainingKit
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new frmMain());
         }
     }
 }
