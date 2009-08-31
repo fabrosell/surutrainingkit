@@ -1,0 +1,5 @@
+D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\BusinessLogic\bin\Debug\Suru.TrainingKit.BusinessLogic.dll
+D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\BusinessLogic\bin\Debug\Suru.TrainingKit.BusinessLogic.pdb
+D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\BusinessLogic\obj\Debug\ResolveAssemblyReference.cache
+D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\BusinessLogic\obj\Debug\Suru.TrainingKit.BusinessLogic.dll
+D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\BusinessLogic\obj\Debug\Suru.TrainingKit.BusinessLogic.pdb
