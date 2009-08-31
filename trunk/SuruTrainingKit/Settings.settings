@@ -1,6 +1,15 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Suru.TrainingKit.UI" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LastExamen" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Sample.xml</Value>
+    </Setting>
+    <Setting Name="MinorBracketSubstitution" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#i#</Value>
+    </Setting>
+    <Setting Name="MayorBracketSubstitution" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#d#</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

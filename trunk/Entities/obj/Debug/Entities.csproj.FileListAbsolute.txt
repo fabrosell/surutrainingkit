@@ -1,0 +1,5 @@
+D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\Entities\bin\Debug\Suru.TrainingKit.Entities.dll
+D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\Entities\bin\Debug\Suru.TrainingKit.Entities.pdb
+D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\Entities\obj\Debug\ResolveAssemblyReference.cache
+D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\Entities\obj\Debug\Suru.TrainingKit.Entities.dll
+D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\Entities\obj\Debug\Suru.TrainingKit.Entities.pdb

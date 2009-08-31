@@ -5,15 +5,15 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4C486D49-6842-4E2A-AC00-9774B6F7D9B1}</ProjectGuid>
+    <ProjectGuid>{1AC4979A-AD69-4F12-BB5B-897A8752BD13}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Suru.TrainingKit.BusinessLogic</RootNamespace>
-    <AssemblyName>Suru.TrainingKit.BusinessLogic</AssemblyName>
+    <RootNamespace>Suru.TrainingKit.Entities</RootNamespace>
+    <AssemblyName>Suru.TrainingKit.Entities</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Suru.TrainingKit.BusinessLogic.StrongNameKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Suru.TrainingKit.Entities.StrongNameKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,17 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business.cs" />
+    <Compile Include="Entitites.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Suru.TrainingKit.BusinessLogic.StrongNameKey.pfx" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Entities\Entities.csproj">
-      <Project>{1AC4979A-AD69-4F12-BB5B-897A8752BD13}</Project>
-      <Name>Entities</Name>
-    </ProjectReference>
+    <None Include="Suru.TrainingKit.Entities.StrongNameKey.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
