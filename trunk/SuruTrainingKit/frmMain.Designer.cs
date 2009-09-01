@@ -35,6 +35,7 @@
             this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ctkConfig = new Suru.TrainingKit.Controls.ConfiguringTrainingKit();
+            this.ttkTest = new Suru.TrainingKit.Controls.TestTrainingKit();
             this.msMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +47,7 @@
             this.tsmiHelp});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
-            this.msMenu.Size = new System.Drawing.Size(507, 24);
+            this.msMenu.Size = new System.Drawing.Size(600, 24);
             this.msMenu.TabIndex = 0;
             this.msMenu.Text = "menuStrip1";
             // 
@@ -74,28 +75,40 @@
             // tsmiAbout
             // 
             this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(114, 22);
-            this.tsmiAbout.Text = "&About";
+            this.tsmiAbout.Size = new System.Drawing.Size(162, 22);
+            this.tsmiAbout.Text = "&About && License";
+            this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
             // ctkConfig
             // 
             this.ctkConfig.LanguageDict = null;
             this.ctkConfig.LanguageSelected = null;
-            this.ctkConfig.Location = new System.Drawing.Point(12, 39);
+            this.ctkConfig.Location = new System.Drawing.Point(0, 27);
             this.ctkConfig.MinutesSelected = null;
             this.ctkConfig.Name = "ctkConfig";
-            this.ctkConfig.Size = new System.Drawing.Size(483, 297);
+            this.ctkConfig.QuestionNumber = null;
+            this.ctkConfig.RandomizeQuestions = true;
+            this.ctkConfig.Size = new System.Drawing.Size(435, 313);
             this.ctkConfig.TabIndex = 1;
             this.ctkConfig.TopicList = null;
             this.ctkConfig.TopicsSelected = ((System.Collections.Generic.List<string>)(resources.GetObject("ctkConfig.TopicsSelected")));
+            // 
+            // ttkTest
+            // 
+            this.ttkTest.Location = new System.Drawing.Point(0, 27);
+            this.ttkTest.Name = "ttkTest";
+            this.ttkTest.Size = new System.Drawing.Size(600, 313);
+            this.ttkTest.TabIndex = 2;
+            this.ttkTest.TestStopped += new System.EventHandler(this.ttkTest_TestStopped);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 451);
+            this.ClientSize = new System.Drawing.Size(600, 352);
             this.Controls.Add(this.ctkConfig);
             this.Controls.Add(this.msMenu);
+            this.Controls.Add(this.ttkTest);
             this.MainMenuStrip = this.msMenu;
             this.Name = "frmMain";
             this.Text = "Suru Training Kit";
@@ -115,6 +128,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
         private System.Windows.Forms.ToolStripMenuItem tsmiTestStatus;
         private Suru.TrainingKit.Controls.ConfiguringTrainingKit ctkConfig;
+        private Suru.TrainingKit.Controls.TestTrainingKit ttkTest;
     }
 }
 

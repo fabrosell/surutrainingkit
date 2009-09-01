@@ -55,24 +55,28 @@ namespace Suru.TrainingKit.UI
                     ctkConfig.LanguageDict = LanguageDict;
                     ctkConfig.TopicList = TopicList;
                     ctkConfig.RefreshContent();
+                    ttkTest.Visible = false;
                     break;
                 case FormStatus.TakingTest:
                     tsmiAvailableExams.Enabled = false;
                     tsmiTestStatus.Enabled = true;
                     tsmiTestStatus.Text = "Stop Test";
                     ctkConfig.Visible = false;
+                    ttkTest.Visible = true;
                     break;
                 case FormStatus.TestEnded:
                     tsmiAvailableExams.Enabled = true;
                     tsmiTestStatus.Enabled = true;
                     tsmiTestStatus.Text = "Restart Test";
                     ctkConfig.Visible = false;
+                    ttkTest.Visible = true;
                     break;
                 case FormStatus.WhitoutExam:
                     tsmiAvailableExams.Enabled = true;
                     tsmiTestStatus.Enabled = false;
                     tsmiTestStatus.Text = "Start Test";
                     ctkConfig.Visible = false;
+                    ttkTest.Visible = false;
                     break;
             }
         }
@@ -206,25 +210,41 @@ namespace Suru.TrainingKit.UI
         //tsmiTestStatus Event Handler
         private void tsmiTestStatus_Click(object sender, EventArgs e)
         {
+            //This menu item will have two functions: will start or stop a test.
             if (Status == FormStatus.TakingTest)
             {
-                //End test. Warn user and calculate results.
-                SetControlStatus(FormStatus.TestEnded);
-
-                //FALTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                //Ask user if it REALLY wants to stop test.
+                if (DialogResult.Yes == MessageBox.Show("Are you sure you want to end the test?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
+                    ttkTest_TestStopped(sender, e);                
             }
             else
             {
                 //Start Test.
                 SetControlStatus(FormStatus.TakingTest);
 
+                ttkTest.StartTest();
                 //FALTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
             }
-
-
         }
 
-        #endregion
+        //tsmiAbout Click Event Handler
+        private void tsmiAbout_Click(object sender, EventArgs e)
+        {
+            AboutBox frmAbout = new AboutBox();
+            frmAbout.ShowDialog();
+        }
 
+        //ttkTeset Test Stopped Event Handler
+        private void ttkTest_TestStopped(object sender, EventArgs e)
+        {
+            SetControlStatus(FormStatus.TestEnded);
+
+            ttkTest.StopTest();
+
+            //FALTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        }
+
+
+        #endregion
     }
 }
