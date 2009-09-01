@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("BusinessLogic")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("TCS Chile S.A.")]
+[assembly: AssemblyCompany("SuruLabs")]
 [assembly: AssemblyProduct("BusinessLogic")]
-[assembly: AssemblyCopyright("Copyright © TCS Chile S.A. 2009")]
+[assembly: AssemblyCopyright("Copyright © SuruLabs 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

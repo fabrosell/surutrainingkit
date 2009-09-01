@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<exam name="Twice Sample Exam" approbingpercentage="80">
+<exam name="Sample Copy Exam" approbingpercentage="80">
 	<topic name="Topic 1" topicexampercentage ="25">
 		<question number="1" language="C#">
 			<text>
@@ -8,6 +8,7 @@
 			<answer>
 				2
 			</answer>
+			<annotation/>
 		</question>
 		<question number="1" language="vb">
 			<text>
@@ -16,6 +17,7 @@
 			<answer>
 				4
 			</answer>
+			<annotation/>
 		</question>
 		<question number="2" language="C#">
 			<text>
@@ -24,6 +26,7 @@
 			<answer>
 				3
 			</answer>
+			<annotation/>
 		</question>
 		<question number="2" language="vb">
 			<text>
@@ -32,9 +35,10 @@
 			<answer>
 				4
 			</answer>
+			<annotation/>
 		</question>
 	</topic>
-	<topic name="Topic 1" topicexampercentage ="50">
+	<topic name="Topic 2" topicexampercentage ="50">
 		<question number="1" language="C#">
 			<text>
 				1 * 1
@@ -42,6 +46,7 @@
 			<answer>
 				1
 			</answer>
+			<annotation/>
 		</question>
 		<question number="1" language="vb">
 			<text>
@@ -50,9 +55,10 @@
 			<answer>
 				4
 			</answer>
+			<annotation/>
 		</question>
 	</topic>
-	<topic name="Topic 1" topicexampercentage ="25">
+	<topic name="Topic 3" topicexampercentage ="25">
 		<question number="1" language="C#">
 			<text>
 				1 - 1
@@ -60,6 +66,7 @@
 			<answer>
 				0
 			</answer>
+			<annotation/>
 		</question>
 		<question number="1" language="vb">
 			<text>
@@ -68,6 +75,7 @@
 			<answer>
 				infinity
 			</answer>
+			<annotation/>
 		</question>
 	</topic>
 </exam>

@@ -31,6 +31,7 @@ namespace Suru.TrainingKit.UI
 
         Dictionary<String, Int16> LanguageDict = null;
         private List<String> TopicList = null;
+        private Exam CurrentExam = null;
 
         #endregion
 
@@ -74,6 +75,57 @@ namespace Suru.TrainingKit.UI
                     ctkConfig.Visible = false;
                     break;
             }
+        }
+
+        /// <summary>
+        /// Loads Selected Configuration
+        /// </summary>
+        /// <param name="ConfigFileName">XML file containing Exam's configuration</param>
+        private Boolean LoadConfiguration(String ConfigFileName)
+        {
+            if (File.Exists(ConfigFileName))
+            {
+                CurrentExam = ExamConfiguration.GetExamConfiguration(ConfigFileName, Settings.Default.MinorBracketSubstitution, Settings.Default.MayorBracketSubstitution);
+
+                if (CurrentExam != null)
+                {
+                    if (TopicList == null)
+                        TopicList = new List<String>();
+
+                    TopicList.Clear();
+
+                    if (LanguageDict == null)
+                        LanguageDict = new Dictionary<String, Int16>();
+
+                    LanguageDict.Clear();
+
+                    foreach (KeyValuePair<String, Topics> kvp in CurrentExam.ExamTopics)
+                    {
+                        TopicList.Add(kvp.Key);
+
+                        foreach (String s in kvp.Value.QuestionsPerLanguage.Keys)
+                        {
+                            if (!LanguageDict.ContainsKey(s))
+                                LanguageDict.Add(s, 0);
+
+                            LanguageDict[s]++;
+                        }
+                    }
+
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("A problem happened with " + ConfigFileName + ". Application must exit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Application.Exit();                    
+                }
+            }
+            else
+            {
+                MessageBox.Show("Exam config file is missing (" + ConfigFileName + "). Please check it out.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);                
+            }
+
+            return false;
         }
 
         #endregion
@@ -133,29 +185,22 @@ namespace Suru.TrainingKit.UI
         {
             ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
 
-            //Uncheck all menu items
-            foreach (ToolStripMenuItem tsmi_exams in tsmiAvailableExams.DropDownItems)            
-                tsmi_exams.Checked = false;
+            //If Configuration can be loaded succesfully, proceed
+            if (LoadConfiguration(tsmi.Name))
+            {
+                //Uncheck all menu items
+                foreach (ToolStripMenuItem tsmi_exams in tsmiAvailableExams.DropDownItems)
+                    tsmi_exams.Checked = false;
 
-            //Check current menu item
-            tsmi.Checked = true;
-            
-            this.Text = "Suru Training Kit - " + tsmi.Text;
+                //Check current menu item
+                tsmi.Checked = true;
 
-            LanguageDict = new Dictionary<String, Int16>();
-            LanguageDict.Add("C#", 10);
-            LanguageDict.Add("C++", 15);
-            LanguageDict.Add("ASM", 23);
+                this.Text = "Suru Training Kit - " + tsmi.Text;
 
-            TopicList = new List<String>();
-            TopicList.Add("chan");
-            TopicList.Add("chen");
-            TopicList.Add("chin");
-            TopicList.Add("chon");
-            TopicList.Add("chun");
-            TopicList.Add("asdf");
-
-            SetControlStatus(FormStatus.ConfiguratingExam);
+                SetControlStatus(FormStatus.ConfiguratingExam);
+            }
+            else
+                SetControlStatus(FormStatus.WhitoutExam);                       
         }
 
         //tsmiTestStatus Event Handler
@@ -169,7 +214,12 @@ namespace Suru.TrainingKit.UI
                 //FALTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
             }
             else
+            {
+                //Start Test.
                 SetControlStatus(FormStatus.TakingTest);
+
+                //FALTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            }
 
 
         }

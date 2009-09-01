@@ -61,30 +61,107 @@ namespace Suru.TrainingKit.BusinessLogic
             }
         }
 
+        /// <summary>
+        /// Loads an Exam configuration from a XML file.
+        /// </summary>
+        /// <param name="FileName">XML File to use.</param>
+        /// <returns>Exam configuration, or null if an error ocurrs.</returns>
+        public static Exam GetExamConfiguration(String FileName, String MinorBracketReplacement, String MayorBracketReplacement)
+        {
+            try
+            {
+                Exam CurrentExam = new Exam();
+                CurrentExam.ExamTopics = new Dictionary<String, Topics>();
+
+                XmlDocument xmlIn = new XmlDocument();
+                StreamReader sr = new StreamReader(FileName);
+                xmlIn.LoadXml(sr.ReadToEnd());
+                sr.Close();
+                XmlNode xmlRootNode = xmlIn.DocumentElement;
+
+                //Processing main exam
+                //<exam name="Sample Exam" approbingpercentage="80">
+                XmlNodeList xmlNodes = xmlRootNode.SelectNodes("//exam");
+
+                if (xmlNodes.Count != 1)
+                    throw new XmlException("More or less than 1 exam in xml file...");
+
+                XmlNode xmlNode = xmlNodes[0];
+
+                CurrentExam.Name = xmlNode.Attributes["name"].Value;
+                CurrentExam.Aprobacion = Int16.Parse(xmlNode.Attributes["approbingpercentage"].Value);
+
+                xmlNodes = xmlNode.SelectNodes("//topic");
+
+                Topics t = null;
+                Question q = null;
+                XmlNodeList xmlQuestions;
+
+                //Processing each topic
+                //<topic name="Topic 1" topicexampercentage ="25">
+                foreach (XmlNode xmlTopicNode in xmlNodes)
+                {
+                    t = new Topics();
+
+                    t.Name = xmlTopicNode.Attributes["name"].Value;
+                    t.TopicValueOnExam = Decimal.Parse(xmlTopicNode.Attributes["topicexampercentage"].Value);
+                    t.QuestionsPerLanguage = new Dictionary<String, List<Question>>();
+
+                    xmlQuestions = xmlTopicNode.SelectNodes("child::question");
+                   
+                    //Processing each question
+                    /* 		<question number="1" language="C#">
+			                    <text>
+				                    1 + 1
+			                    </text>
+			                    <answer>
+				                    2
+			                    </answer>
+                                <annotation/>
+                     */
+                    foreach (XmlNode xmlQuestionNode in xmlQuestions)
+                    {
+                        q = new Question();
+
+                        q.Language = xmlQuestionNode.Attributes["language"].Value.ToUpper();
+                        q.Number = Int16.Parse(xmlQuestionNode.Attributes["number"].Value);
+                        
+                        q.Text = xmlQuestionNode.SelectSingleNode("child::text").InnerText;
+                        q.Text = q.Text.Replace(MinorBracketReplacement, "<");
+                        q.Text = q.Text.Replace(MayorBracketReplacement, ">");
+
+                        q.Answer = xmlQuestionNode.SelectSingleNode("child::answer").InnerText;
+                        q.Answer = q.Answer.Replace(MinorBracketReplacement, "<");
+                        q.Answer = q.Answer.Replace(MayorBracketReplacement, ">");
+
+                        q.Annotation = xmlQuestionNode.SelectSingleNode("child::annotation").InnerText;
+                        q.Annotation = q.Annotation.Replace(MinorBracketReplacement, "<");
+                        q.Annotation = q.Annotation.Replace(MayorBracketReplacement, ">");                        
+
+                        if (!t.QuestionsPerLanguage.ContainsKey(q.Language))
+                            t.QuestionsPerLanguage.Add(q.Language, new List<Question>());
+
+                        t.QuestionsPerLanguage[q.Language].Add(q);
+                    }
+
+                    if (CurrentExam.ExamTopics.ContainsKey(t.Name))
+                        throw new ApplicationException("Topic \"" + t.Name + "\" is more than once on xml file...");
+
+                    CurrentExam.ExamTopics.Add(t.Name, t);
+                }                
+
+                return CurrentExam;                
+            }
+            catch (Exception ex)
+            {
+                Boolean rethrow = ExceptionPolicy.HandleException(ex, ConfigurationManager.AppSettings.Get("DefaultPolicy"));
+
+                if (rethrow)
+                    throw ex;
+
+                return null;
+            }
+        }
 
     }
-
-    /*
-     
-    public static Dictionary<String, String> ProcessXMLConfiguration(String xml_in)
-        {
-            XmlDocument xmlIn = new XmlDocument();
-            xmlIn.LoadXml(xml_in);
-            XmlNode xmlRootNode = xmlIn.DocumentElement;
-
-            XmlNodeList xmlNodes;
-
-            xmlNodes = xmlRootNode.SelectNodes("//key");
-
-            Dictionary<String, String> ValueList = new Dictionary<String, String>();
-
-            //Process the list of nodes. 
-            foreach (XmlNode xmlNode in xmlNodes)
-                ValueList.Add(xmlNode.Attributes["name"].Value, xmlNode.Attributes["value"].Value);
-
-
-            return ValueList;
-        }
-     
-     */
 }
