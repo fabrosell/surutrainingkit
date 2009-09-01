@@ -23,3 +23,4 @@ D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\SuruTrainingKit\bi
 D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\SuruTrainingKit\bin\Debug\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.xml
 D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\SuruTrainingKit\bin\Debug\Suru.TrainingKit.Controls.dll
 D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\SuruTrainingKit\bin\Debug\Suru.TrainingKit.Controls.pdb
+D:\Mis Documentos\Visual Studio 2008\Projects\SuruTrainingKit\SuruTrainingKit\obj\Debug\Suru.TrainingKit.UI.AboutBox.resources
