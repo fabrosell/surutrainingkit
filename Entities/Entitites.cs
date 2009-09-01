@@ -21,8 +21,8 @@ namespace Suru.TrainingKit.Entities
     public class Topics
     {
         public Decimal TopicValueOnExam { get; set; }
-        public String Name { get; set; }
-        public Dictionary<String, List<Question>> Questions { get; set; }        
+        public String Name { get; set; }        
+        public Dictionary<String, List<Question>> QuestionsPerLanguage { get; set; }        
     }
 
     /// <summary>

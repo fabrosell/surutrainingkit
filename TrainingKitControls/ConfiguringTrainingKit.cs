@@ -28,6 +28,7 @@ namespace Suru.TrainingKit.Controls
         public Nullable<Int16> MinutesSelected { get; set; }
         public List<String> TopicsSelected { get; set; }
         public Nullable<Int16> QuestionNumber { get; set; }
+        public Boolean RandomizeQuestions { get; set; }
 
         #endregion
 
@@ -114,6 +115,10 @@ namespace Suru.TrainingKit.Controls
         public ConfiguringTrainingKit()
         {
             TopicsSelected = new List<String>();
+            RandomizeQuestions = true;
+            LanguageSelected = null;
+            MinutesSelected = null;
+            QuestionNumber = null;
 
             InitializeComponent();
         }
@@ -192,6 +197,11 @@ namespace Suru.TrainingKit.Controls
             QuestionNumber = (Int16)nudQuestions.Value;
         }
 
+        //chkRandomize Checked Changed Event Handler
+        private void chkRandomize_CheckedChanged(object sender, EventArgs e)
+        {
+            RandomizeQuestions = chkRandomize.Checked;
+        }
 
         #endregion
     }

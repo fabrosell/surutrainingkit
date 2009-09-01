@@ -37,6 +37,7 @@
             this.lblTopics = new System.Windows.Forms.Label();
             this.lblQuestions = new System.Windows.Forms.Label();
             this.nudQuestions = new System.Windows.Forms.NumericUpDown();
+            this.chkRandomize = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopics)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuestions)).BeginInit();
@@ -46,7 +47,7 @@
             // 
             this.nudMinutes.Location = new System.Drawing.Point(120, 31);
             this.nudMinutes.Maximum = new decimal(new int[] {
-            1000,
+            999,
             0,
             0,
             0});
@@ -72,7 +73,7 @@
             this.lblTimeLimit.Location = new System.Drawing.Point(10, 33);
             this.lblTimeLimit.Name = "lblTimeLimit";
             this.lblTimeLimit.Size = new System.Drawing.Size(104, 13);
-            this.lblTimeLimit.TabIndex = 1;
+            this.lblTimeLimit.TabIndex = 7;
             this.lblTimeLimit.Text = "Time Limits (minutes)";
             // 
             // chkExamTiming
@@ -104,7 +105,7 @@
             this.lblLanguages.Location = new System.Drawing.Point(10, 68);
             this.lblLanguages.Name = "lblLanguages";
             this.lblLanguages.Size = new System.Drawing.Size(55, 13);
-            this.lblLanguages.TabIndex = 4;
+            this.lblLanguages.TabIndex = 8;
             this.lblLanguages.Text = "Language";
             // 
             // dgvTopics
@@ -127,7 +128,7 @@
             this.lblTopics.Location = new System.Drawing.Point(10, 96);
             this.lblTopics.Name = "lblTopics";
             this.lblTopics.Size = new System.Drawing.Size(39, 13);
-            this.lblTopics.TabIndex = 6;
+            this.lblTopics.TabIndex = 9;
             this.lblTopics.Text = "Topics";
             // 
             // lblQuestions
@@ -136,7 +137,7 @@
             this.lblQuestions.Location = new System.Drawing.Point(60, 255);
             this.lblQuestions.Name = "lblQuestions";
             this.lblQuestions.Size = new System.Drawing.Size(54, 13);
-            this.lblQuestions.TabIndex = 7;
+            this.lblQuestions.TabIndex = 10;
             this.lblQuestions.Text = "Questions";
             // 
             // nudQuestions
@@ -154,7 +155,7 @@
             0});
             this.nudQuestions.Name = "nudQuestions";
             this.nudQuestions.Size = new System.Drawing.Size(42, 20);
-            this.nudQuestions.TabIndex = 8;
+            this.nudQuestions.TabIndex = 5;
             this.nudQuestions.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudQuestions.Value = new decimal(new int[] {
             90,
@@ -163,10 +164,24 @@
             0});
             this.nudQuestions.ValueChanged += new System.EventHandler(this.nudQuestions_ValueChanged);
             // 
+            // chkRandomize
+            // 
+            this.chkRandomize.AutoSize = true;
+            this.chkRandomize.Checked = true;
+            this.chkRandomize.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkRandomize.Location = new System.Drawing.Point(13, 279);
+            this.chkRandomize.Name = "chkRandomize";
+            this.chkRandomize.Size = new System.Drawing.Size(129, 17);
+            this.chkRandomize.TabIndex = 6;
+            this.chkRandomize.Text = "Randomize Questions";
+            this.chkRandomize.UseVisualStyleBackColor = true;
+            this.chkRandomize.CheckedChanged += new System.EventHandler(this.chkRandomize_CheckedChanged);
+            // 
             // ConfiguringTrainingKit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkRandomize);
             this.Controls.Add(this.nudQuestions);
             this.Controls.Add(this.lblQuestions);
             this.Controls.Add(this.lblTopics);
@@ -198,5 +213,6 @@
         private System.Windows.Forms.Label lblTopics;
         private System.Windows.Forms.Label lblQuestions;
         private System.Windows.Forms.NumericUpDown nudQuestions;
+        private System.Windows.Forms.CheckBox chkRandomize;
     }
 }
