@@ -18,6 +18,10 @@ namespace Suru.TrainingKit.Controls
         public Dictionary<Int16, String> DictQuestions { get; set; }
         public Dictionary<Int16, String> DictAnswers { get; set; }
         public Dictionary<Int16, String> DictAnnotations { get; set; }
+        public Boolean ResultsExported { get; set; }
+
+        private Dictionary<Int16, String> DictResponses = null;
+        private Nullable<Int16> CurrentQuestion = null;
 
         #endregion
 
@@ -37,6 +41,9 @@ namespace Suru.TrainingKit.Controls
         /// </summary>
         public void StartTest()
         {
+            DictResponses.Clear();
+            ResultsExported = false;
+
             txtAnswer.ReadOnly = false;
 
             lbQuestions.Items.Clear();
@@ -48,8 +55,18 @@ namespace Suru.TrainingKit.Controls
                 return;
             }
 
+            //IconedLabel il = null;
+
             foreach (Int16 i in DictQuestions.Keys)
+            {
+                //il = new IconedLabel();
+                //il.lblItem.Text = i.ToString();
+                //lbQuestions.Items.Add(il);
                 lbQuestions.Items.Add(i);
+            }
+
+            if (lbQuestions.Items.Count > 0)
+                lbQuestions.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -70,6 +87,36 @@ namespace Suru.TrainingKit.Controls
 
             lblResultText.Text = String.Empty;
             pbQuestionResult.Image = null;
+            DictResponses = new Dictionary<Int16, String>();
+        }
+
+        //lbQuestion Select Index Changed Event Handler
+        private void lbQuestions_SelectedIndexChanged(object sender, EventArgs e)
+        {            
+            Int16 SelectedQuestion = (Int16)lbQuestions.SelectedItem;
+
+            if (SelectedQuestion != -1)
+            {
+                //Save previous results, if current question is not null
+                if (CurrentQuestion != null)
+                {
+                    if (!DictResponses.ContainsKey(CurrentQuestion.Value))
+                        DictResponses.Add(CurrentQuestion.Value, String.Empty);
+
+                    DictResponses[CurrentQuestion.Value] = txtAnswer.Text.Trim();
+                }
+
+                //Set current question
+                CurrentQuestion = SelectedQuestion;
+
+                txtQuestion.Text = DictQuestions[SelectedQuestion];
+
+                if (DictResponses.ContainsKey(SelectedQuestion))
+                    txtAnswer.Text = DictResponses[SelectedQuestion];
+                else
+                    txtAnswer.Text = String.Empty;
+            }
+            
         }
 
         #endregion

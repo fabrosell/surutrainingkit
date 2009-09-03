@@ -127,6 +127,7 @@
     <Content Include="Images\bad.png" />
     <Content Include="Images\nn.png" />
     <Content Include="Images\ok.png" />
+    <Content Include="MenuMessCode.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
