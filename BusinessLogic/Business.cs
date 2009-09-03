@@ -96,6 +96,7 @@ namespace Suru.TrainingKit.BusinessLogic
                 Topics t = null;
                 Question q = null;
                 XmlNodeList xmlQuestions;
+                List<Int16> QuestionNumber = new List<Int16>();
 
                 //Processing each topic
                 //<topic name="Topic 1" topicexampercentage ="25">
@@ -126,6 +127,11 @@ namespace Suru.TrainingKit.BusinessLogic
                         q.Language = xmlQuestionNode.Attributes["language"].Value.ToUpper();
                         q.Number = Int16.Parse(xmlQuestionNode.Attributes["number"].Value);
                         
+                        if (QuestionNumber.Contains(q.Number))
+                            throw new ApplicationException("Question " + q.Number.ToString() + " already exist (topic: " + t.Name + ")");
+
+                        QuestionNumber.Add(q.Number);
+
                         q.Text = xmlQuestionNode.SelectSingleNode("child::text").InnerText;
                         q.Text = q.Text.Replace(MinorBracketReplacement, "<");
                         q.Text = q.Text.Replace(MayorBracketReplacement, ">");

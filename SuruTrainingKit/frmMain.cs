@@ -120,7 +120,7 @@ namespace Suru.TrainingKit.UI
                 }
                 else
                 {
-                    MessageBox.Show("A problem happened with " + ConfigFileName + ". Application must exit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Cannot load configuration file " + ConfigFileName + ". Application must exit. Check trace.log file on application folder.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Application.Exit();                    
                 }
             }
@@ -130,6 +130,41 @@ namespace Suru.TrainingKit.UI
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Loads the TestTrainingKit object configurations, so it can take the test.
+        /// </summary>
+        private void LoadSelectedConfiguration()
+        {
+            //Must set these properties
+            Dictionary<Int16, String> DictQuestions   = new Dictionary<Int16, String>();
+            Dictionary<Int16, String> DictAnswers     = new Dictionary<Int16, String>();
+            Dictionary<Int16, String> DictAnnotations = new Dictionary<Int16, String>();
+           
+            //TODO:
+            //  Randomize Questions (order)
+            //  Limit number of questions to selected ones.
+            foreach (KeyValuePair<String, Topics> kvp in CurrentExam.ExamTopics)
+            {
+                //Only Process Selected Topics
+                if (TopicList.Contains(kvp.Value.Name))
+                {
+                    if (kvp.Value.QuestionsPerLanguage.ContainsKey(ctkConfig.LanguageSelected))
+                    {
+                        foreach (Question q in kvp.Value.QuestionsPerLanguage[ctkConfig.LanguageSelected])
+                        {
+                            DictQuestions.Add(q.Number, q.Text);
+                            DictAnswers.Add(q.Number, q.Answer);
+                            DictAnnotations.Add(q.Number, q.Annotation);
+                        }
+                    }
+                }
+            }
+
+            ttkTest.DictQuestions = DictQuestions;
+            ttkTest.DictAnswers = DictAnswers;
+            ttkTest.DictAnnotations = DictAnnotations;
         }
 
         #endregion
@@ -211,19 +246,20 @@ namespace Suru.TrainingKit.UI
         private void tsmiTestStatus_Click(object sender, EventArgs e)
         {
             //This menu item will have two functions: will start or stop a test.
-            if (Status == FormStatus.TakingTest)
-            {
-                //Ask user if it REALLY wants to stop test.
-                if (DialogResult.Yes == MessageBox.Show("Are you sure you want to end the test?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
-                    ttkTest_TestStopped(sender, e);                
-            }
-            else
+            if (Status != FormStatus.TakingTest)
             {
                 //Start Test.
                 SetControlStatus(FormStatus.TakingTest);
 
-                ttkTest.StartTest();
-                //FALTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                LoadSelectedConfiguration();
+
+                ttkTest.StartTest();                
+            }
+            else
+            {
+                //Ask user if it REALLY wants to stop test.
+                if (DialogResult.Yes == MessageBox.Show("Are you sure you want to end the test?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
+                    ttkTest_TestStopped(sender, e);                
             }
         }
 
@@ -240,10 +276,34 @@ namespace Suru.TrainingKit.UI
             SetControlStatus(FormStatus.TestEnded);
 
             ttkTest.StopTest();
+            
 
             //FALTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         }
 
+        //frmMain Form Closing Event Handler
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Status == FormStatus.TakingTest)
+            {
+                if (DialogResult.No == MessageBox.Show("Do you really want to exit and end current test?", "Test in progress", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
+
+            if (Status == FormStatus.TestEnded && !ttkTest.ResultsExported)
+            {
+                if (DialogResult.No == MessageBox.Show("If you leave now you won't be able to review your anwers. Do you really want to exit and lose current test?", "Unsaved Results Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
+
+
+        }
 
         #endregion
     }

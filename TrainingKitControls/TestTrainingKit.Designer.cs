@@ -134,13 +134,14 @@
             this.chkShowAnswer.Text = "Automatically Show Answers";
             this.chkShowAnswer.UseVisualStyleBackColor = true;
             // 
-            // lbquestions
+            // lbQuestions
             // 
             this.lbQuestions.FormattingEnabled = true;
             this.lbQuestions.Location = new System.Drawing.Point(0, 27);
-            this.lbQuestions.Name = "lbquestions";
+            this.lbQuestions.Name = "lbQuestions";
             this.lbQuestions.Size = new System.Drawing.Size(47, 264);
             this.lbQuestions.TabIndex = 9;
+            this.lbQuestions.SelectedIndexChanged += new System.EventHandler(this.lbQuestions_SelectedIndexChanged);
             // 
             // lblList
             // 
