@@ -161,10 +161,12 @@ namespace Suru.TrainingKit.UI
                     }
                 }
             }
-
+            
             ttkTest.DictQuestions = DictQuestions;
             ttkTest.DictAnswers = DictAnswers;
             ttkTest.DictAnnotations = DictAnnotations;
+
+            ttkTest.ExamMinutes = ctkConfig.MinutesSelected;
         }
 
         #endregion
@@ -257,9 +259,13 @@ namespace Suru.TrainingKit.UI
             }
             else
             {
+                ttkTest.Pause();
+
                 //Ask user if it REALLY wants to stop test.
                 if (DialogResult.Yes == MessageBox.Show("Are you sure you want to end the test?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
-                    ttkTest_TestStopped(sender, e);                
+                    ttkTest_TestStopped(sender, e);
+
+                ttkTest.Resume();
             }
         }
 

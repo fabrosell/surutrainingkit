@@ -40,6 +40,10 @@
             // 
             // msMenu
             // 
+            this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiAvailableExams,
+            this.tsmiTestStatus,
+            this.tsmiAbout});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
             this.msMenu.Size = new System.Drawing.Size(600, 24);
@@ -51,7 +55,6 @@
             this.tsmiAvailableExams.Name = "tsmiAvailableExams";
             this.tsmiAvailableExams.Size = new System.Drawing.Size(96, 20);
             this.tsmiAvailableExams.Text = "&Available Exams";
-            this.msMenu.Items.Add(tsmiAvailableExams);
             // 
             // tsmiTestStatus
             // 
@@ -59,7 +62,6 @@
             this.tsmiTestStatus.Size = new System.Drawing.Size(67, 20);
             this.tsmiTestStatus.Text = "&Start Test";
             this.tsmiTestStatus.Click += new System.EventHandler(this.tsmiTestStatus_Click);
-            this.msMenu.Items.Add(tsmiTestStatus);
             // 
             // tsmiAbout
             // 
@@ -67,7 +69,6 @@
             this.tsmiAbout.Size = new System.Drawing.Size(48, 20);
             this.tsmiAbout.Text = "A&bout";
             this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
-            this.msMenu.Items.Add(tsmiAbout);
             // 
             // ctkConfig
             // 
@@ -78,20 +79,23 @@
             this.ctkConfig.Name = "ctkConfig";
             this.ctkConfig.QuestionNumber = null;
             this.ctkConfig.RandomizeQuestions = true;
-            this.ctkConfig.Size = new System.Drawing.Size(435, 313);
+            this.ctkConfig.Size = new System.Drawing.Size(435, 301);
             this.ctkConfig.TabIndex = 1;
             this.ctkConfig.TopicList = null;
             this.ctkConfig.TopicsSelected = ((System.Collections.Generic.List<string>)(resources.GetObject("ctkConfig.TopicsSelected")));
             // 
             // ttkTest
             // 
+            this.ttkTest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.ttkTest.DictAnnotations = null;
             this.ttkTest.DictAnswers = null;
             this.ttkTest.DictQuestions = null;
             this.ttkTest.Location = new System.Drawing.Point(0, 27);
             this.ttkTest.Name = "ttkTest";
             this.ttkTest.ResultsExported = false;
-            this.ttkTest.Size = new System.Drawing.Size(600, 313);
+            this.ttkTest.Size = new System.Drawing.Size(600, 326);
             this.ttkTest.TabIndex = 2;
             this.ttkTest.TestStopped += new System.EventHandler(this.ttkTest_TestStopped);
             // 

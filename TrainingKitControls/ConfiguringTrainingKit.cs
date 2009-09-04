@@ -105,6 +105,12 @@ namespace Suru.TrainingKit.Controls
             }
 
             #endregion
+
+            //Initialize Default Timer Value
+            if (chkExamTiming.Checked)
+                MinutesSelected = (Int16)nudMinutes.Value;
+            else
+                MinutesSelected = null;
         }
 
         #endregion
