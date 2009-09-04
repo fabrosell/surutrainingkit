@@ -105,6 +105,7 @@
             this.btnPrevious.TabIndex = 5;
             this.btnPrevious.Text = "< <";
             this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // btnNext
             // 
@@ -114,6 +115,7 @@
             this.btnNext.TabIndex = 6;
             this.btnNext.Text = "> >";
             this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnShowAnswer
             // 
@@ -123,6 +125,7 @@
             this.btnShowAnswer.TabIndex = 7;
             this.btnShowAnswer.Text = "Show Answer";
             this.btnShowAnswer.UseVisualStyleBackColor = true;
+            this.btnShowAnswer.Click += new System.EventHandler(this.btnShowAnswer_Click);
             // 
             // chkShowAnswer
             // 
@@ -154,16 +157,16 @@
             // 
             // pbQuestionResult
             // 
-            this.pbQuestionResult.Location = new System.Drawing.Point(56, 268);
+            this.pbQuestionResult.Location = new System.Drawing.Point(53, 266);
             this.pbQuestionResult.Name = "pbQuestionResult";
-            this.pbQuestionResult.Size = new System.Drawing.Size(20, 20);
+            this.pbQuestionResult.Size = new System.Drawing.Size(17, 17);
             this.pbQuestionResult.TabIndex = 11;
             this.pbQuestionResult.TabStop = false;
             // 
             // lblResultText
             // 
             this.lblResultText.AutoSize = true;
-            this.lblResultText.Location = new System.Drawing.Point(82, 273);
+            this.lblResultText.Location = new System.Drawing.Point(76, 268);
             this.lblResultText.Name = "lblResultText";
             this.lblResultText.Size = new System.Drawing.Size(67, 13);
             this.lblResultText.TabIndex = 12;

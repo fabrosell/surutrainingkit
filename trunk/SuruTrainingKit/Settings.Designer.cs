@@ -70,5 +70,17 @@ namespace Suru.TrainingKit.UI {
                 this["MayorBracketSubstitution"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#and#")]
+        public string UmpersandSubstitution {
+            get {
+                return ((string)(this["UmpersandSubstitution"]));
+            }
+            set {
+                this["UmpersandSubstitution"] = value;
+            }
+        }
     }
 }

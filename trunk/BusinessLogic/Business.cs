@@ -66,7 +66,7 @@ namespace Suru.TrainingKit.BusinessLogic
         /// </summary>
         /// <param name="FileName">XML File to use.</param>
         /// <returns>Exam configuration, or null if an error ocurrs.</returns>
-        public static Exam GetExamConfiguration(String FileName, String MinorBracketReplacement, String MayorBracketReplacement)
+        public static Exam GetExamConfiguration(String FileName, String MinorBracketReplacement, String MayorBracketReplacement, String UmpersandReplacement)
         {
             try
             {
@@ -97,6 +97,10 @@ namespace Suru.TrainingKit.BusinessLogic
                 Question q = null;
                 XmlNodeList xmlQuestions;
                 List<Int16> QuestionNumber = new List<Int16>();
+                Decimal PercentageTotal = 0;
+                Decimal Value;
+                Int16 Number;
+                StringBuilder sb;
 
                 //Processing each topic
                 //<topic name="Topic 1" topicexampercentage ="25">
@@ -105,8 +109,16 @@ namespace Suru.TrainingKit.BusinessLogic
                     t = new Topics();
 
                     t.Name = xmlTopicNode.Attributes["name"].Value;
-                    t.TopicValueOnExam = Decimal.Parse(xmlTopicNode.Attributes["topicexampercentage"].Value);
+
+                    if (!Decimal.TryParse(xmlTopicNode.Attributes["topicexampercentage"].Value, out Value))
+                        throw new ApplicationException("Topic Percentage Incorrect Format (Percentage: " + xmlTopicNode.Attributes["topicexampercentage"].Value + ", Topic: " + t.Name + ")");
+
+                    t.TopicValueOnExam = Value;
+                    //t.TopicValueOnExam = Decimal.Parse(xmlTopicNode.Attributes["topicexampercentage"].Value);
+
                     t.QuestionsPerLanguage = new Dictionary<String, List<Question>>();
+
+                    PercentageTotal += t.TopicValueOnExam;
 
                     xmlQuestions = xmlTopicNode.SelectNodes("child::question");
                    
@@ -125,24 +137,54 @@ namespace Suru.TrainingKit.BusinessLogic
                         q = new Question();
 
                         q.Language = xmlQuestionNode.Attributes["language"].Value.ToUpper();
-                        q.Number = Int16.Parse(xmlQuestionNode.Attributes["number"].Value);
+
+                        if (!Int16.TryParse(xmlQuestionNode.Attributes["number"].Value, out Number))
+                            throw new ApplicationException("Invalid Question Number (Value: " + xmlQuestionNode.Attributes["number"].Value + ", Topic: " + t.Name + ")");
+
+                        q.Number = Number;
+                        
+                        //q.Number = Int16.Parse(xmlQuestionNode.Attributes["number"].Value);
                         
                         if (QuestionNumber.Contains(q.Number))
                             throw new ApplicationException("Question " + q.Number.ToString() + " already exist (topic: " + t.Name + ")");
 
                         QuestionNumber.Add(q.Number);
 
-                        q.Text = xmlQuestionNode.SelectSingleNode("child::text").InnerText;
-                        q.Text = q.Text.Replace(MinorBracketReplacement, "<");
-                        q.Text = q.Text.Replace(MayorBracketReplacement, ">");
+                        sb = new StringBuilder();
+                        sb.Append(xmlQuestionNode.SelectSingleNode("child::text").InnerText);
+                        sb.Replace(MinorBracketReplacement, "<");
+                        sb.Replace(MayorBracketReplacement, ">");
+                        sb.Replace(UmpersandReplacement, "&");
+                        q.Text = sb.ToString();
 
-                        q.Answer = xmlQuestionNode.SelectSingleNode("child::answer").InnerText;
-                        q.Answer = q.Answer.Replace(MinorBracketReplacement, "<");
-                        q.Answer = q.Answer.Replace(MayorBracketReplacement, ">");
+                        //q.Text = xmlQuestionNode.SelectSingleNode("child::text").InnerText;
+                        //q.Text = q.Text.Replace(MinorBracketReplacement, "<");
+                        //q.Text = q.Text.Replace(MayorBracketReplacement, ">");
+                        //q.Text = q.Text.Replace(UmpersandReplacement, "&");
 
-                        q.Annotation = xmlQuestionNode.SelectSingleNode("child::annotation").InnerText;
-                        q.Annotation = q.Annotation.Replace(MinorBracketReplacement, "<");
-                        q.Annotation = q.Annotation.Replace(MayorBracketReplacement, ">");                        
+                        sb = new StringBuilder();
+                        sb.Append(xmlQuestionNode.SelectSingleNode("child::answer").InnerText);
+                        sb.Replace(MinorBracketReplacement, "<");
+                        sb.Replace(MayorBracketReplacement, ">");
+                        sb.Replace(UmpersandReplacement, "&");
+                        q.Annotation = sb.ToString();
+
+                        //q.Answer = xmlQuestionNode.SelectSingleNode("child::answer").InnerText;
+                        //q.Answer = q.Answer.Replace(MinorBracketReplacement, "<");
+                        //q.Answer = q.Answer.Replace(MayorBracketReplacement, ">");
+                        //q.Answer = q.Answer.Replace(UmpersandReplacement, "&");
+
+                        sb = new StringBuilder();
+                        sb.Append(xmlQuestionNode.SelectSingleNode("child::annotation").InnerText);
+                        sb.Replace(MinorBracketReplacement, "<");
+                        sb.Replace(MayorBracketReplacement, ">");
+                        sb.Replace(UmpersandReplacement, "&");
+                        q.Annotation = sb.ToString();
+
+                        //q.Annotation = xmlQuestionNode.SelectSingleNode("child::annotation").InnerText;
+                        //q.Annotation = q.Annotation.Replace(MinorBracketReplacement, "<");
+                        //q.Annotation = q.Annotation.Replace(MayorBracketReplacement, ">");
+                        //q.Annotation = q.Annotation.Replace(UmpersandReplacement, "&");
 
                         if (!t.QuestionsPerLanguage.ContainsKey(q.Language))
                             t.QuestionsPerLanguage.Add(q.Language, new List<Question>());
@@ -154,7 +196,10 @@ namespace Suru.TrainingKit.BusinessLogic
                         throw new ApplicationException("Topic \"" + t.Name + "\" is more than once on xml file...");
 
                     CurrentExam.ExamTopics.Add(t.Name, t);
-                }                
+                }
+
+                if (Math.Round(PercentageTotal, 0) != 100)
+                    throw new ApplicationException("The zero-decimal-rounded sum of the topic percentages is not 100 (value: " + Math.Round(PercentageTotal, 0).ToString() + ")");
 
                 return CurrentExam;                
             }

@@ -89,7 +89,7 @@ namespace Suru.TrainingKit.UI
         {
             if (File.Exists(ConfigFileName))
             {
-                CurrentExam = ExamConfiguration.GetExamConfiguration(ConfigFileName, Settings.Default.MinorBracketSubstitution, Settings.Default.MayorBracketSubstitution);
+                CurrentExam = ExamConfiguration.GetExamConfiguration(ConfigFileName, Settings.Default.MinorBracketSubstitution, Settings.Default.MayorBracketSubstitution, Settings.Default.UmpersandSubstitution);
 
                 if (CurrentExam != null)
                 {
@@ -243,7 +243,7 @@ namespace Suru.TrainingKit.UI
         }
 
         //tsmiTestStatus Event Handler
-        private void tsmiTestStatus_Click(object sender, EventArgs e)
+        private void tsmiTestStatus_Click(Object sender, EventArgs e)
         {
             //This menu item will have two functions: will start or stop a test.
             if (Status != FormStatus.TakingTest)
@@ -264,14 +264,14 @@ namespace Suru.TrainingKit.UI
         }
 
         //tsmiAbout Click Event Handler
-        private void tsmiAbout_Click(object sender, EventArgs e)
+        private void tsmiAbout_Click(Object sender, EventArgs e)
         {
             AboutBox frmAbout = new AboutBox();
             frmAbout.ShowDialog();
         }
 
         //ttkTeset Test Stopped Event Handler
-        private void ttkTest_TestStopped(object sender, EventArgs e)
+        private void ttkTest_TestStopped(Object sender, EventArgs e)
         {
             SetControlStatus(FormStatus.TestEnded);
 
@@ -282,7 +282,7 @@ namespace Suru.TrainingKit.UI
         }
 
         //frmMain Form Closing Event Handler
-        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        private void frmMain_FormClosing(Object sender, FormClosingEventArgs e)
         {
             if (Status == FormStatus.TakingTest)
             {
