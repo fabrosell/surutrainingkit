@@ -22,6 +22,8 @@ namespace Suru.TrainingKit.Controls
 
         private Dictionary<Int16, String> DictResponses = null;
         private Nullable<Int16> CurrentQuestion = null;
+        private Boolean AnswerWasShown = false;
+        private String CurrentAnswerString = String.Empty;
 
         #endregion
 
@@ -53,17 +55,10 @@ namespace Suru.TrainingKit.Controls
                 txtQuestion.Text = "Test cannot be started because it lacks of configurations...";
                 OnStop();
                 return;
-            }
-
-            //IconedLabel il = null;
+            }            
 
             foreach (Int16 i in DictQuestions.Keys)
-            {
-                //il = new IconedLabel();
-                //il.lblItem.Text = i.ToString();
-                //lbQuestions.Items.Add(il);
                 lbQuestions.Items.Add(i);
-            }
 
             if (lbQuestions.Items.Count > 0)
                 lbQuestions.SelectedIndex = 0;
@@ -77,10 +72,44 @@ namespace Suru.TrainingKit.Controls
             txtAnswer.ReadOnly = true;
         }
 
+        /// <summary>
+        /// Check if current answer is true of false.
+        /// </summary>
+        public void CheckAnswer()
+        {          
+            Int16 QuestionNumber = (Int16)lbQuestions.SelectedItem;
+            
+            if (DictResponses.ContainsKey(QuestionNumber))
+            {
+                if (String.Compare(txtAnswer.Text.Trim(), DictResponses[QuestionNumber], true) == 0)
+                {
+                    pbQuestionResult.Image = Resources.ok;
+                    lblResultText.Text = "Answer is OK.";
+                }
+                else
+                {
+                    pbQuestionResult.Image = Resources.bad;
+                    lblResultText.Text = "Answer is not correct.";
+                }
+            }
+            else
+            {
+                pbQuestionResult.Image = Resources.nn;
+                lblResultText.Text = "There are no answer.";
+            }
+
+            CurrentAnswerString = DictAnswers[QuestionNumber];
+
+            txtAnswer.Text = txtAnswer.Text.Trim();
+            txtAnswer.Text += Environment.NewLine + Environment.NewLine + CurrentAnswerString;
+
+        }
+
         #endregion
 
         #region Constructors & Event Handlers
 
+        //Class Constructor
         public TestTrainingKit()
         {
             InitializeComponent();
@@ -91,7 +120,7 @@ namespace Suru.TrainingKit.Controls
         }
 
         //lbQuestion Select Index Changed Event Handler
-        private void lbQuestions_SelectedIndexChanged(object sender, EventArgs e)
+        private void lbQuestions_SelectedIndexChanged(Object sender, EventArgs e)
         {            
             Int16 SelectedQuestion = (Int16)lbQuestions.SelectedItem;
 
@@ -102,6 +131,10 @@ namespace Suru.TrainingKit.Controls
                 {
                     if (!DictResponses.ContainsKey(CurrentQuestion.Value))
                         DictResponses.Add(CurrentQuestion.Value, String.Empty);
+
+                    //Removes Annotation Text
+                    if (txtAnswer.Text.Trim() != String.Empty)
+                        txtAnswer.Text = txtAnswer.Text.Replace(CurrentAnswerString, String.Empty);
 
                     DictResponses[CurrentQuestion.Value] = txtAnswer.Text.Trim();
                 }
@@ -115,8 +148,52 @@ namespace Suru.TrainingKit.Controls
                     txtAnswer.Text = DictResponses[SelectedQuestion];
                 else
                     txtAnswer.Text = String.Empty;
+
+                //Resets label and icons
+                pbQuestionResult.Image = null;
+                lblResultText.Text = String.Empty;
+                AnswerWasShown = false;
+
+            }            
+        }
+
+        //btnPrevious Click Event Handler
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (chkShowAnswer.Checked && !AnswerWasShown)
+            {
+                CheckAnswer();
+                AnswerWasShown = true;
+                return;
             }
             
+            if (lbQuestions.SelectedIndex == 0)
+                lbQuestions.SelectedIndex = lbQuestions.Items.Count - 1;
+            else
+                lbQuestions.SelectedIndex--;
+        }
+
+        //btnNext Click Event Handler
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (chkShowAnswer.Checked && !AnswerWasShown)
+            {
+                CheckAnswer();
+                AnswerWasShown = true;
+                return;
+            }
+
+            if (lbQuestions.SelectedIndex == lbQuestions.Items.Count - 1)
+                lbQuestions.SelectedIndex = 0;
+            else
+                lbQuestions.SelectedIndex++;
+        }
+
+        //btnShowAnswer Click Event Handler
+        private void btnShowAnswer_Click(object sender, EventArgs e)
+        {
+            CheckAnswer();
+            AnswerWasShown = true;
         }
 
         #endregion

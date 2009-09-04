@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Suru.TrainingKit.UI.Properties {
+namespace Suru.TrainingKit.Controls {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Suru.TrainingKit.UI.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Suru.TrainingKit.UI.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Suru.TrainingKit.Controls.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,27 @@ namespace Suru.TrainingKit.UI.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        internal static System.Drawing.Bitmap bad {
+            get {
+                object obj = ResourceManager.GetObject("bad", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap nn {
+            get {
+                object obj = ResourceManager.GetObject("nn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ok {
+            get {
+                object obj = ResourceManager.GetObject("ok", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

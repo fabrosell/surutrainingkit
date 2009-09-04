@@ -14,5 +14,8 @@
     <Setting Name="MayorBracketSubstitution" Type="System.String" Scope="User">
       <Value Profile="(Default)">#may#</Value>
     </Setting>
+    <Setting Name="UmpersandSubstitution" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#and#</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
