@@ -154,7 +154,8 @@ namespace Suru.TrainingKit.BusinessLogic
                         sb.Append(xmlQuestionNode.SelectSingleNode("child::text").InnerText);
                         sb.Replace(MinorBracketReplacement, "<");
                         sb.Replace(MayorBracketReplacement, ">");
-                        sb.Replace(UmpersandReplacement, "&");
+                        sb.Replace(UmpersandReplacement, "&");                        
+                        sb.Replace("\t", String.Empty);
                         q.Text = sb.ToString();
 
                         //q.Text = xmlQuestionNode.SelectSingleNode("child::text").InnerText;
@@ -167,7 +168,8 @@ namespace Suru.TrainingKit.BusinessLogic
                         sb.Replace(MinorBracketReplacement, "<");
                         sb.Replace(MayorBracketReplacement, ">");
                         sb.Replace(UmpersandReplacement, "&");
-                        q.Annotation = sb.ToString();
+                        sb.Replace("\t", String.Empty);
+                        q.Answer = sb.ToString();
 
                         //q.Answer = xmlQuestionNode.SelectSingleNode("child::answer").InnerText;
                         //q.Answer = q.Answer.Replace(MinorBracketReplacement, "<");
@@ -179,6 +181,7 @@ namespace Suru.TrainingKit.BusinessLogic
                         sb.Replace(MinorBracketReplacement, "<");
                         sb.Replace(MayorBracketReplacement, ">");
                         sb.Replace(UmpersandReplacement, "&");
+                        sb.Replace("\t", String.Empty);
                         q.Annotation = sb.ToString();
 
                         //q.Annotation = xmlQuestionNode.SelectSingleNode("child::annotation").InnerText;

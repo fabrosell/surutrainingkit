@@ -19,15 +19,37 @@ namespace Suru.TrainingKit.Controls
         public Dictionary<Int16, String> DictAnswers { get; set; }
         public Dictionary<Int16, String> DictAnnotations { get; set; }
         public Boolean ResultsExported { get; set; }
+        public Nullable<Int16> ExamMinutes { get; set; }        
 
         private Dictionary<Int16, String> DictResponses = null;
         private Nullable<Int16> CurrentQuestion = null;
         private Boolean AnswerWasShown = false;
         private String CurrentAnswerString = String.Empty;
 
+        private Boolean PauseTimer = false;
+        private Int16 HoursRemaining = 0;
+        private Int16 MinutesRemaining = 0;
+        private Int16 SecondsRemaining = 0;
+
         #endregion
 
         #region Class Methods
+
+        /// <summary>
+        /// Pauses the timer.
+        /// </summary>
+        public void Pause()
+        {
+            PauseTimer = true;
+        }
+
+        /// <summary>
+        /// Resumes the timer.
+        /// </summary>
+        public void Resume()
+        {
+            PauseTimer = false;
+        }
 
         /// <summary>
         /// OnStop method event firer
@@ -55,13 +77,32 @@ namespace Suru.TrainingKit.Controls
                 txtQuestion.Text = "Test cannot be started because it lacks of configurations...";
                 OnStop();
                 return;
-            }            
+            }
+
+            if (ExamMinutes != null)
+            {
+                SecondsRemaining = 0;
+                
+                HoursRemaining = (Int16)Math.Truncate((Decimal)ExamMinutes.Value / 60);
+                MinutesRemaining = (Int16)(ExamMinutes.Value % 60);
+
+                StopTimer = new Timer();
+                StopTimer.Interval = 1000;
+                StopTimer.Tick += new EventHandler(StopTimer_Tick);
+                StopTimer.Enabled = true;
+
+                ShowTime();
+            }
+            else
+                lblRemainingTime.Text = String.Empty;
 
             foreach (Int16 i in DictQuestions.Keys)
                 lbQuestions.Items.Add(i);
 
             if (lbQuestions.Items.Count > 0)
                 lbQuestions.SelectedIndex = 0;
+
+            txtAnswer.Focus();
         }
 
         /// <summary>
@@ -70,18 +111,21 @@ namespace Suru.TrainingKit.Controls
         public void StopTest()
         {
             txtAnswer.ReadOnly = true;
+
+            if (StopTimer != null)
+                StopTimer.Enabled = false;
         }
 
         /// <summary>
         /// Check if current answer is true of false.
         /// </summary>
         public void CheckAnswer()
-        {          
+        {
             Int16 QuestionNumber = (Int16)lbQuestions.SelectedItem;
-            
-            if (DictResponses.ContainsKey(QuestionNumber))
+
+            if (DictAnswers.ContainsKey(QuestionNumber))
             {
-                if (String.Compare(txtAnswer.Text.Trim(), DictResponses[QuestionNumber], true) == 0)
+                if (String.Compare(txtAnswer.Text.Trim(), DictAnswers[QuestionNumber], true) == 0)
                 {
                     pbQuestionResult.Image = Resources.ok;
                     lblResultText.Text = "Answer is OK.";
@@ -105,6 +149,20 @@ namespace Suru.TrainingKit.Controls
 
         }
 
+        /// <summary>
+        /// Shows the Exam available time in control
+        /// </summary>
+        private void ShowTime()
+        {
+            lblRemainingTime.Text = "Remaining Time: ";
+
+            if (HoursRemaining > 0)
+                lblRemainingTime.Text += HoursRemaining.ToString() + ":";
+
+            lblRemainingTime.Text += MinutesRemaining.ToString("00") + ":";
+            lblRemainingTime.Text += SecondsRemaining.ToString("00");
+        }
+
         #endregion
 
         #region Constructors & Event Handlers
@@ -121,7 +179,7 @@ namespace Suru.TrainingKit.Controls
 
         //lbQuestion Select Index Changed Event Handler
         private void lbQuestions_SelectedIndexChanged(Object sender, EventArgs e)
-        {            
+        {
             Int16 SelectedQuestion = (Int16)lbQuestions.SelectedItem;
 
             if (SelectedQuestion != -1)
@@ -154,7 +212,7 @@ namespace Suru.TrainingKit.Controls
                 lblResultText.Text = String.Empty;
                 AnswerWasShown = false;
 
-            }            
+            }
         }
 
         //btnPrevious Click Event Handler
@@ -166,7 +224,7 @@ namespace Suru.TrainingKit.Controls
                 AnswerWasShown = true;
                 return;
             }
-            
+
             if (lbQuestions.SelectedIndex == 0)
                 lbQuestions.SelectedIndex = lbQuestions.Items.Count - 1;
             else
@@ -194,6 +252,37 @@ namespace Suru.TrainingKit.Controls
         {
             CheckAnswer();
             AnswerWasShown = true;
+        }
+
+        //StopTimer Tick Event Handler
+        private void StopTimer_Tick(object sender, EventArgs e)
+        {
+            if (PauseTimer)
+                return;
+
+            if (SecondsRemaining == 0)
+            {
+                SecondsRemaining = 59;
+
+                if (MinutesRemaining == 0)
+                {
+                    MinutesRemaining = 59;
+
+                    if (HoursRemaining == 0)
+                    {
+                        StopTest();
+                        return;
+                    }
+                    else
+                        HoursRemaining--;
+                }
+                else
+                    MinutesRemaining--;
+            }
+            else
+                SecondsRemaining--;
+
+            ShowTime();
         }
 
         #endregion

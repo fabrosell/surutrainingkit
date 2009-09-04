@@ -62,6 +62,9 @@
             // 
             // txtQuestion
             // 
+            this.txtQuestion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.txtQuestion.Location = new System.Drawing.Point(53, 27);
             this.txtQuestion.Multiline = true;
             this.txtQuestion.Name = "txtQuestion";
@@ -72,6 +75,8 @@
             // 
             // lblQuestionNumber
             // 
+            this.lblQuestionNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
             this.lblQuestionNumber.AutoSize = true;
             this.lblQuestionNumber.Location = new System.Drawing.Point(50, 11);
             this.lblQuestionNumber.Name = "lblQuestionNumber";
@@ -81,6 +86,7 @@
             // 
             // lblAnswer
             // 
+            this.lblAnswer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblAnswer.AutoSize = true;
             this.lblAnswer.Location = new System.Drawing.Point(53, 170);
             this.lblAnswer.Name = "lblAnswer";
@@ -90,6 +96,8 @@
             // 
             // txtAnswer
             // 
+            this.txtAnswer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAnswer.Location = new System.Drawing.Point(53, 186);
             this.txtAnswer.Multiline = true;
             this.txtAnswer.Name = "txtAnswer";
@@ -99,6 +107,7 @@
             // 
             // btnPrevious
             // 
+            this.btnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrevious.Location = new System.Drawing.Point(393, 268);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(46, 23);
@@ -109,6 +118,7 @@
             // 
             // btnNext
             // 
+            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNext.Location = new System.Drawing.Point(445, 268);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(46, 23);
@@ -119,6 +129,7 @@
             // 
             // btnShowAnswer
             // 
+            this.btnShowAnswer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnShowAnswer.Location = new System.Drawing.Point(497, 268);
             this.btnShowAnswer.Name = "btnShowAnswer";
             this.btnShowAnswer.Size = new System.Drawing.Size(88, 23);
@@ -139,6 +150,8 @@
             // 
             // lbQuestions
             // 
+            this.lbQuestions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
             this.lbQuestions.FormattingEnabled = true;
             this.lbQuestions.Location = new System.Drawing.Point(0, 27);
             this.lbQuestions.Name = "lbQuestions";
@@ -148,6 +161,8 @@
             // 
             // lblList
             // 
+            this.lblList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
             this.lblList.AutoSize = true;
             this.lblList.Location = new System.Drawing.Point(3, 11);
             this.lblList.Name = "lblList";
@@ -157,6 +172,7 @@
             // 
             // pbQuestionResult
             // 
+            this.pbQuestionResult.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pbQuestionResult.Location = new System.Drawing.Point(53, 266);
             this.pbQuestionResult.Name = "pbQuestionResult";
             this.pbQuestionResult.Size = new System.Drawing.Size(17, 17);
@@ -165,6 +181,7 @@
             // 
             // lblResultText
             // 
+            this.lblResultText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblResultText.AutoSize = true;
             this.lblResultText.Location = new System.Drawing.Point(76, 268);
             this.lblResultText.Name = "lblResultText";
