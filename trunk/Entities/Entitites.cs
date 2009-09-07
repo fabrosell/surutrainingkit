@@ -11,7 +11,7 @@ namespace Suru.TrainingKit.Entities
     public class Exam
     {
         public String Name { get; set; }
-        public Int16 Aprobacion { get; set; }
+        public Int16 ApprobationPercentage { get; set; }
         public Dictionary<String, Topics> ExamTopics { get; set; }        
     }
 

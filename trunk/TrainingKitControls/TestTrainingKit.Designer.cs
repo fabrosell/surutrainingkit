@@ -43,6 +43,7 @@
             this.lblList = new System.Windows.Forms.Label();
             this.pbQuestionResult = new System.Windows.Forms.PictureBox();
             this.lblResultText = new System.Windows.Forms.Label();
+            this.lblExamResult = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbQuestionResult)).BeginInit();
             this.SuspendLayout();
             // 
@@ -173,7 +174,7 @@
             // pbQuestionResult
             // 
             this.pbQuestionResult.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pbQuestionResult.Location = new System.Drawing.Point(53, 266);
+            this.pbQuestionResult.Location = new System.Drawing.Point(53, 273);
             this.pbQuestionResult.Name = "pbQuestionResult";
             this.pbQuestionResult.Size = new System.Drawing.Size(17, 17);
             this.pbQuestionResult.TabIndex = 11;
@@ -183,16 +184,28 @@
             // 
             this.lblResultText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblResultText.AutoSize = true;
-            this.lblResultText.Location = new System.Drawing.Point(76, 268);
+            this.lblResultText.Location = new System.Drawing.Point(76, 273);
             this.lblResultText.Name = "lblResultText";
             this.lblResultText.Size = new System.Drawing.Size(67, 13);
             this.lblResultText.TabIndex = 12;
             this.lblResultText.Text = "[Result Text]";
             // 
+            // lblExamResult
+            // 
+            this.lblExamResult.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblExamResult.AutoSize = true;
+            this.lblExamResult.Location = new System.Drawing.Point(238, 273);
+            this.lblExamResult.Name = "lblExamResult";
+            this.lblExamResult.Size = new System.Drawing.Size(69, 13);
+            this.lblExamResult.TabIndex = 13;
+            this.lblExamResult.Text = "[ExamResult]";
+            this.lblExamResult.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // TestTrainingKit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblExamResult);
             this.Controls.Add(this.lblResultText);
             this.Controls.Add(this.pbQuestionResult);
             this.Controls.Add(this.lblList);
@@ -230,6 +243,7 @@
         private System.Windows.Forms.Label lblList;
         private System.Windows.Forms.PictureBox pbQuestionResult;
         private System.Windows.Forms.Label lblResultText;
+        private System.Windows.Forms.Label lblExamResult;
 
     }
 }

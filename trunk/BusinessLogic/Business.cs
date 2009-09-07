@@ -89,7 +89,7 @@ namespace Suru.TrainingKit.BusinessLogic
                 XmlNode xmlNode = xmlNodes[0];
 
                 CurrentExam.Name = xmlNode.Attributes["name"].Value;
-                CurrentExam.Aprobacion = Int16.Parse(xmlNode.Attributes["approbingpercentage"].Value);
+                CurrentExam.ApprobationPercentage = Int16.Parse(xmlNode.Attributes["approbingpercentage"].Value);
 
                 xmlNodes = xmlNode.SelectNodes("//topic");
 
@@ -150,44 +150,32 @@ namespace Suru.TrainingKit.BusinessLogic
 
                         QuestionNumber.Add(q.Number);
 
+                        //New Line, Carriage Return and Tab ARE accepted as question formatting.
                         sb = new StringBuilder();
                         sb.Append(xmlQuestionNode.SelectSingleNode("child::text").InnerText);
                         sb.Replace(MinorBracketReplacement, "<");
                         sb.Replace(MayorBracketReplacement, ">");
-                        sb.Replace(UmpersandReplacement, "&");                        
-                        sb.Replace("\t", String.Empty);
+                        sb.Replace(UmpersandReplacement, "&");                                                
                         q.Text = sb.ToString();
 
-                        //q.Text = xmlQuestionNode.SelectSingleNode("child::text").InnerText;
-                        //q.Text = q.Text.Replace(MinorBracketReplacement, "<");
-                        //q.Text = q.Text.Replace(MayorBracketReplacement, ">");
-                        //q.Text = q.Text.Replace(UmpersandReplacement, "&");
-
+                        //New Line, Carriage Return and Tab are not accepted as answers.
                         sb = new StringBuilder();
                         sb.Append(xmlQuestionNode.SelectSingleNode("child::answer").InnerText);
                         sb.Replace(MinorBracketReplacement, "<");
                         sb.Replace(MayorBracketReplacement, ">");
                         sb.Replace(UmpersandReplacement, "&");
                         sb.Replace("\t", String.Empty);
+                        sb.Replace("\n", String.Empty);
+                        sb.Replace("\r", String.Empty);
                         q.Answer = sb.ToString();
 
-                        //q.Answer = xmlQuestionNode.SelectSingleNode("child::answer").InnerText;
-                        //q.Answer = q.Answer.Replace(MinorBracketReplacement, "<");
-                        //q.Answer = q.Answer.Replace(MayorBracketReplacement, ">");
-                        //q.Answer = q.Answer.Replace(UmpersandReplacement, "&");
-
+                        //New Line, Carriage Return and Tab ARE accepted as question formatting.
                         sb = new StringBuilder();
                         sb.Append(xmlQuestionNode.SelectSingleNode("child::annotation").InnerText);
                         sb.Replace(MinorBracketReplacement, "<");
                         sb.Replace(MayorBracketReplacement, ">");
-                        sb.Replace(UmpersandReplacement, "&");
-                        sb.Replace("\t", String.Empty);
+                        sb.Replace(UmpersandReplacement, "&");                        
                         q.Annotation = sb.ToString();
-
-                        //q.Annotation = xmlQuestionNode.SelectSingleNode("child::annotation").InnerText;
-                        //q.Annotation = q.Annotation.Replace(MinorBracketReplacement, "<");
-                        //q.Annotation = q.Annotation.Replace(MayorBracketReplacement, ">");
-                        //q.Annotation = q.Annotation.Replace(UmpersandReplacement, "&");
 
                         if (!t.QuestionsPerLanguage.ContainsKey(q.Language))
                             t.QuestionsPerLanguage.Add(q.Language, new List<Question>());
