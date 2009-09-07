@@ -141,6 +141,7 @@ namespace Suru.TrainingKit.UI
             Dictionary<Int16, String> DictQuestions   = new Dictionary<Int16, String>();
             Dictionary<Int16, String> DictAnswers     = new Dictionary<Int16, String>();
             Dictionary<Int16, String> DictAnnotations = new Dictionary<Int16, String>();
+            Dictionary<Int16, Decimal> DictPoints = new Dictionary<Int16, Decimal>();
            
             //TODO:
             //  Randomize Questions (order)
@@ -157,11 +158,14 @@ namespace Suru.TrainingKit.UI
                             DictQuestions.Add(q.Number, q.Text);
                             DictAnswers.Add(q.Number, q.Answer);
                             DictAnnotations.Add(q.Number, q.Annotation);
+                            DictPoints.Add(q.Number, kvp.Value.TopicValueOnExam / kvp.Value.QuestionsPerLanguage[ctkConfig.LanguageSelected].Count);
                         }
                     }
                 }
             }
-            
+
+            ttkTest.ApprobationPercentage = CurrentExam.ApprobationPercentage;
+            ttkTest.DictPoints = DictPoints;
             ttkTest.DictQuestions = DictQuestions;
             ttkTest.DictAnswers = DictAnswers;
             ttkTest.DictAnnotations = DictAnnotations;

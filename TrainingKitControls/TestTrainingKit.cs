@@ -3,6 +3,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.Diagnostics;
 using System.Windows.Forms;
 using System.ComponentModel;
 using System.Collections.Generic;
@@ -18,8 +19,12 @@ namespace Suru.TrainingKit.Controls
         public Dictionary<Int16, String> DictQuestions { get; set; }
         public Dictionary<Int16, String> DictAnswers { get; set; }
         public Dictionary<Int16, String> DictAnnotations { get; set; }
-        public Boolean ResultsExported { get; set; }
-        public Nullable<Int16> ExamMinutes { get; set; }        
+        public Dictionary<Int16, Decimal> DictPoints { get; set; }
+        public Boolean ResultsExported { get; set; }        
+        public Nullable<Int16> ExamMinutes { get; set; }
+        public List<Int16> QuestionsOK { get; set; }
+        public Int16 ApprobationPercentage { get; set; }
+        public Decimal Points { get; set; }
 
         private Dictionary<Int16, String> DictResponses = null;
         private Nullable<Int16> CurrentQuestion = null;
@@ -65,6 +70,9 @@ namespace Suru.TrainingKit.Controls
         /// </summary>
         public void StartTest()
         {
+            Points = 0;
+            lblExamResult.Text = String.Empty;
+
             DictResponses.Clear();
             ResultsExported = false;
 
@@ -110,10 +118,49 @@ namespace Suru.TrainingKit.Controls
         /// </summary>
         public void StopTest()
         {
+            //Commit previous changes
+            lbQuestions_SelectedIndexChanged(null, null);
+
             txtAnswer.ReadOnly = true;
 
             if (StopTimer != null)
                 StopTimer.Enabled = false;
+
+            QuestionsOK = new List<Int16>();
+
+            Points = 0;
+
+            //Check all answer to match 
+            foreach (KeyValuePair<Int16, String> kvp in DictAnswers)
+            {                
+                if (DictResponses.ContainsKey(kvp.Key))
+                {
+                    if (String.Compare(DictResponses[kvp.Key], DictAnswers[kvp.Key], true) == 0)
+                    {
+                        //User Answered the question, and values is OK. Add the Points.
+                        if (DictPoints.ContainsKey(kvp.Key))
+                            Points += DictPoints[kvp.Key];                        
+                    }                                                
+                }
+            }
+
+            Points = Math.Round(Points, 2);                       
+            
+            if (Math.Round(Points, 2) < ApprobationPercentage)
+            {
+                if (Points != 0)
+                    lblExamResult.Text = "Exam Fails (" + Points.ToString("##.##") + "% ," + ApprobationPercentage.ToString("00") + "% needed)";               
+                else
+                    lblExamResult.Text = "Exam Fails (0%, " + ApprobationPercentage.ToString("00") + "% needed)";
+
+                lblExamResult.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblExamResult.Text = "Exam Passed! (" + Points.ToString("##.##") + "% ," + ApprobationPercentage.ToString("00") + "% min)";
+
+                lblExamResult.ForeColor = Color.Green;
+            }                
         }
 
         /// <summary>
@@ -173,6 +220,7 @@ namespace Suru.TrainingKit.Controls
             InitializeComponent();
 
             lblResultText.Text = String.Empty;
+            lblExamResult.Text = String.Empty;
             pbQuestionResult.Image = null;
             DictResponses = new Dictionary<Int16, String>();
         }
@@ -191,8 +239,9 @@ namespace Suru.TrainingKit.Controls
                         DictResponses.Add(CurrentQuestion.Value, String.Empty);
 
                     //Removes Annotation Text
-                    if (txtAnswer.Text.Trim() != String.Empty)
-                        txtAnswer.Text = txtAnswer.Text.Replace(CurrentAnswerString, String.Empty);
+                    if (CurrentAnswerString != String.Empty)
+                        if (txtAnswer.Text.Trim() != String.Empty)
+                            txtAnswer.Text = txtAnswer.Text.Replace(CurrentAnswerString, String.Empty);
 
                     DictResponses[CurrentQuestion.Value] = txtAnswer.Text.Trim();
                 }
@@ -212,6 +261,7 @@ namespace Suru.TrainingKit.Controls
                 lblResultText.Text = String.Empty;
                 AnswerWasShown = false;
 
+                txtAnswer.Focus();
             }
         }
 
