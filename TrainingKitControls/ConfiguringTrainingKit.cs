@@ -20,15 +20,14 @@ namespace Suru.TrainingKit.Controls
         private const String TopicColName = "[Column]";
 
         //"Input Variables" --> To show in form
-        public Dictionary<String, Int16> LanguageDict { get; set; }        
+        public Dictionary<String, Int32> LanguageDict { get; set; }        
         public List<String> TopicList    { get; set; }
 
         //"Output Variables" --> Selected info to form
         public String LanguageSelected { get; set; }
         public Nullable<Int16> MinutesSelected { get; set; }
         public List<String> TopicsSelected { get; set; }
-        public Nullable<Int16> QuestionNumber { get; set; }
-        public Boolean RandomizeQuestions { get; set; }
+        public Nullable<Int16> QuestionNumber { get; set; }        
 
         #endregion
 
@@ -121,7 +120,6 @@ namespace Suru.TrainingKit.Controls
         public ConfiguringTrainingKit()
         {
             TopicsSelected = new List<String>();
-            RandomizeQuestions = true;
             LanguageSelected = null;
             MinutesSelected = null;
             QuestionNumber = null;
@@ -201,12 +199,6 @@ namespace Suru.TrainingKit.Controls
         private void nudQuestions_ValueChanged(Object sender, EventArgs e)
         {
             QuestionNumber = (Int16)nudQuestions.Value;
-        }
-
-        //chkRandomize Checked Changed Event Handler
-        private void chkRandomize_CheckedChanged(object sender, EventArgs e)
-        {
-            RandomizeQuestions = chkRandomize.Checked;
         }
 
         #endregion

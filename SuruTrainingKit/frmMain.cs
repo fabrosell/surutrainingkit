@@ -29,7 +29,7 @@ namespace Suru.TrainingKit.UI
         private String ExamsDirectory = null;
         private FormStatus Status;
 
-        Dictionary<String, Int16> LanguageDict = null;
+        Dictionary<String, Int32> LanguageDict = null;
         private List<String> TopicList = null;
         private Exam CurrentExam = null;
 
@@ -99,7 +99,7 @@ namespace Suru.TrainingKit.UI
                     TopicList.Clear();
 
                     if (LanguageDict == null)
-                        LanguageDict = new Dictionary<String, Int16>();
+                        LanguageDict = new Dictionary<String, Int32>();
 
                     LanguageDict.Clear();
 
@@ -112,7 +112,7 @@ namespace Suru.TrainingKit.UI
                             if (!LanguageDict.ContainsKey(s))
                                 LanguageDict.Add(s, 0);
 
-                            LanguageDict[s]++;
+                            LanguageDict[s] += kvp.Value.QuestionsPerLanguage[s].Count;
                         }
                     }
 
@@ -121,12 +121,12 @@ namespace Suru.TrainingKit.UI
                 else
                 {
                     MessageBox.Show("Cannot load configuration file " + ConfigFileName + ". Application must exit. Check trace.log file on application folder.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Application.Exit();                    
+                    Application.Exit();
                 }
             }
             else
             {
-                MessageBox.Show("Exam config file is missing (" + ConfigFileName + "). Please check it out.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);                
+                MessageBox.Show("Exam config file is missing (" + ConfigFileName + "). Please check it out.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             return false;
@@ -137,15 +137,115 @@ namespace Suru.TrainingKit.UI
         /// </summary>
         private void LoadSelectedConfiguration()
         {
-            //Must set these properties
-            Dictionary<Int16, String> DictQuestions   = new Dictionary<Int16, String>();
-            Dictionary<Int16, String> DictAnswers     = new Dictionary<Int16, String>();
+            //Must set these properties for the TestTrainingKit control
+            Dictionary<Int16, String> DictQuestions = new Dictionary<Int16, String>();
+            Dictionary<Int16, String> DictAnswers = new Dictionary<Int16, String>();
             Dictionary<Int16, String> DictAnnotations = new Dictionary<Int16, String>();
             Dictionary<Int16, Decimal> DictPoints = new Dictionary<Int16, Decimal>();
-           
+
+            Random RandGen = new Random();
+
+            Dictionary<String, Int32> TopicQuestionsNumber = new Dictionary<String, Int32>();
+
+            Int32 TotalQuestions = 0;
+
+            //Dictionary of topic-name and question number's list
+            Dictionary<String, List<Int16>> QuestionList = new Dictionary<String, List<Int16>>();
+
+            //Get number of questions per topic
+            foreach (KeyValuePair<String, Topics> kvp in CurrentExam.ExamTopics)
+            {
+                //Only Process Selected Topics
+                if (TopicList.Contains(kvp.Value.Name))
+                {
+                    if (kvp.Value.QuestionsPerLanguage.ContainsKey(ctkConfig.LanguageSelected))
+                    {
+                        TopicQuestionsNumber.Add(kvp.Value.Name, kvp.Value.QuestionsPerLanguage[ctkConfig.LanguageSelected].Count);
+                        TotalQuestions += kvp.Value.QuestionsPerLanguage[ctkConfig.LanguageSelected].Count;
+
+                        QuestionList.Add(kvp.Value.Name, new List<Int16>());
+
+                        //Build list of questions per topic (to make easier randomize and limit its number)
+                        foreach (Question q in kvp.Value.QuestionsPerLanguage[ctkConfig.LanguageSelected])
+                            QuestionList[kvp.Value.Name].Add(q.Number);
+                    }
+                }
+            }
+
+            //100% of the questions (1)
+            Decimal QuestionAmount = 1;
+
+            //Limit the number of questions
+            if (ctkConfig.QuestionNumber != null && TotalQuestions > ctkConfig.QuestionNumber.Value)
+                QuestionAmount = (Decimal)ctkConfig.QuestionNumber.Value / (Decimal)TotalQuestions;
+
+            Int32 AddedQuestions = 0;
+            Decimal AddedQuestionsPrecise = 0;
+
+            List<KeyValuePair<String, Int16>> UnrandomizedQuestionList = new List<KeyValuePair<String, Int16>>();
+            KeyValuePair<String, Int16> Pair;
+
+            Boolean EndRandCicle;
+
+            //QuestionList is a dictionary that will contain:
+            // - Only selected topics
+            // - Only questions from the selected language
+            // So, its only needed limit and randomize the questions in QuestionList.
+            if (QuestionAmount != 1)
+            {
+                //This awful piece of code will be executed only if there will be less than the 100% of the questions
+                foreach (KeyValuePair<String, List<Int16>> kvp in QuestionList)
+                {
+                    AddedQuestionsPrecise = (Decimal)QuestionAmount * (Decimal)TopicQuestionsNumber[kvp.Key];
+                    AddedQuestionsPrecise = Math.Round(AddedQuestionsPrecise, 2, MidpointRounding.AwayFromZero);
+
+                    //Here will go code to set the topic error truncation. This will be omitted first hoping rounding and decimal precision
+                    //number will no need any correction (operations are perfect)
+
+                    AddedQuestions = (Int32)Math.Truncate(AddedQuestionsPrecise);
+
+                    EndRandCicle = false;
+
+                    //This cycle will generate AddedQuestions questions in random order to UnrandomizedQuestionList
+                    while (!EndRandCicle)
+                    {
+                        //Generates a new random pair
+                        Pair = new KeyValuePair<String, Int16>(kvp.Key, kvp.Value[RandGen.Next(kvp.Value.Count - 1)]);
+
+                        //If pair is not in the list, add it
+                        if (!UnrandomizedQuestionList.Contains(Pair))
+                        {
+                            UnrandomizedQuestionList.Add(Pair);
+                            AddedQuestions--;
+                        }
+                        //(else keep cycling)
+
+                        if (AddedQuestions == 0)
+                            EndRandCicle = true;
+                    }
+                }
+            }
+            else
+            {
+                //Add all questions to list (as easy as two nested foreachs)
+                foreach (KeyValuePair<String, List<Int16>> kvp in QuestionList)
+                {
+                    foreach (Int16 QuestNum in kvp.Value)
+                        UnrandomizedQuestionList.Add(new KeyValuePair<String, Int16>(kvp.Key, QuestNum));
+                }
+            }
+
+            List<KeyValuePair<String, Int16>> FinalQuestionList = new List<KeyValuePair<String, Int16>>();
+
+            //FinalQuestionList is a list that is randomized and will be used to generate
+            //the data structures for the TestTrainingKit object. It contains the number of questions defined by user in exam's configuration.
+            //It contains: list of pairs topic-question number. It may be randomized (this is not enforced with a dictionary)
+
+
+            //TODO: randomize FinalQuestionList. Remember that UnrandomizedQuestionList is still ordered by topics (but its questions are in random order)
+
             //TODO:
-            //  Randomize Questions (order)
-            //  Limit number of questions to selected ones.
+            //  Process FinalQuestionList and not ALL questions available. Randomized question and topic pairs are found at FinalQuestionList
             foreach (KeyValuePair<String, Topics> kvp in CurrentExam.ExamTopics)
             {
                 //Only Process Selected Topics
@@ -245,7 +345,7 @@ namespace Suru.TrainingKit.UI
                 SetControlStatus(FormStatus.ConfiguratingExam);
             }
             else
-                SetControlStatus(FormStatus.WhitoutExam);                       
+                SetControlStatus(FormStatus.WhitoutExam);
         }
 
         //tsmiTestStatus Event Handler
@@ -259,7 +359,7 @@ namespace Suru.TrainingKit.UI
 
                 LoadSelectedConfiguration();
 
-                ttkTest.StartTest();                
+                ttkTest.StartTest();
             }
             else
             {
@@ -286,7 +386,7 @@ namespace Suru.TrainingKit.UI
             SetControlStatus(FormStatus.TestEnded);
 
             ttkTest.StopTest();
-            
+
 
             //FALTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         }

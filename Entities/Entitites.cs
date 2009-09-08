@@ -12,7 +12,7 @@ namespace Suru.TrainingKit.Entities
     {
         public String Name { get; set; }
         public Int16 ApprobationPercentage { get; set; }
-        public Dictionary<String, Topics> ExamTopics { get; set; }        
+        public Dictionary<String, Topics> ExamTopics { get; set; }
     }
 
     /// <summary>

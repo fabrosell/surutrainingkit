@@ -37,7 +37,6 @@
             this.lblTopics = new System.Windows.Forms.Label();
             this.lblQuestions = new System.Windows.Forms.Label();
             this.nudQuestions = new System.Windows.Forms.NumericUpDown();
-            this.chkRandomize = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopics)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuestions)).BeginInit();
@@ -164,24 +163,10 @@
             0});
             this.nudQuestions.ValueChanged += new System.EventHandler(this.nudQuestions_ValueChanged);
             // 
-            // chkRandomize
-            // 
-            this.chkRandomize.AutoSize = true;
-            this.chkRandomize.Checked = true;
-            this.chkRandomize.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkRandomize.Location = new System.Drawing.Point(13, 279);
-            this.chkRandomize.Name = "chkRandomize";
-            this.chkRandomize.Size = new System.Drawing.Size(129, 17);
-            this.chkRandomize.TabIndex = 6;
-            this.chkRandomize.Text = "Randomize Questions";
-            this.chkRandomize.UseVisualStyleBackColor = true;
-            this.chkRandomize.CheckedChanged += new System.EventHandler(this.chkRandomize_CheckedChanged);
-            // 
             // ConfiguringTrainingKit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.chkRandomize);
             this.Controls.Add(this.nudQuestions);
             this.Controls.Add(this.lblQuestions);
             this.Controls.Add(this.lblTopics);
@@ -213,6 +198,5 @@
         private System.Windows.Forms.Label lblTopics;
         private System.Windows.Forms.Label lblQuestions;
         private System.Windows.Forms.NumericUpDown nudQuestions;
-        private System.Windows.Forms.CheckBox chkRandomize;
     }
 }

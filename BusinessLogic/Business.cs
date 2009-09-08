@@ -89,7 +89,7 @@ namespace Suru.TrainingKit.BusinessLogic
                 XmlNode xmlNode = xmlNodes[0];
 
                 CurrentExam.Name = xmlNode.Attributes["name"].Value;
-                CurrentExam.ApprobationPercentage = Int16.Parse(xmlNode.Attributes["approbingpercentage"].Value);
+                CurrentExam.ApprobationPercentage = Int16.Parse(xmlNode.Attributes["approbingpercentage"].Value);                
 
                 xmlNodes = xmlNode.SelectNodes("//topic");
 

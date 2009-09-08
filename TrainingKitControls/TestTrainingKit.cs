@@ -170,9 +170,16 @@ namespace Suru.TrainingKit.Controls
         {
             Int16 QuestionNumber = (Int16)lbQuestions.SelectedItem;
 
+            //Replacing tabs, new line and carriage returns characters
+            StringBuilder sb = new StringBuilder();
+            sb.Append(txtAnswer.Text.Trim());
+            sb.Replace("\t", String.Empty);
+            sb.Replace("\r", String.Empty);
+            sb.Replace("\n", String.Empty);
+
             if (DictAnswers.ContainsKey(QuestionNumber))
             {
-                if (String.Compare(txtAnswer.Text.Trim(), DictAnswers[QuestionNumber], true) == 0)
+                if (String.Compare(sb.ToString(), DictAnswers[QuestionNumber], true) == 0)
                 {
                     pbQuestionResult.Image = Resources.ok;
                     lblResultText.Text = "Answer is OK.";
