@@ -78,7 +78,6 @@
             this.ctkConfig.MinutesSelected = null;
             this.ctkConfig.Name = "ctkConfig";
             this.ctkConfig.QuestionNumber = null;
-            this.ctkConfig.RandomizeQuestions = true;
             this.ctkConfig.Size = new System.Drawing.Size(435, 301);
             this.ctkConfig.TabIndex = 1;
             this.ctkConfig.TopicList = null;
