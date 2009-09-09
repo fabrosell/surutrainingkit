@@ -39,11 +39,12 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.btnShowAnswer = new System.Windows.Forms.Button();
             this.chkShowAnswer = new System.Windows.Forms.CheckBox();
-            this.lbQuestions = new System.Windows.Forms.ListBox();
             this.lblList = new System.Windows.Forms.Label();
-            this.pbQuestionResult = new System.Windows.Forms.PictureBox();
             this.lblResultText = new System.Windows.Forms.Label();
             this.lblExamResult = new System.Windows.Forms.Label();
+            this.dgvQuestionList = new System.Windows.Forms.DataGridView();
+            this.pbQuestionResult = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvQuestionList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbQuestionResult)).BeginInit();
             this.SuspendLayout();
             // 
@@ -149,17 +150,6 @@
             this.chkShowAnswer.Text = "Automatically Show Answers";
             this.chkShowAnswer.UseVisualStyleBackColor = true;
             // 
-            // lbQuestions
-            // 
-            this.lbQuestions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbQuestions.FormattingEnabled = true;
-            this.lbQuestions.Location = new System.Drawing.Point(0, 27);
-            this.lbQuestions.Name = "lbQuestions";
-            this.lbQuestions.Size = new System.Drawing.Size(47, 264);
-            this.lbQuestions.TabIndex = 9;
-            this.lbQuestions.SelectedIndexChanged += new System.EventHandler(this.lbQuestions_SelectedIndexChanged);
-            // 
             // lblList
             // 
             this.lblList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -170,15 +160,6 @@
             this.lblList.Size = new System.Drawing.Size(23, 13);
             this.lblList.TabIndex = 10;
             this.lblList.Text = "List";
-            // 
-            // pbQuestionResult
-            // 
-            this.pbQuestionResult.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pbQuestionResult.Location = new System.Drawing.Point(53, 273);
-            this.pbQuestionResult.Name = "pbQuestionResult";
-            this.pbQuestionResult.Size = new System.Drawing.Size(17, 17);
-            this.pbQuestionResult.TabIndex = 11;
-            this.pbQuestionResult.TabStop = false;
             // 
             // lblResultText
             // 
@@ -201,15 +182,47 @@
             this.lblExamResult.Text = "[ExamResult]";
             this.lblExamResult.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // dgvQuestionList
+            // 
+            this.dgvQuestionList.AllowUserToAddRows = false;
+            this.dgvQuestionList.AllowUserToDeleteRows = false;
+            this.dgvQuestionList.AllowUserToResizeColumns = false;
+            this.dgvQuestionList.AllowUserToResizeRows = false;
+            this.dgvQuestionList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.dgvQuestionList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvQuestionList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvQuestionList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvQuestionList.ColumnHeadersVisible = false;
+            this.dgvQuestionList.Location = new System.Drawing.Point(3, 27);
+            this.dgvQuestionList.MultiSelect = false;
+            this.dgvQuestionList.Name = "dgvQuestionList";
+            this.dgvQuestionList.ReadOnly = true;
+            this.dgvQuestionList.RowHeadersVisible = false;
+            this.dgvQuestionList.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dgvQuestionList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvQuestionList.Size = new System.Drawing.Size(49, 263);
+            this.dgvQuestionList.TabIndex = 14;
+            this.dgvQuestionList.SelectionChanged += new System.EventHandler(this.dgvQuestionList_SelectionChanged);
+            // 
+            // pbQuestionResult
+            // 
+            this.pbQuestionResult.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pbQuestionResult.Location = new System.Drawing.Point(53, 273);
+            this.pbQuestionResult.Name = "pbQuestionResult";
+            this.pbQuestionResult.Size = new System.Drawing.Size(17, 17);
+            this.pbQuestionResult.TabIndex = 11;
+            this.pbQuestionResult.TabStop = false;
+            // 
             // TestTrainingKit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dgvQuestionList);
             this.Controls.Add(this.lblExamResult);
             this.Controls.Add(this.lblResultText);
             this.Controls.Add(this.pbQuestionResult);
             this.Controls.Add(this.lblList);
-            this.Controls.Add(this.lbQuestions);
             this.Controls.Add(this.chkShowAnswer);
             this.Controls.Add(this.btnShowAnswer);
             this.Controls.Add(this.btnNext);
@@ -221,6 +234,7 @@
             this.Controls.Add(this.lblRemainingTime);
             this.Name = "TestTrainingKit";
             this.Size = new System.Drawing.Size(588, 297);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvQuestionList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbQuestionResult)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -239,11 +253,11 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnShowAnswer;
         private System.Windows.Forms.CheckBox chkShowAnswer;
-        private System.Windows.Forms.ListBox lbQuestions;
         private System.Windows.Forms.Label lblList;
         private System.Windows.Forms.PictureBox pbQuestionResult;
         private System.Windows.Forms.Label lblResultText;
         private System.Windows.Forms.Label lblExamResult;
+        private System.Windows.Forms.DataGridView dgvQuestionList;
 
     }
 }

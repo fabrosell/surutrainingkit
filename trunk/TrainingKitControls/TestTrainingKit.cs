@@ -36,6 +36,9 @@ namespace Suru.TrainingKit.Controls
         private Int16 MinutesRemaining = 0;
         private Int16 SecondsRemaining = 0;
 
+        private const String QuestionColumn = "[Question]";
+        private const String ImageColumn = "[Image]";
+
         #endregion
 
         #region Class Methods
@@ -77,8 +80,8 @@ namespace Suru.TrainingKit.Controls
             ResultsExported = false;
 
             txtAnswer.ReadOnly = false;
-
-            lbQuestions.Items.Clear();
+            
+            dgvQuestionList.Rows.Clear();
 
             if (DictQuestions == null)
             {
@@ -104,11 +107,52 @@ namespace Suru.TrainingKit.Controls
             else
                 lblRemainingTime.Text = String.Empty;
 
+
+            #region Load Question List
+
+            /*
             foreach (Int16 i in DictQuestions.Keys)
                 lbQuestions.Items.Add(i);
 
             if (lbQuestions.Items.Count > 0)
                 lbQuestions.SelectedIndex = 0;
+            */
+
+            //Load Question List into DataGridView
+            if (dgvQuestionList.Columns.Count != 2)
+            {
+                dgvQuestionList.Columns.Clear();
+
+                DataGridViewTextBoxColumn ctxt = new DataGridViewTextBoxColumn();
+                ctxt.Name = QuestionColumn;
+                ctxt.ReadOnly = true;
+                ctxt.CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                ctxt.Width = 27;
+
+                dgvQuestionList.Columns.Add(ctxt);
+
+                DataGridViewImageColumn cimg = new DataGridViewImageColumn();
+                cimg.Name = ImageColumn;                
+                cimg.ReadOnly = true;
+                cimg.CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                cimg.Width = 20;
+
+                dgvQuestionList.Columns.Add(cimg);
+            }
+
+            DataGridViewImageCell dimg;
+
+            foreach (Int16 i in DictQuestions.Keys)
+            {
+                dgvQuestionList.Rows.Add();
+                dgvQuestionList.Rows[dgvQuestionList.Rows.Count - 1].Cells[QuestionColumn].Value = i;
+                dimg = (DataGridViewImageCell)dgvQuestionList.Rows[dgvQuestionList.Rows.Count - 1].Cells[ImageColumn];
+                dimg.Value = Resources.NoImage;
+            }
+
+            dgvQuestionList.Rows[0].Selected = true;
+
+            #endregion
 
             txtAnswer.Focus();
         }
@@ -119,7 +163,7 @@ namespace Suru.TrainingKit.Controls
         public void StopTest()
         {
             //Commit previous changes
-            lbQuestions_SelectedIndexChanged(null, null);
+            dgvQuestionList_SelectionChanged(null, null);
 
             txtAnswer.ReadOnly = true;
 
@@ -168,7 +212,16 @@ namespace Suru.TrainingKit.Controls
         /// </summary>
         public void CheckAnswer()
         {
-            Int16 QuestionNumber = (Int16)lbQuestions.SelectedItem;
+            //Int16 QuestionNumber = (Int16)lbQuestions.SelectedItem;
+
+            if (dgvQuestionList.SelectedRows.Count == 0)
+                return;
+
+            if (dgvQuestionList.SelectedRows[0].Cells[QuestionColumn].Value == null)
+                return;
+
+            Int16 QuestionNumber = (Int16)dgvQuestionList.SelectedRows[0].Cells[QuestionColumn].Value;
+
 
             //Replacing tabs, new line and carriage returns characters
             StringBuilder sb = new StringBuilder();
@@ -232,46 +285,6 @@ namespace Suru.TrainingKit.Controls
             DictResponses = new Dictionary<Int16, String>();
         }
 
-        //lbQuestion Select Index Changed Event Handler
-        private void lbQuestions_SelectedIndexChanged(Object sender, EventArgs e)
-        {
-            Int16 SelectedQuestion = (Int16)lbQuestions.SelectedItem;
-
-            if (SelectedQuestion != -1)
-            {
-                //Save previous results, if current question is not null
-                if (CurrentQuestion != null)
-                {
-                    if (!DictResponses.ContainsKey(CurrentQuestion.Value))
-                        DictResponses.Add(CurrentQuestion.Value, String.Empty);
-
-                    //Removes Annotation Text
-                    if (CurrentAnswerString != String.Empty)
-                        if (txtAnswer.Text.Trim() != String.Empty)
-                            txtAnswer.Text = txtAnswer.Text.Replace(CurrentAnswerString, String.Empty);
-
-                    DictResponses[CurrentQuestion.Value] = txtAnswer.Text.Trim();
-                }
-
-                //Set current question
-                CurrentQuestion = SelectedQuestion;
-
-                txtQuestion.Text = DictQuestions[SelectedQuestion];
-
-                if (DictResponses.ContainsKey(SelectedQuestion))
-                    txtAnswer.Text = DictResponses[SelectedQuestion];
-                else
-                    txtAnswer.Text = String.Empty;
-
-                //Resets label and icons
-                pbQuestionResult.Image = null;
-                lblResultText.Text = String.Empty;
-                AnswerWasShown = false;
-
-                txtAnswer.Focus();
-            }
-        }
-
         //btnPrevious Click Event Handler
         private void btnPrevious_Click(object sender, EventArgs e)
         {
@@ -282,10 +295,24 @@ namespace Suru.TrainingKit.Controls
                 return;
             }
 
+            //Making this in a DataGridView is quite different than making it in the old ListBox
+            Int32 Index = dgvQuestionList.SelectedRows[0].Index;
+
+            dgvQuestionList.ClearSelection();
+
+            if (Index == 0)            
+                dgvQuestionList.Rows[dgvQuestionList.Rows.Count - 1].Selected = true;                            
+            else            
+                dgvQuestionList.Rows[Index - 1].Selected = true;
+            
+            /*
             if (lbQuestions.SelectedIndex == 0)
                 lbQuestions.SelectedIndex = lbQuestions.Items.Count - 1;
             else
                 lbQuestions.SelectedIndex--;
+            */
+
+            txtAnswer.Focus();
         }
 
         //btnNext Click Event Handler
@@ -298,10 +325,24 @@ namespace Suru.TrainingKit.Controls
                 return;
             }
 
+            //Making this in a DataGridView is quite different than making it in the old ListBox
+            Int32 Index = dgvQuestionList.SelectedRows[0].Index;
+
+            dgvQuestionList.ClearSelection();
+
+            if (Index == dgvQuestionList.Rows.Count - 1)
+                dgvQuestionList.Rows[0].Selected = true;
+            else
+                dgvQuestionList.Rows[Index + 1].Selected = true;
+
+            /*
             if (lbQuestions.SelectedIndex == lbQuestions.Items.Count - 1)
                 lbQuestions.SelectedIndex = 0;
             else
                 lbQuestions.SelectedIndex++;
+            */
+
+            txtAnswer.Focus();
         }
 
         //btnShowAnswer Click Event Handler
@@ -340,6 +381,52 @@ namespace Suru.TrainingKit.Controls
                 SecondsRemaining--;
 
             ShowTime();
+        }
+
+        //dgvQuestionList Selection Changed Event Handler
+        private void dgvQuestionList_SelectionChanged(Object sender, EventArgs e)
+        {
+            //Int16 SelectedQuestion = (Int16)lbQuestions.SelectedItem;
+
+            if (dgvQuestionList.SelectedRows.Count == 0)
+                return;
+
+            if (dgvQuestionList.SelectedRows[0].Cells[QuestionColumn].Value == null)
+                return;
+
+            Int16 SelectedQuestion = (Int16)dgvQuestionList.SelectedRows[0].Cells[QuestionColumn].Value;
+
+            if (SelectedQuestion != -1)
+            {
+                //Save previous results, if current question is not null
+                if (CurrentQuestion != null)
+                {
+                    if (!DictResponses.ContainsKey(CurrentQuestion.Value))
+                        DictResponses.Add(CurrentQuestion.Value, String.Empty);
+
+                    //Removes Annotation Text
+                    if (CurrentAnswerString != String.Empty)
+                        if (txtAnswer.Text.Trim() != String.Empty)
+                            txtAnswer.Text = txtAnswer.Text.Replace(CurrentAnswerString, String.Empty);
+
+                    DictResponses[CurrentQuestion.Value] = txtAnswer.Text.Trim();
+                }
+
+                //Set current question
+                CurrentQuestion = SelectedQuestion;
+
+                txtQuestion.Text = DictQuestions[SelectedQuestion];
+
+                if (DictResponses.ContainsKey(SelectedQuestion))
+                    txtAnswer.Text = DictResponses[SelectedQuestion];
+                else
+                    txtAnswer.Text = String.Empty;
+
+                //Resets label and icons
+                pbQuestionResult.Image = null;
+                lblResultText.Text = String.Empty;
+                AnswerWasShown = false;                
+            }
         }
 
         #endregion

@@ -22,7 +22,7 @@ namespace Suru.TrainingKit.Entities
     {
         public Decimal TopicValueOnExam { get; set; }
         public String Name { get; set; }        
-        public Dictionary<String, List<Question>> QuestionsPerLanguage { get; set; }        
+        public Dictionary<String, Dictionary<Int16, Question>> QuestionsPerLanguage { get; set; }        
     }
 
     /// <summary>

@@ -116,7 +116,7 @@ namespace Suru.TrainingKit.BusinessLogic
                     t.TopicValueOnExam = Value;
                     //t.TopicValueOnExam = Decimal.Parse(xmlTopicNode.Attributes["topicexampercentage"].Value);
 
-                    t.QuestionsPerLanguage = new Dictionary<String, List<Question>>();
+                    t.QuestionsPerLanguage = new Dictionary<String, Dictionary<Int16, Question>>();
 
                     PercentageTotal += t.TopicValueOnExam;
 
@@ -155,7 +155,8 @@ namespace Suru.TrainingKit.BusinessLogic
                         sb.Append(xmlQuestionNode.SelectSingleNode("child::text").InnerText);
                         sb.Replace(MinorBracketReplacement, "<");
                         sb.Replace(MayorBracketReplacement, ">");
-                        sb.Replace(UmpersandReplacement, "&");                                                
+                        sb.Replace(UmpersandReplacement, "&");
+                        sb.Replace("\t", String.Empty);
                         q.Text = sb.ToString();
 
                         //New Line, Carriage Return and Tab are not accepted as answers.
@@ -174,13 +175,14 @@ namespace Suru.TrainingKit.BusinessLogic
                         sb.Append(xmlQuestionNode.SelectSingleNode("child::annotation").InnerText);
                         sb.Replace(MinorBracketReplacement, "<");
                         sb.Replace(MayorBracketReplacement, ">");
-                        sb.Replace(UmpersandReplacement, "&");                        
+                        sb.Replace(UmpersandReplacement, "&");
+                        sb.Replace("\t", String.Empty);
                         q.Annotation = sb.ToString();
 
                         if (!t.QuestionsPerLanguage.ContainsKey(q.Language))
-                            t.QuestionsPerLanguage.Add(q.Language, new List<Question>());
+                            t.QuestionsPerLanguage.Add(q.Language, new Dictionary<Int16, Question>());
 
-                        t.QuestionsPerLanguage[q.Language].Add(q);
+                        t.QuestionsPerLanguage[q.Language].Add(q.Number, q);
                     }
 
                     if (CurrentExam.ExamTopics.ContainsKey(t.Name))
@@ -204,6 +206,5 @@ namespace Suru.TrainingKit.BusinessLogic
                 return null;
             }
         }
-
     }
 }
