@@ -57,6 +57,7 @@ namespace Suru.TrainingKit.UI
                     ctkConfig.TopicList = TopicList;
                     ctkConfig.RefreshContent();
                     ttkTest.Visible = false;
+                    tsmiTestResult.Enabled = false;
                     break;
                 case FormStatus.TakingTest:
                     tsmiAvailableExams.Enabled = false;
@@ -64,6 +65,7 @@ namespace Suru.TrainingKit.UI
                     tsmiTestStatus.Text = "Stop Test";
                     ctkConfig.Visible = false;
                     ttkTest.Visible = true;
+                    tsmiTestResult.Enabled = false;
                     break;
                 case FormStatus.TestEnded:
                     tsmiAvailableExams.Enabled = true;
@@ -71,6 +73,7 @@ namespace Suru.TrainingKit.UI
                     tsmiTestStatus.Text = "Restart Test";
                     ctkConfig.Visible = false;
                     ttkTest.Visible = true;
+                    tsmiTestResult.Enabled = true;
                     break;
                 case FormStatus.WhitoutExam:
                     tsmiAvailableExams.Enabled = true;
@@ -78,6 +81,7 @@ namespace Suru.TrainingKit.UI
                     tsmiTestStatus.Text = "Start Test";
                     ctkConfig.Visible = false;
                     ttkTest.Visible = false;
+                    tsmiTestResult.Enabled = false;
                     break;
             }
         }
@@ -116,6 +120,8 @@ namespace Suru.TrainingKit.UI
                             LanguageDict[s] += kvp.Value.QuestionsPerLanguage[s].Count;
                         }
                     }
+
+                    ResultsExported = false;
 
                     return true;
                 }
@@ -329,6 +335,8 @@ namespace Suru.TrainingKit.UI
         //frmMain Load Event Handler
         private void frmMain_Load(Object sender, EventArgs e)
         {
+            this.Text = "Suru Training Kit - v." + Application.ProductVersion;
+
             //Application accepts Relative and Absolute Path on Setting file. 
             if (Directory.Exists(Settings.Default.ExamDirectory))
                 ExamsDirectory = Settings.Default.ExamDirectory;
@@ -383,7 +391,7 @@ namespace Suru.TrainingKit.UI
                 //Check current menu item
                 tsmi.Checked = true;
 
-                this.Text = "Suru Training Kit - " + tsmi.Text;
+                this.Text = "Suru Training Kit - v." + Application.ProductVersion + " - " + tsmi.Text;
 
                 SetControlStatus(FormStatus.ConfiguratingExam);
             }
@@ -436,11 +444,14 @@ namespace Suru.TrainingKit.UI
         {
             if (Status == FormStatus.TakingTest)
             {
+                ttkTest.Pause();
+
                 if (DialogResult.No == MessageBox.Show("Do you really want to exit and end current test?", "Test in progress", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
                     e.Cancel = true;
+                    ttkTest.Resume();
                     return;
-                }
+                }                
             }
 
             if (Status == FormStatus.TestEnded && !ResultsExported)
@@ -451,6 +462,16 @@ namespace Suru.TrainingKit.UI
                     return;
                 }
             }
+        }
+
+        //tsmiTestResult Click Event Handler
+        private void tsmiTestResult_Click(object sender, EventArgs e)
+        {
+            frmTestResult TestResult = new frmTestResult(ttkTest, CurrentExam);
+
+            TestResult.ShowDialog();
+
+            ResultsExported = true;
         }
 
         #endregion

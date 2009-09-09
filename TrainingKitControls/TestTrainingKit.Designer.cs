@@ -55,9 +55,10 @@
             // lblRemainingTime
             // 
             this.lblRemainingTime.AutoSize = true;
-            this.lblRemainingTime.Location = new System.Drawing.Point(448, 11);
+            this.lblRemainingTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRemainingTime.Location = new System.Drawing.Point(427, 11);
             this.lblRemainingTime.Name = "lblRemainingTime";
-            this.lblRemainingTime.Size = new System.Drawing.Size(137, 13);
+            this.lblRemainingTime.Size = new System.Drawing.Size(161, 13);
             this.lblRemainingTime.TabIndex = 0;
             this.lblRemainingTime.Text = "Remaining Time: ##:##:##";
             this.lblRemainingTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -175,9 +176,10 @@
             // 
             this.lblExamResult.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblExamResult.AutoSize = true;
-            this.lblExamResult.Location = new System.Drawing.Point(238, 273);
+            this.lblExamResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExamResult.Location = new System.Drawing.Point(212, 273);
             this.lblExamResult.Name = "lblExamResult";
-            this.lblExamResult.Size = new System.Drawing.Size(69, 13);
+            this.lblExamResult.Size = new System.Drawing.Size(81, 13);
             this.lblExamResult.TabIndex = 13;
             this.lblExamResult.Text = "[ExamResult]";
             this.lblExamResult.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

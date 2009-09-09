@@ -22,8 +22,12 @@ namespace Suru.TrainingKit.Controls
         public Dictionary<Int16, Decimal> DictPoints { get; set; }        
         public Nullable<Int16> ExamMinutes { get; set; }
         public List<Int16> QuestionsOK { get; set; }
+        public List<Int16> QuestionsUnanswered { get; set; }
+        public List<Int16> QuestionsBad { get; set; }
         public Int16 ApprobationPercentage { get; set; }
         public Decimal Points { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
 
         private Dictionary<Int16, String> DictResponses = null;
         private Nullable<Int16> CurrentQuestion = null;
@@ -153,6 +157,8 @@ namespace Suru.TrainingKit.Controls
 
             #endregion
 
+            StartTime = DateTime.Now;
+
             txtAnswer.Focus();
         }
 
@@ -161,6 +167,8 @@ namespace Suru.TrainingKit.Controls
         /// </summary>
         public void StopTest()
         {
+            EndTime = DateTime.Now;
+
             //Commit previous changes
             dgvQuestionList_SelectionChanged(null, null);
 
@@ -170,6 +178,8 @@ namespace Suru.TrainingKit.Controls
                 StopTimer.Enabled = false;
 
             QuestionsOK = new List<Int16>();
+            QuestionsUnanswered = new List<Int16>();
+            QuestionsBad = new List<Int16>();
 
             Points = 0;
             Int16 QuestionNumber;
@@ -202,12 +212,14 @@ namespace Suru.TrainingKit.Controls
                     {
                         //Question is not correct
                         dimg.Value = Resources.bad;
+                        QuestionsBad.Add(QuestionNumber);
                     }
                 }
                 else
                 {
                     //There are no answer
                     dimg.Value = Resources.nn;
+                    QuestionsUnanswered.Add(QuestionNumber);
                 }                
             }
 
@@ -232,7 +244,7 @@ namespace Suru.TrainingKit.Controls
             if (Math.Round(Points, 2) < ApprobationPercentage)
             {
                 if (Points != 0)
-                    lblExamResult.Text = "Exam Fails (" + Points.ToString("##.##") + "% ," + ApprobationPercentage.ToString("00") + "% needed)";               
+                    lblExamResult.Text = "Exam Fails (" + Points.ToString("##.##") + "%, " + ApprobationPercentage.ToString("00") + "% needed)";               
                 else
                     lblExamResult.Text = "Exam Fails (0%, " + ApprobationPercentage.ToString("00") + "% needed)";
 
@@ -240,7 +252,7 @@ namespace Suru.TrainingKit.Controls
             }
             else
             {
-                lblExamResult.Text = "Exam Passed! (" + Points.ToString("##.##") + "% ," + ApprobationPercentage.ToString("00") + "% min)";
+                lblExamResult.Text = "Exam Passed! (" + Points.ToString("##.##") + "%, " + ApprobationPercentage.ToString("00") + "% min)";
 
                 lblExamResult.ForeColor = Color.Green;
             }                
@@ -307,6 +319,27 @@ namespace Suru.TrainingKit.Controls
 
             lblRemainingTime.Text += MinutesRemaining.ToString("00") + ":";
             lblRemainingTime.Text += SecondsRemaining.ToString("00");
+
+
+            lblRemainingTime.ForeColor = Color.Green;
+
+            if (HoursRemaining == 0)
+            {
+                if (MinutesRemaining < 10)
+                {
+                    if (MinutesRemaining < 1)
+                    {
+                        if (SecondsRemaining % 2 == 1)
+                            lblRemainingTime.ForeColor = Color.Red;
+                        else
+                            lblRemainingTime.ForeColor = Color.Black;
+                    }
+                    else
+                    {
+                        lblRemainingTime.ForeColor = Color.Orange;
+                    }
+                }
+            }
         }
 
         #endregion
