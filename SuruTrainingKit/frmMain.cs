@@ -80,7 +80,7 @@ namespace Suru.TrainingKit.UI
                     break;
             }
         }
-
+            
         /// <summary>
         /// Loads Selected Configuration
         /// </summary>
@@ -137,6 +137,12 @@ namespace Suru.TrainingKit.UI
         /// </summary>
         private void LoadSelectedConfiguration()
         {
+            //Yes, I know. This procedure has a lot of data structures and it's cumbersone.
+            //I don't really cares that it be a beauty piece of code (but I will try to do things as best as a fast develop can)
+            //I've tryed to comment it as much as possible to make easier mantain it
+
+            #region Variables to use.
+
             //Must set these properties for the TestTrainingKit control
             Dictionary<Int16, String> DictQuestions = new Dictionary<Int16, String>();
             Dictionary<Int16, String> DictAnswers = new Dictionary<Int16, String>();
@@ -152,6 +158,10 @@ namespace Suru.TrainingKit.UI
             //Dictionary of topic-name and question number's list
             Dictionary<String, List<Int16>> QuestionList = new Dictionary<String, List<Int16>>();
 
+            #endregion
+
+            #region Analize question data per Topic
+
             //Get number of questions per topic
             foreach (KeyValuePair<String, Topics> kvp in CurrentExam.ExamTopics)
             {
@@ -166,11 +176,15 @@ namespace Suru.TrainingKit.UI
                         QuestionList.Add(kvp.Value.Name, new List<Int16>());
 
                         //Build list of questions per topic (to make easier randomize and limit its number)
-                        foreach (Question q in kvp.Value.QuestionsPerLanguage[ctkConfig.LanguageSelected])
-                            QuestionList[kvp.Value.Name].Add(q.Number);
+                        foreach (Int16 Number in kvp.Value.QuestionsPerLanguage[ctkConfig.LanguageSelected].Keys)
+                            QuestionList[kvp.Value.Name].Add(Number);
                     }
                 }
             }
+
+            #endregion
+
+            #region Analize amount of questions to use
 
             //100% of the questions (1)
             Decimal QuestionAmount = 1;
@@ -187,6 +201,10 @@ namespace Suru.TrainingKit.UI
 
             Boolean EndRandCicle;
 
+            #endregion
+
+            #region Select Random Questions from Topics (but still ordered by topic)
+
             //QuestionList is a dictionary that will contain:
             // - Only selected topics
             // - Only questions from the selected language
@@ -202,7 +220,8 @@ namespace Suru.TrainingKit.UI
                     //Here will go code to set the topic error truncation. This will be omitted first hoping rounding and decimal precision
                     //number will no need any correction (operations are perfect)
 
-                    AddedQuestions = (Int32)Math.Truncate(AddedQuestionsPrecise);
+                    //AddedQuestions = (Int32)Math.Truncate(AddedQuestionsPrecise);
+                    AddedQuestions = (Int32)Math.Round(AddedQuestionsPrecise, 0, MidpointRounding.AwayFromZero);
 
                     EndRandCicle = false;
 
@@ -235,33 +254,54 @@ namespace Suru.TrainingKit.UI
                 }
             }
 
+            #endregion
+
+            #region Mix Randoms Questions and Topics (to get real random questions)
+
             List<KeyValuePair<String, Int16>> FinalQuestionList = new List<KeyValuePair<String, Int16>>();
+
+            List<Int16> MixedOrder = new List<Int16>();
+            Int16 RandomNumber;
+
+            //Randomize list (generates a random order of items)
+            for (Int32 i = 0; i < UnrandomizedQuestionList.Count; i++)
+            {
+                while (true)
+                {
+                    RandomNumber = (Int16)RandGen.Next(UnrandomizedQuestionList.Count);
+
+                    if (!MixedOrder.Contains(RandomNumber))
+                    {
+                        MixedOrder.Add(RandomNumber);
+                        break;
+                    }
+                }
+            }
+
+            //Traspass random question order
+            foreach (Int16 i in MixedOrder)
+                FinalQuestionList.Add(UnrandomizedQuestionList[i]);
+
+            #endregion
+
+            #region Load Data Structures into TestTrainingKit control
 
             //FinalQuestionList is a list that is randomized and will be used to generate
             //the data structures for the TestTrainingKit object. It contains the number of questions defined by user in exam's configuration.
             //It contains: list of pairs topic-question number. It may be randomized (this is not enforced with a dictionary)
 
+            Question q;
 
-            //TODO: randomize FinalQuestionList. Remember that UnrandomizedQuestionList is still ordered by topics (but its questions are in random order)
+            foreach (KeyValuePair<String, Int16> kvp in FinalQuestionList)
+            {                
+                q = CurrentExam.ExamTopics[kvp.Key].QuestionsPerLanguage[ctkConfig.LanguageSelected][kvp.Value];
 
-            //TODO:
-            //  Process FinalQuestionList and not ALL questions available. Randomized question and topic pairs are found at FinalQuestionList
-            foreach (KeyValuePair<String, Topics> kvp in CurrentExam.ExamTopics)
-            {
-                //Only Process Selected Topics
-                if (TopicList.Contains(kvp.Value.Name))
-                {
-                    if (kvp.Value.QuestionsPerLanguage.ContainsKey(ctkConfig.LanguageSelected))
-                    {
-                        foreach (Question q in kvp.Value.QuestionsPerLanguage[ctkConfig.LanguageSelected])
-                        {
-                            DictQuestions.Add(q.Number, q.Text);
-                            DictAnswers.Add(q.Number, q.Answer);
-                            DictAnnotations.Add(q.Number, q.Annotation);
-                            DictPoints.Add(q.Number, kvp.Value.TopicValueOnExam / kvp.Value.QuestionsPerLanguage[ctkConfig.LanguageSelected].Count);
-                        }
-                    }
-                }
+                DictQuestions.Add(q.Number, q.Text);
+                DictAnswers.Add(q.Number, q.Answer);
+                DictAnnotations.Add(q.Number, q.Annotation);
+
+                //Remember: questions are perfectly distributed by topic percentajes (if 1 topic 50%, 2 25% topic, then from 12 questions, 6 from topic 1, 3 from t2 and 3 from t3)
+                DictPoints.Add(q.Number, (Decimal)100 / (Decimal)FinalQuestionList.Count);
             }
 
             ttkTest.ApprobationPercentage = CurrentExam.ApprobationPercentage;
@@ -271,6 +311,8 @@ namespace Suru.TrainingKit.UI
             ttkTest.DictAnnotations = DictAnnotations;
 
             ttkTest.ExamMinutes = ctkConfig.MinutesSelected;
+
+            #endregion
         }
 
         #endregion

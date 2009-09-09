@@ -130,6 +130,7 @@
     <Content Include="Exams\Sample.xml" />
     <Content Include="Images\bad.png" />
     <Content Include="Images\nn.png" />
+    <Content Include="Images\NoImage.png" />
     <Content Include="Images\ok.png" />
     <Content Include="MenuMessCode.txt" />
   </ItemGroup>

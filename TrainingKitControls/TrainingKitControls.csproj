@@ -55,12 +55,6 @@
     <Compile Include="ConfiguringTrainingKit.Designer.cs">
       <DependentUpon>ConfiguringTrainingKit.cs</DependentUpon>
     </Compile>
-    <Compile Include="IconedLabel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="IconedLabel.Designer.cs">
-      <DependentUpon>IconedLabel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -83,10 +77,6 @@
       <DependentUpon>ConfiguringTrainingKit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="IconedLabel.resx">
-      <DependentUpon>IconedLabel.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -105,6 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NoImage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
