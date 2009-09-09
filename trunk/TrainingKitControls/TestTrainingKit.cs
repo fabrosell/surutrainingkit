@@ -19,8 +19,7 @@ namespace Suru.TrainingKit.Controls
         public Dictionary<Int16, String> DictQuestions { get; set; }
         public Dictionary<Int16, String> DictAnswers { get; set; }
         public Dictionary<Int16, String> DictAnnotations { get; set; }
-        public Dictionary<Int16, Decimal> DictPoints { get; set; }
-        public Boolean ResultsExported { get; set; }        
+        public Dictionary<Int16, Decimal> DictPoints { get; set; }        
         public Nullable<Int16> ExamMinutes { get; set; }
         public List<Int16> QuestionsOK { get; set; }
         public Int16 ApprobationPercentage { get; set; }
@@ -76,8 +75,7 @@ namespace Suru.TrainingKit.Controls
             Points = 0;
             lblExamResult.Text = String.Empty;
 
-            DictResponses.Clear();
-            ResultsExported = false;
+            DictResponses.Clear();            
 
             txtAnswer.ReadOnly = false;
             
@@ -151,6 +149,7 @@ namespace Suru.TrainingKit.Controls
             }
 
             dgvQuestionList.Rows[0].Selected = true;
+            dgvQuestionList_SelectionChanged(null, null);
 
             #endregion
 
@@ -173,8 +172,47 @@ namespace Suru.TrainingKit.Controls
             QuestionsOK = new List<Int16>();
 
             Points = 0;
+            Int16 QuestionNumber;
+            DataGridViewImageCell dimg;
 
-            //Check all answer to match 
+            //Update all columns from List
+            for (Int32 i = 0; i < dgvQuestionList.Rows.Count; i++)
+            {
+                if (dgvQuestionList[QuestionColumn, i].Value == null || dgvQuestionList[QuestionColumn, i].Value.ToString() == String.Empty)
+                {
+                    MessageBox.Show("Cannot check values due to internal error (question number was empty on question list)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                QuestionNumber = (Int16)dgvQuestionList[QuestionColumn, i].Value;
+                dimg = (DataGridViewImageCell)dgvQuestionList[ImageColumn, i];
+
+                if (DictResponses.ContainsKey(QuestionNumber) && DictResponses[QuestionNumber] != String.Empty)
+                {
+                    if (String.Compare(DictResponses[QuestionNumber], DictAnswers[QuestionNumber], true) == 0)
+                    {
+                        //User Answered the question, and values is OK. Add the Points.
+                        if (DictPoints.ContainsKey(QuestionNumber))
+                            Points += DictPoints[QuestionNumber];
+
+                        //Question is OK
+                        dimg.Value = Resources.ok;
+                    }
+                    else
+                    {
+                        //Question is not correct
+                        dimg.Value = Resources.bad;
+                    }
+                }
+                else
+                {
+                    //There are no answer
+                    dimg.Value = Resources.nn;
+                }                
+            }
+
+            /*
+            //Check all answers to match 
             foreach (KeyValuePair<Int16, String> kvp in DictAnswers)
             {                
                 if (DictResponses.ContainsKey(kvp.Key))
@@ -187,6 +225,7 @@ namespace Suru.TrainingKit.Controls
                     }                                                
                 }
             }
+            */
 
             Points = Math.Round(Points, 2);                       
             
@@ -427,6 +466,16 @@ namespace Suru.TrainingKit.Controls
                 lblResultText.Text = String.Empty;
                 AnswerWasShown = false;                
             }
+        }
+
+        //TestTrainingKit (control) Key Down Event Handler
+        private void TestTrainingKit_KeyDown(Object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right)
+                btnNext_Click(null, null);
+
+            if (e.KeyCode == Keys.Left)
+                btnPrevious_Click(null, null);
         }
 
         #endregion
