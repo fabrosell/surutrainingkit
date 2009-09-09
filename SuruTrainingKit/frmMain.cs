@@ -32,6 +32,7 @@ namespace Suru.TrainingKit.UI
         Dictionary<String, Int32> LanguageDict = null;
         private List<String> TopicList = null;
         private Exam CurrentExam = null;
+        private Boolean ResultsExported = false;
 
         #endregion
 
@@ -427,10 +428,7 @@ namespace Suru.TrainingKit.UI
         {
             SetControlStatus(FormStatus.TestEnded);
 
-            ttkTest.StopTest();
-
-
-            //FALTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            ttkTest.StopTest();            
         }
 
         //frmMain Form Closing Event Handler
@@ -445,7 +443,7 @@ namespace Suru.TrainingKit.UI
                 }
             }
 
-            if (Status == FormStatus.TestEnded && !ttkTest.ResultsExported)
+            if (Status == FormStatus.TestEnded && !ResultsExported)
             {
                 if (DialogResult.No == MessageBox.Show("If you leave now you won't be able to review your anwers. Do you really want to exit and lose current test?", "Unsaved Results Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
@@ -453,8 +451,6 @@ namespace Suru.TrainingKit.UI
                     return;
                 }
             }
-
-
         }
 
         #endregion

@@ -92,8 +92,7 @@
             this.ttkTest.DictAnswers = null;
             this.ttkTest.DictQuestions = null;
             this.ttkTest.Location = new System.Drawing.Point(0, 27);
-            this.ttkTest.Name = "ttkTest";
-            this.ttkTest.ResultsExported = false;
+            this.ttkTest.Name = "ttkTest";            
             this.ttkTest.Size = new System.Drawing.Size(600, 326);
             this.ttkTest.TabIndex = 2;
             this.ttkTest.TestStopped += new System.EventHandler(this.ttkTest_TestStopped);

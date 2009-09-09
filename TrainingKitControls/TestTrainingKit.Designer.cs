@@ -234,6 +234,7 @@
             this.Controls.Add(this.lblRemainingTime);
             this.Name = "TestTrainingKit";
             this.Size = new System.Drawing.Size(588, 297);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TestTrainingKit_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuestionList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbQuestionResult)).EndInit();
             this.ResumeLayout(false);
