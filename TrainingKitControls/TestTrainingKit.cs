@@ -20,6 +20,7 @@ namespace Suru.TrainingKit.Controls
         public Dictionary<Int16, String> DictAnswers { get; set; }
         public Dictionary<Int16, String> DictAnnotations { get; set; }
         public Dictionary<Int16, Decimal> DictPoints { get; set; }        
+        public Dictionary<Int16, String> DictResponses { get; set; }
         public Nullable<Int16> ExamMinutes { get; set; }
         public List<Int16> QuestionsOK { get; set; }
         public List<Int16> QuestionsUnanswered { get; set; }
@@ -28,8 +29,8 @@ namespace Suru.TrainingKit.Controls
         public Decimal Points { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-
-        private Dictionary<Int16, String> DictResponses = null;
+        public String ExamLanguage { get; set; }
+        
         private Nullable<Int16> CurrentQuestion = null;
         private Boolean AnswerWasShown = false;
         private String CurrentAnswerString = String.Empty;
@@ -207,6 +208,7 @@ namespace Suru.TrainingKit.Controls
 
                         //Question is OK
                         dimg.Value = Resources.ok;
+                        QuestionsOK.Add(QuestionNumber);
                     }
                     else
                     {
@@ -239,7 +241,14 @@ namespace Suru.TrainingKit.Controls
             }
             */
 
-            Points = Math.Round(Points, 2);                       
+            Points = Math.Round(Points, 2);
+
+            //Only if exam was timed
+            if (lblRemainingTime.Text != String.Empty)
+            {
+                lblRemainingTime.Text = "Remaining time: (stopped)";
+                lblRemainingTime.ForeColor = Color.Black;
+            }                
             
             if (Math.Round(Points, 2) < ApprobationPercentage)
             {
