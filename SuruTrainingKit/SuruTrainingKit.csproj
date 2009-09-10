@@ -145,7 +145,6 @@
     <Content Include="Images\ok.png" />
     <Content Include="Images\SuruTrainingKit.ico" />
     <Content Include="Images\SuruTrainingKit.png" />
-    <Content Include="MenuMessCode.txt" />
     <Content Include="SuruTrainingKit.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

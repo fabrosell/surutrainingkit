@@ -25,18 +25,6 @@ namespace Suru.TrainingKit.UI {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Sample.xml")]
-        public string LastExamen {
-            get {
-                return ((string)(this["LastExamen"]));
-            }
-            set {
-                this["LastExamen"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Exams")]
         public string ExamDirectory {
             get {
@@ -80,6 +68,18 @@ namespace Suru.TrainingKit.UI {
             }
             set {
                 this["UmpersandSubstitution"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Help.chm")]
+        public string HelpFile {
+            get {
+                return ((string)(this["HelpFile"]));
+            }
+            set {
+                this["HelpFile"] = value;
             }
         }
     }
