@@ -286,6 +286,8 @@ namespace Suru.TrainingKit.UI
             InitializeDataGridView();
 
             LoadData();
+
+            this.Text = "Exams Results for Exam: " + CurrentExam.Name;
         }
 
         //btnExit Click Event Handler

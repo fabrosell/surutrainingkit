@@ -32,10 +32,10 @@
             this.msMenu = new System.Windows.Forms.MenuStrip();
             this.tsmiAvailableExams = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiTestStatus = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiTestResult = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ctkConfig = new Suru.TrainingKit.Controls.ConfiguringTrainingKit();
             this.ttkTest = new Suru.TrainingKit.Controls.TestTrainingKit();
-            this.tsmiTestResult = new System.Windows.Forms.ToolStripMenuItem();
             this.msMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +65,13 @@
             this.tsmiTestStatus.Text = "&Start Test";
             this.tsmiTestStatus.Click += new System.EventHandler(this.tsmiTestStatus_Click);
             // 
+            // tsmiTestResult
+            // 
+            this.tsmiTestResult.Name = "tsmiTestResult";
+            this.tsmiTestResult.Size = new System.Drawing.Size(73, 20);
+            this.tsmiTestResult.Text = "&Test Result";
+            this.tsmiTestResult.Click += new System.EventHandler(this.tsmiTestResult_Click);
+            // 
             // tsmiAbout
             // 
             this.tsmiAbout.Name = "tsmiAbout";
@@ -80,7 +87,7 @@
             this.ctkConfig.MinutesSelected = ((short)(90));
             this.ctkConfig.Name = "ctkConfig";
             this.ctkConfig.QuestionNumber = null;
-            this.ctkConfig.Size = new System.Drawing.Size(435, 301);
+            this.ctkConfig.Size = new System.Drawing.Size(496, 301);
             this.ctkConfig.TabIndex = 1;
             this.ctkConfig.TopicList = null;
             this.ctkConfig.TopicsSelected = ((System.Collections.Generic.List<string>)(resources.GetObject("ctkConfig.TopicsSelected")));
@@ -95,6 +102,9 @@
             this.ttkTest.DictAnswers = null;
             this.ttkTest.DictPoints = null;
             this.ttkTest.DictQuestions = null;
+            this.ttkTest.DictResponses = ((System.Collections.Generic.Dictionary<short, string>)(resources.GetObject("ttkTest.DictResponses")));
+            this.ttkTest.EndTime = new System.DateTime(((long)(0)));
+            this.ttkTest.ExamLanguage = null;
             this.ttkTest.ExamMinutes = null;
             this.ttkTest.Location = new System.Drawing.Point(0, 27);
             this.ttkTest.Name = "ttkTest";
@@ -103,17 +113,13 @@
             0,
             0,
             0});
+            this.ttkTest.QuestionsBad = null;
             this.ttkTest.QuestionsOK = null;
+            this.ttkTest.QuestionsUnanswered = null;
             this.ttkTest.Size = new System.Drawing.Size(600, 326);
+            this.ttkTest.StartTime = new System.DateTime(((long)(0)));
             this.ttkTest.TabIndex = 2;
             this.ttkTest.TestStopped += new System.EventHandler(this.ttkTest_TestStopped);
-            // 
-            // tsmiTestResult
-            // 
-            this.tsmiTestResult.Name = "tsmiTestResult";
-            this.tsmiTestResult.Size = new System.Drawing.Size(73, 20);
-            this.tsmiTestResult.Text = "&Test Result";
-            this.tsmiTestResult.Click += new System.EventHandler(this.tsmiTestResult_Click);
             // 
             // frmMain
             // 
@@ -123,6 +129,7 @@
             this.Controls.Add(this.ctkConfig);
             this.Controls.Add(this.msMenu);
             this.Controls.Add(this.ttkTest);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.msMenu;
             this.Name = "frmMain";
             this.Text = "Suru Training Kit";

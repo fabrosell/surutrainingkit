@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTestResult));
             this.dgvTestResult = new System.Windows.Forms.DataGridView();
             this.lblExamResult = new System.Windows.Forms.Label();
             this.lblTestResult = new System.Windows.Forms.Label();
@@ -57,7 +58,7 @@
             this.dgvTestResult.RowHeadersVisible = false;
             this.dgvTestResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTestResult.Size = new System.Drawing.Size(722, 286);
-            this.dgvTestResult.TabIndex = 0;
+            this.dgvTestResult.TabIndex = 1;
             this.dgvTestResult.Resize += new System.EventHandler(this.dgvTestResult_Resize);
             // 
             // lblExamResult
@@ -66,7 +67,7 @@
             this.lblExamResult.Location = new System.Drawing.Point(12, 21);
             this.lblExamResult.Name = "lblExamResult";
             this.lblExamResult.Size = new System.Drawing.Size(72, 13);
-            this.lblExamResult.TabIndex = 1;
+            this.lblExamResult.TabIndex = 4;
             this.lblExamResult.Text = "Exam Result: ";
             // 
             // lblTestResult
@@ -76,7 +77,7 @@
             this.lblTestResult.Location = new System.Drawing.Point(90, 16);
             this.lblTestResult.Name = "lblTestResult";
             this.lblTestResult.Size = new System.Drawing.Size(83, 20);
-            this.lblTestResult.TabIndex = 2;
+            this.lblTestResult.TabIndex = 5;
             this.lblTestResult.Text = "[bad / ok]";
             // 
             // lblStartTime
@@ -85,7 +86,7 @@
             this.lblStartTime.Location = new System.Drawing.Point(459, 9);
             this.lblStartTime.Name = "lblStartTime";
             this.lblStartTime.Size = new System.Drawing.Size(51, 13);
-            this.lblStartTime.TabIndex = 3;
+            this.lblStartTime.TabIndex = 7;
             this.lblStartTime.Text = "hh:mm:ss";
             // 
             // lblEndTime
@@ -94,7 +95,7 @@
             this.lblEndTime.Location = new System.Drawing.Point(459, 40);
             this.lblEndTime.Name = "lblEndTime";
             this.lblEndTime.Size = new System.Drawing.Size(51, 13);
-            this.lblEndTime.TabIndex = 4;
+            this.lblEndTime.TabIndex = 9;
             this.lblEndTime.Text = "hh:mm:ss";
             // 
             // lblElapsed
@@ -103,7 +104,7 @@
             this.lblElapsed.Location = new System.Drawing.Point(530, 25);
             this.lblElapsed.Name = "lblElapsed";
             this.lblElapsed.Size = new System.Drawing.Size(109, 13);
-            this.lblElapsed.TabIndex = 5;
+            this.lblElapsed.TabIndex = 10;
             this.lblElapsed.Text = "Elapsed Dd hh:mm:ss";
             // 
             // lblQuestions
@@ -112,7 +113,7 @@
             this.lblQuestions.Location = new System.Drawing.Point(656, 25);
             this.lblQuestions.Name = "lblQuestions";
             this.lblQuestions.Size = new System.Drawing.Size(75, 13);
-            this.lblQuestions.TabIndex = 6;
+            this.lblQuestions.TabIndex = 11;
             this.lblQuestions.Text = "Questions: xxx";
             // 
             // btnExportResults
@@ -121,7 +122,7 @@
             this.btnExportResults.Location = new System.Drawing.Point(564, 355);
             this.btnExportResults.Name = "btnExportResults";
             this.btnExportResults.Size = new System.Drawing.Size(89, 23);
-            this.btnExportResults.TabIndex = 7;
+            this.btnExportResults.TabIndex = 2;
             this.btnExportResults.Text = "&Export Results";
             this.btnExportResults.UseVisualStyleBackColor = true;
             this.btnExportResults.Click += new System.EventHandler(this.btnExportResults_Click);
@@ -132,7 +133,7 @@
             this.btnExit.Location = new System.Drawing.Point(659, 355);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
-            this.btnExit.TabIndex = 8;
+            this.btnExit.TabIndex = 3;
             this.btnExit.Text = "E&xit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -143,7 +144,7 @@
             this.lblStartTimeCaption.Location = new System.Drawing.Point(402, 9);
             this.lblStartTimeCaption.Name = "lblStartTimeCaption";
             this.lblStartTimeCaption.Size = new System.Drawing.Size(58, 13);
-            this.lblStartTimeCaption.TabIndex = 9;
+            this.lblStartTimeCaption.TabIndex = 6;
             this.lblStartTimeCaption.Text = "Start Time:";
             // 
             // lblEndTimeCaption
@@ -152,7 +153,7 @@
             this.lblEndTimeCaption.Location = new System.Drawing.Point(402, 40);
             this.lblEndTimeCaption.Name = "lblEndTimeCaption";
             this.lblEndTimeCaption.Size = new System.Drawing.Size(55, 13);
-            this.lblEndTimeCaption.TabIndex = 10;
+            this.lblEndTimeCaption.TabIndex = 8;
             this.lblEndTimeCaption.Text = "End Time:";
             // 
             // frmTestResult
@@ -171,6 +172,7 @@
             this.Controls.Add(this.lblTestResult);
             this.Controls.Add(this.lblExamResult);
             this.Controls.Add(this.dgvTestResult);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTestResult";
             this.ShowInTaskbar = false;
             this.Text = "frmTestResult";

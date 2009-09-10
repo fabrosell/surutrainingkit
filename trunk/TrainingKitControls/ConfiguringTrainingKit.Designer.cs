@@ -117,6 +117,7 @@
             this.dgvTopics.Name = "dgvTopics";
             this.dgvTopics.ReadOnly = true;
             this.dgvTopics.RowHeadersVisible = false;
+            this.dgvTopics.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTopics.Size = new System.Drawing.Size(461, 135);
             this.dgvTopics.TabIndex = 4;
             this.dgvTopics.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTopics_CellContentClick);
