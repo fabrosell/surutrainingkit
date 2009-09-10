@@ -475,6 +475,20 @@ namespace Suru.TrainingKit.UI
             ResultsExported = true;
         }
 
+        //tsmiIndex Click Event Handler
+        private void tsmiIndex_Click(object sender, EventArgs e)
+        {
+            //Open Helps
+            try
+            {
+                Process.Start(Settings.Default.HelpFile);
+            }
+            catch
+            {
+                MessageBox.Show("Help file cannot be started", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         #endregion
     }
 }

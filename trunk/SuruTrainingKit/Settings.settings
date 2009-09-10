@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Suru.TrainingKit.UI" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="LastExamen" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Sample.xml</Value>
-    </Setting>
     <Setting Name="ExamDirectory" Type="System.String" Scope="User">
       <Value Profile="(Default)">Exams</Value>
     </Setting>
@@ -16,6 +13,9 @@
     </Setting>
     <Setting Name="UmpersandSubstitution" Type="System.String" Scope="User">
       <Value Profile="(Default)">#and#</Value>
+    </Setting>
+    <Setting Name="HelpFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Help.chm</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -33,9 +33,11 @@
             this.tsmiAvailableExams = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiTestStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiTestResult = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ctkConfig = new Suru.TrainingKit.Controls.ConfiguringTrainingKit();
             this.ttkTest = new Suru.TrainingKit.Controls.TestTrainingKit();
+            this.tsmiHelpMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiIndex = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.msMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,7 +47,7 @@
             this.tsmiAvailableExams,
             this.tsmiTestStatus,
             this.tsmiTestResult,
-            this.tsmiAbout});
+            this.tsmiHelpMenu});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
             this.msMenu.Size = new System.Drawing.Size(600, 24);
@@ -71,13 +73,6 @@
             this.tsmiTestResult.Size = new System.Drawing.Size(73, 20);
             this.tsmiTestResult.Text = "&Test Result";
             this.tsmiTestResult.Click += new System.EventHandler(this.tsmiTestResult_Click);
-            // 
-            // tsmiAbout
-            // 
-            this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(48, 20);
-            this.tsmiAbout.Text = "A&bout";
-            this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
             // ctkConfig
             // 
@@ -121,6 +116,29 @@
             this.ttkTest.TabIndex = 2;
             this.ttkTest.TestStopped += new System.EventHandler(this.ttkTest_TestStopped);
             // 
+            // tsmiHelpMenu
+            // 
+            this.tsmiHelpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiIndex,
+            this.tsmiAbout});
+            this.tsmiHelpMenu.Name = "tsmiHelpMenu";
+            this.tsmiHelpMenu.Size = new System.Drawing.Size(40, 20);
+            this.tsmiHelpMenu.Text = "&Help";
+            // 
+            // tsmiIndex
+            // 
+            this.tsmiIndex.Name = "tsmiIndex";
+            this.tsmiIndex.Size = new System.Drawing.Size(152, 22);
+            this.tsmiIndex.Text = "&Index";
+            this.tsmiIndex.Click += new System.EventHandler(this.tsmiIndex_Click);
+            // 
+            // tsmiAbout
+            // 
+            this.tsmiAbout.Name = "tsmiAbout";
+            this.tsmiAbout.Size = new System.Drawing.Size(152, 22);
+            this.tsmiAbout.Text = "&About";
+            this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,12 +165,14 @@
         private System.Windows.Forms.MenuStrip msMenu;
         private System.Windows.Forms.ToolStripMenuItem tsmiAvailableExams;
         private System.Windows.Forms.ToolStripMenuItem tsmiHelp;
-        private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
         private System.Windows.Forms.ToolStripMenuItem tsmiTestStatus;
         private Suru.TrainingKit.Controls.ConfiguringTrainingKit ctkConfig;
         private Suru.TrainingKit.Controls.TestTrainingKit ttkTest;
         private System.Windows.Forms.ToolStripMenuItem aboutLicenseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiTestResult;
+        private System.Windows.Forms.ToolStripMenuItem tsmiHelpMenu;
+        private System.Windows.Forms.ToolStripMenuItem tsmiIndex;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
     }
 }
 
