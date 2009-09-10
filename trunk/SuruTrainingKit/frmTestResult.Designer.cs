@@ -47,13 +47,18 @@
             this.dgvTestResult.AllowUserToAddRows = false;
             this.dgvTestResult.AllowUserToDeleteRows = false;
             this.dgvTestResult.AllowUserToOrderColumns = true;
+            this.dgvTestResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvTestResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTestResult.Location = new System.Drawing.Point(12, 56);
             this.dgvTestResult.Name = "dgvTestResult";
             this.dgvTestResult.ReadOnly = true;
             this.dgvTestResult.RowHeadersVisible = false;
+            this.dgvTestResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTestResult.Size = new System.Drawing.Size(722, 286);
             this.dgvTestResult.TabIndex = 0;
+            this.dgvTestResult.Resize += new System.EventHandler(this.dgvTestResult_Resize);
             // 
             // lblExamResult
             // 
@@ -112,21 +117,25 @@
             // 
             // btnExportResults
             // 
+            this.btnExportResults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExportResults.Location = new System.Drawing.Point(564, 355);
             this.btnExportResults.Name = "btnExportResults";
             this.btnExportResults.Size = new System.Drawing.Size(89, 23);
             this.btnExportResults.TabIndex = 7;
             this.btnExportResults.Text = "&Export Results";
             this.btnExportResults.UseVisualStyleBackColor = true;
+            this.btnExportResults.Click += new System.EventHandler(this.btnExportResults_Click);
             // 
             // btnExit
             // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.Location = new System.Drawing.Point(659, 355);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 8;
             this.btnExit.Text = "E&xit";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // lblStartTimeCaption
             // 

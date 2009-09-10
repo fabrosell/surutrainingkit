@@ -316,6 +316,7 @@ namespace Suru.TrainingKit.UI
             ttkTest.DictQuestions = DictQuestions;
             ttkTest.DictAnswers = DictAnswers;
             ttkTest.DictAnnotations = DictAnnotations;
+            ttkTest.ExamLanguage = ctkConfig.LanguageSelected;
 
             ttkTest.ExamMinutes = ctkConfig.MinutesSelected;
 
@@ -467,7 +468,7 @@ namespace Suru.TrainingKit.UI
         //tsmiTestResult Click Event Handler
         private void tsmiTestResult_Click(object sender, EventArgs e)
         {
-            frmTestResult TestResult = new frmTestResult(ttkTest, CurrentExam);
+            frmTestResult TestResult = new frmTestResult(ttkTest, CurrentExam, TopicList);
 
             TestResult.ShowDialog();
 
