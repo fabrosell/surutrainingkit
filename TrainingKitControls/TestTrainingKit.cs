@@ -39,6 +39,7 @@ namespace Suru.TrainingKit.Controls
         private Int16 HoursRemaining = 0;
         private Int16 MinutesRemaining = 0;
         private Int16 SecondsRemaining = 0;
+        private Boolean Stopped;
 
         private const String QuestionColumn = "[Question]";
         private const String ImageColumn = "[Image]";
@@ -77,6 +78,8 @@ namespace Suru.TrainingKit.Controls
         /// </summary>
         public void StartTest()
         {
+            Stopped = false;
+
             Points = 0;
             lblExamResult.Text = String.Empty;
 
@@ -264,7 +267,11 @@ namespace Suru.TrainingKit.Controls
                 lblExamResult.Text = "Exam Passed! (" + Points.ToString("##.##") + "%, " + ApprobationPercentage.ToString("00") + "% min)";
 
                 lblExamResult.ForeColor = Color.Green;
-            }                
+            }
+
+            Stopped = true;
+
+            dgvQuestionList_SelectionChanged(null, null);
         }
 
         /// <summary>
@@ -285,7 +292,7 @@ namespace Suru.TrainingKit.Controls
 
             //Replacing tabs, new line and carriage returns characters
             StringBuilder sb = new StringBuilder();
-            sb.Append(txtAnswer.Text.Trim());
+            sb.Append(txtAnswer.Text.Trim());           
             sb.Replace("\t", String.Empty);
             sb.Replace("\r", String.Empty);
             sb.Replace("\n", String.Empty);
@@ -309,11 +316,26 @@ namespace Suru.TrainingKit.Controls
                 lblResultText.Text = "There are no answer.";
             }
 
-            CurrentAnswerString = DictAnswers[QuestionNumber];
+            sb = new StringBuilder();
+            sb.Append(txtAnswer.Text.Trim());
+            sb.Append(Environment.NewLine);
+            sb.Append(Environment.NewLine);
+            sb.Append("Answer is: ");
+            sb.Append(Environment.NewLine);
+            sb.Append(DictAnswers[QuestionNumber]);
+            sb.Append(Environment.NewLine);
+            sb.Append(Environment.NewLine);
 
-            txtAnswer.Text = txtAnswer.Text.Trim();
-            txtAnswer.Text += Environment.NewLine + Environment.NewLine + CurrentAnswerString;
+            if (DictAnnotations.ContainsKey(QuestionNumber) && DictAnnotations[QuestionNumber] != String.Empty)
+            {
+                sb.Append("Annotation: ");
+                sb.Append(DictAnnotations[QuestionNumber]);
+                sb.Append(Environment.NewLine);
+            }
 
+            CurrentAnswerString = sb.ToString();
+
+            txtAnswer.Text = CurrentAnswerString;
         }
 
         /// <summary>
@@ -369,7 +391,7 @@ namespace Suru.TrainingKit.Controls
         //btnPrevious Click Event Handler
         private void btnPrevious_Click(object sender, EventArgs e)
         {
-            if (chkShowAnswer.Checked && !AnswerWasShown)
+            if (chkShowAnswer.Checked && !AnswerWasShown && !Stopped)
             {
                 CheckAnswer();
                 AnswerWasShown = true;
@@ -399,7 +421,7 @@ namespace Suru.TrainingKit.Controls
         //btnNext Click Event Handler
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if (chkShowAnswer.Checked && !AnswerWasShown)
+            if (chkShowAnswer.Checked && !AnswerWasShown && !Stopped)
             {
                 CheckAnswer();
                 AnswerWasShown = true;
@@ -498,10 +520,49 @@ namespace Suru.TrainingKit.Controls
 
                 txtQuestion.Text = DictQuestions[SelectedQuestion];
 
+                lblQuestionNumber.Text = "Question " + SelectedQuestion.ToString();
+
                 if (DictResponses.ContainsKey(SelectedQuestion))
                     txtAnswer.Text = DictResponses[SelectedQuestion];
                 else
                     txtAnswer.Text = String.Empty;
+
+                if (Stopped)
+                    CheckAnswer();
+
+                /*
+                //Show Answer and Annotations is Stopped
+                if (Stopped)
+                {
+                    StringBuilder sb = new StringBuilder();
+
+                    sb.Append("Your answer: ");
+                    sb.Append(Environment.NewLine);
+
+                    if (DictResponses.ContainsKey(SelectedQuestion))
+                        sb.Append(DictResponses[SelectedQuestion]);
+                    else
+                        sb.Append("(no answer)");
+
+                    sb.Append(Environment.NewLine);
+                    sb.Append(Environment.NewLine);
+                    sb.Append("Answer: ");
+                    sb.Append(Environment.NewLine);
+                    sb.Append(DictAnswers[SelectedQuestion]);
+                    sb.Append(Environment.NewLine);
+                    sb.Append(Environment.NewLine);
+
+                    if (DictAnnotations.ContainsKey(SelectedQuestion))
+                    {
+                        sb.Append("Annotation: ");
+                        sb.Append(Environment.NewLine);
+                        sb.Append(DictAnnotations[SelectedQuestion]);
+                        sb.Append(Environment.NewLine);
+                    }
+
+                    txtAnswer.Text = sb.ToString();
+                }
+                */
 
                 //Resets label and icons
                 pbQuestionResult.Image = null;

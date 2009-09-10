@@ -59,7 +59,7 @@
             this.lblRemainingTime.Location = new System.Drawing.Point(427, 11);
             this.lblRemainingTime.Name = "lblRemainingTime";
             this.lblRemainingTime.Size = new System.Drawing.Size(161, 13);
-            this.lblRemainingTime.TabIndex = 0;
+            this.lblRemainingTime.TabIndex = 10;
             this.lblRemainingTime.Text = "Remaining Time: ##:##:##";
             this.lblRemainingTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -74,7 +74,7 @@
             this.txtQuestion.ReadOnly = true;
             this.txtQuestion.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtQuestion.Size = new System.Drawing.Size(532, 140);
-            this.txtQuestion.TabIndex = 1;
+            this.txtQuestion.TabIndex = 2;
             // 
             // lblQuestionNumber
             // 
@@ -84,7 +84,7 @@
             this.lblQuestionNumber.Location = new System.Drawing.Point(50, 11);
             this.lblQuestionNumber.Name = "lblQuestionNumber";
             this.lblQuestionNumber.Size = new System.Drawing.Size(72, 13);
-            this.lblQuestionNumber.TabIndex = 2;
+            this.lblQuestionNumber.TabIndex = 9;
             this.lblQuestionNumber.Text = "Question nº #";
             // 
             // lblAnswer
@@ -94,7 +94,7 @@
             this.lblAnswer.Location = new System.Drawing.Point(53, 170);
             this.lblAnswer.Name = "lblAnswer";
             this.lblAnswer.Size = new System.Drawing.Size(42, 13);
-            this.lblAnswer.TabIndex = 4;
+            this.lblAnswer.TabIndex = 11;
             this.lblAnswer.Text = "Answer";
             // 
             // txtAnswer
@@ -114,7 +114,7 @@
             this.btnPrevious.Location = new System.Drawing.Point(393, 268);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(46, 23);
-            this.btnPrevious.TabIndex = 5;
+            this.btnPrevious.TabIndex = 4;
             this.btnPrevious.Text = "< <";
             this.btnPrevious.UseVisualStyleBackColor = true;
             this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
@@ -125,7 +125,7 @@
             this.btnNext.Location = new System.Drawing.Point(445, 268);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(46, 23);
-            this.btnNext.TabIndex = 6;
+            this.btnNext.TabIndex = 5;
             this.btnNext.Text = "> >";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
@@ -136,7 +136,7 @@
             this.btnShowAnswer.Location = new System.Drawing.Point(497, 268);
             this.btnShowAnswer.Name = "btnShowAnswer";
             this.btnShowAnswer.Size = new System.Drawing.Size(88, 23);
-            this.btnShowAnswer.TabIndex = 7;
+            this.btnShowAnswer.TabIndex = 6;
             this.btnShowAnswer.Text = "Show Answer";
             this.btnShowAnswer.UseVisualStyleBackColor = true;
             this.btnShowAnswer.Click += new System.EventHandler(this.btnShowAnswer_Click);
@@ -147,7 +147,7 @@
             this.chkShowAnswer.Location = new System.Drawing.Point(169, 7);
             this.chkShowAnswer.Name = "chkShowAnswer";
             this.chkShowAnswer.Size = new System.Drawing.Size(161, 17);
-            this.chkShowAnswer.TabIndex = 8;
+            this.chkShowAnswer.TabIndex = 7;
             this.chkShowAnswer.Text = "Automatically Show Answers";
             this.chkShowAnswer.UseVisualStyleBackColor = true;
             // 
@@ -159,7 +159,7 @@
             this.lblList.Location = new System.Drawing.Point(3, 11);
             this.lblList.Name = "lblList";
             this.lblList.Size = new System.Drawing.Size(23, 13);
-            this.lblList.TabIndex = 10;
+            this.lblList.TabIndex = 8;
             this.lblList.Text = "List";
             // 
             // lblResultText
@@ -204,7 +204,7 @@
             this.dgvQuestionList.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvQuestionList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvQuestionList.Size = new System.Drawing.Size(49, 263);
-            this.dgvQuestionList.TabIndex = 14;
+            this.dgvQuestionList.TabIndex = 1;
             this.dgvQuestionList.SelectionChanged += new System.EventHandler(this.dgvQuestionList_SelectionChanged);
             // 
             // pbQuestionResult

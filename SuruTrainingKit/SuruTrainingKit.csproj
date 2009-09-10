@@ -14,6 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Suru.TrainingKit.UI.StrongNameKey.pfx</AssemblyOriginatorKeyFile>
+    <ApplicationIcon>SuruTrainingKit.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -142,7 +143,10 @@
     <Content Include="Images\nn.png" />
     <Content Include="Images\NoImage.png" />
     <Content Include="Images\ok.png" />
+    <Content Include="Images\SuruTrainingKit.ico" />
+    <Content Include="Images\SuruTrainingKit.png" />
     <Content Include="MenuMessCode.txt" />
+    <Content Include="SuruTrainingKit.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

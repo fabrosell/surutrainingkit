@@ -16,18 +16,18 @@ namespace Suru.TrainingKit.UI
         public AboutBox()
         {
             InitializeComponent();
-            this.Text = String.Format("About {0} {0}", AssemblyTitle);
+            this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
             this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = "Suru Training Kit is a software to help studying BrainDumps.com exams." + 
                                             Environment.NewLine + 
-                                            "This program is PostCardWare! (if you like it, send me a postcard from your city)" +
+                                            "This program is PostCardWare!" +
                                             Environment.NewLine +
                                             "(eMail me to get my current address)" +
                                             Environment.NewLine +
-                                            "Free for personal use." + 
+                                            "Free for personal and non comercial use." + 
                                             Environment.NewLine +
                                             Environment.NewLine +
                                             "Santiago de Chile, September 2009" +
