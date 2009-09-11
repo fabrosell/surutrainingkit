@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entiti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingKitControls", "TrainingKitControls\TrainingKitControls.csproj", "{5BC2777A-BDC9-4451-B8C5-D78538B6B7F1}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SuruTrainingKitSetup", "SuruTrainingKitSetup\SuruTrainingKitSetup.vdproj", "{3B6045DB-F354-4C24-A730-651BB495BE0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,8 @@ Global
 		{5BC2777A-BDC9-4451-B8C5-D78538B6B7F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BC2777A-BDC9-4451-B8C5-D78538B6B7F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BC2777A-BDC9-4451-B8C5-D78538B6B7F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B6045DB-F354-4C24-A730-651BB495BE0E}.Debug|Any CPU.ActiveCfg = Release
+		{3B6045DB-F354-4C24-A730-651BB495BE0E}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
