@@ -33,11 +33,11 @@
             this.tsmiAvailableExams = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiTestStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiTestResult = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctkConfig = new Suru.TrainingKit.Controls.ConfiguringTrainingKit();
-            this.ttkTest = new Suru.TrainingKit.Controls.TestTrainingKit();
             this.tsmiHelpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiIndex = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctkConfig = new Suru.TrainingKit.Controls.ConfiguringTrainingKit();
+            this.ttkTest = new Suru.TrainingKit.Controls.TestTrainingKit();
             this.msMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,6 +73,29 @@
             this.tsmiTestResult.Size = new System.Drawing.Size(73, 20);
             this.tsmiTestResult.Text = "&Test Result";
             this.tsmiTestResult.Click += new System.EventHandler(this.tsmiTestResult_Click);
+            // 
+            // tsmiHelpMenu
+            // 
+            this.tsmiHelpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiIndex,
+            this.tsmiAbout});
+            this.tsmiHelpMenu.Name = "tsmiHelpMenu";
+            this.tsmiHelpMenu.Size = new System.Drawing.Size(40, 20);
+            this.tsmiHelpMenu.Text = "&Help";
+            // 
+            // tsmiIndex
+            // 
+            this.tsmiIndex.Name = "tsmiIndex";
+            this.tsmiIndex.Size = new System.Drawing.Size(152, 22);
+            this.tsmiIndex.Text = "&Content";
+            this.tsmiIndex.Click += new System.EventHandler(this.tsmiIndex_Click);
+            // 
+            // tsmiAbout
+            // 
+            this.tsmiAbout.Name = "tsmiAbout";
+            this.tsmiAbout.Size = new System.Drawing.Size(152, 22);
+            this.tsmiAbout.Text = "&About";
+            this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
             // ctkConfig
             // 
@@ -115,29 +138,6 @@
             this.ttkTest.StartTime = new System.DateTime(((long)(0)));
             this.ttkTest.TabIndex = 2;
             this.ttkTest.TestStopped += new System.EventHandler(this.ttkTest_TestStopped);
-            // 
-            // tsmiHelpMenu
-            // 
-            this.tsmiHelpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiIndex,
-            this.tsmiAbout});
-            this.tsmiHelpMenu.Name = "tsmiHelpMenu";
-            this.tsmiHelpMenu.Size = new System.Drawing.Size(40, 20);
-            this.tsmiHelpMenu.Text = "&Help";
-            // 
-            // tsmiIndex
-            // 
-            this.tsmiIndex.Name = "tsmiIndex";
-            this.tsmiIndex.Size = new System.Drawing.Size(152, 22);
-            this.tsmiIndex.Text = "&Index";
-            this.tsmiIndex.Click += new System.EventHandler(this.tsmiIndex_Click);
-            // 
-            // tsmiAbout
-            // 
-            this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(152, 22);
-            this.tsmiAbout.Text = "&About";
-            this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
             // frmMain
             // 

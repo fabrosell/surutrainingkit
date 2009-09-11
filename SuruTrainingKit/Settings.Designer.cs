@@ -73,7 +73,7 @@ namespace Suru.TrainingKit.UI {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Help.chm")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SuruTrainingKitHelp.chm")]
         public string HelpFile {
             get {
                 return ((string)(this["HelpFile"]));

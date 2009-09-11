@@ -15,7 +15,7 @@
       <Value Profile="(Default)">#and#</Value>
     </Setting>
     <Setting Name="HelpFile" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Help.chm</Value>
+      <Value Profile="(Default)">SuruTrainingKitHelp.chm</Value>
     </Setting>
   </Settings>
 </SettingsFile>
