@@ -278,9 +278,7 @@ namespace Suru.TrainingKit.Controls
         /// Check if current answer is true of false.
         /// </summary>
         public void CheckAnswer()
-        {
-            //Int16 QuestionNumber = (Int16)lbQuestions.SelectedItem;
-
+        {            
             if (dgvQuestionList.SelectedRows.Count == 0)
                 return;
 
@@ -292,7 +290,10 @@ namespace Suru.TrainingKit.Controls
 
             //Replacing tabs, new line and carriage returns characters
             StringBuilder sb = new StringBuilder();
-            sb.Append(txtAnswer.Text.Trim());           
+
+            if (DictResponses.ContainsKey(QuestionNumber))
+                sb.Append(DictResponses[QuestionNumber]);
+            
             sb.Replace("\t", String.Empty);
             sb.Replace("\r", String.Empty);
             sb.Replace("\n", String.Empty);
@@ -499,6 +500,8 @@ namespace Suru.TrainingKit.Controls
 
             Int16 SelectedQuestion = (Int16)dgvQuestionList.SelectedRows[0].Cells[QuestionColumn].Value;
 
+            dgvQuestionList.CurrentCell = dgvQuestionList.SelectedRows[0].Cells[0];
+
             if (SelectedQuestion != -1)
             {
                 //Save previous results, if current question is not null
@@ -512,7 +515,8 @@ namespace Suru.TrainingKit.Controls
                         if (txtAnswer.Text.Trim() != String.Empty)
                             txtAnswer.Text = txtAnswer.Text.Replace(CurrentAnswerString, String.Empty);
 
-                    DictResponses[CurrentQuestion.Value] = txtAnswer.Text.Trim();
+                    if (!Stopped)
+                        DictResponses[CurrentQuestion.Value] = txtAnswer.Text.Trim();
                 }
 
                 //Set current question
@@ -520,7 +524,7 @@ namespace Suru.TrainingKit.Controls
 
                 txtQuestion.Text = DictQuestions[SelectedQuestion];
 
-                lblQuestionNumber.Text = "Question " + SelectedQuestion.ToString();
+                lblQuestionNumber.Text = "Question " + SelectedQuestion.ToString() + " (" + (dgvQuestionList.SelectedRows[0].Index + 1).ToString() + "/" + dgvQuestionList.Rows.Count.ToString() + ")";
 
                 if (DictResponses.ContainsKey(SelectedQuestion))
                     txtAnswer.Text = DictResponses[SelectedQuestion];
@@ -529,40 +533,6 @@ namespace Suru.TrainingKit.Controls
 
                 if (Stopped)
                     CheckAnswer();
-
-                /*
-                //Show Answer and Annotations is Stopped
-                if (Stopped)
-                {
-                    StringBuilder sb = new StringBuilder();
-
-                    sb.Append("Your answer: ");
-                    sb.Append(Environment.NewLine);
-
-                    if (DictResponses.ContainsKey(SelectedQuestion))
-                        sb.Append(DictResponses[SelectedQuestion]);
-                    else
-                        sb.Append("(no answer)");
-
-                    sb.Append(Environment.NewLine);
-                    sb.Append(Environment.NewLine);
-                    sb.Append("Answer: ");
-                    sb.Append(Environment.NewLine);
-                    sb.Append(DictAnswers[SelectedQuestion]);
-                    sb.Append(Environment.NewLine);
-                    sb.Append(Environment.NewLine);
-
-                    if (DictAnnotations.ContainsKey(SelectedQuestion))
-                    {
-                        sb.Append("Annotation: ");
-                        sb.Append(Environment.NewLine);
-                        sb.Append(DictAnnotations[SelectedQuestion]);
-                        sb.Append(Environment.NewLine);
-                    }
-
-                    txtAnswer.Text = sb.ToString();
-                }
-                */
 
                 //Resets label and icons
                 pbQuestionResult.Image = null;

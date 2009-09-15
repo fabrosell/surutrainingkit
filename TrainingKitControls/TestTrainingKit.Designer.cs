@@ -177,7 +177,7 @@
             this.lblExamResult.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblExamResult.AutoSize = true;
             this.lblExamResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExamResult.Location = new System.Drawing.Point(212, 273);
+            this.lblExamResult.Location = new System.Drawing.Point(166, 273);
             this.lblExamResult.Name = "lblExamResult";
             this.lblExamResult.Size = new System.Drawing.Size(81, 13);
             this.lblExamResult.TabIndex = 13;
