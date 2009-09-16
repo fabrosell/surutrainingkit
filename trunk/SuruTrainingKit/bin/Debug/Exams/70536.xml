@@ -2136,7 +2136,7 @@
 			<answer>C</answer>
 			<annotation/>
 		</question>
-		<question number="150" language="VB">
+		<question number="150" language="C++">
 			<text>
 				Question: [10, 150, 181, 248, 249]
 				You are testing a newly developed method named PersistToDB. This method accepts a parameter of type EventLogEntry. This method does not return a value. You need to create a code segment that helps you to test the method. The code segment must read entries from the application log of local computers and then pass the entries on to the PersistToDB method. The code block must pass only events of type Error or Warning from the source MySource to the PersistToDB method. Which code segment should you use?
@@ -2224,7 +2224,7 @@
 			<answer>C</answer>
 			<annotation/>
 		</question>
-		<question number="248" language="C#">
+		<question number="248" language="VB">
 			<text>
 				Question: 248 [10, 150, 181, 248, 249]
 				You are testing a newly developed method named PersistToDB. This method accepts a parameter of type EventLogEntry. This method does not return a value. You need to create a code segment that helps you to test the method. The code segment must read entries from the application log of local computers and then pass the entries on to the PersistToDB method. The code block must pass only events of type Error or Warning from the source MySource to the PersistToDB method.
@@ -8464,7 +8464,7 @@
 			<answer>A</answer>
 			<annotation/>
 		</question>
-		<question number="93" language="C#">
+		<question number="93" language="C++">
 			<text>
 				Question: 93 [93, 129, 133, 149, 200]
 				You are developing a method that searches a string for a substring. The method will be localized to Italy.
