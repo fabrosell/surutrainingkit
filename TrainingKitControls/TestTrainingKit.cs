@@ -551,6 +551,22 @@ namespace Suru.TrainingKit.Controls
                 btnPrevious_Click(null, null);
         }
 
+        //txtAnswer Click Event Handler
+        private void txtAnswer_Click(Object sender, EventArgs e)
+        {
+            //This method will work only if the test is stopped
+            //...and if there are more than 5 lines of text in it.
+            if (Stopped)
+            {
+                Int16 SelectedQuestion = (Int16)dgvQuestionList.SelectedRows[0].Cells[QuestionColumn].Value;
+
+                frmAnswerDetail frmAD = new frmAnswerDetail(SelectedQuestion, ExamLanguage, txtAnswer.Text);
+
+                frmAD.ShowDialog();
+            }
+        }
+
         #endregion
+
     }
 }

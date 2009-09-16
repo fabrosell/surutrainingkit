@@ -81,7 +81,7 @@
             this.lblQuestionNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
             this.lblQuestionNumber.AutoSize = true;
-            this.lblQuestionNumber.Location = new System.Drawing.Point(50, 11);
+            this.lblQuestionNumber.Location = new System.Drawing.Point(53, 11);
             this.lblQuestionNumber.Name = "lblQuestionNumber";
             this.lblQuestionNumber.Size = new System.Drawing.Size(72, 13);
             this.lblQuestionNumber.TabIndex = 9;
@@ -91,7 +91,7 @@
             // 
             this.lblAnswer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblAnswer.AutoSize = true;
-            this.lblAnswer.Location = new System.Drawing.Point(53, 170);
+            this.lblAnswer.Location = new System.Drawing.Point(53, 176);
             this.lblAnswer.Name = "lblAnswer";
             this.lblAnswer.Size = new System.Drawing.Size(42, 13);
             this.lblAnswer.TabIndex = 11;
@@ -101,12 +101,13 @@
             // 
             this.txtAnswer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAnswer.Location = new System.Drawing.Point(53, 186);
+            this.txtAnswer.Location = new System.Drawing.Point(53, 192);
             this.txtAnswer.Multiline = true;
             this.txtAnswer.Name = "txtAnswer";
             this.txtAnswer.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtAnswer.Size = new System.Drawing.Size(532, 76);
+            this.txtAnswer.Size = new System.Drawing.Size(532, 70);
             this.txtAnswer.TabIndex = 3;
+            this.txtAnswer.Click += new System.EventHandler(this.txtAnswer_Click);
             // 
             // btnPrevious
             // 

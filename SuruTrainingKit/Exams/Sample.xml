@@ -8,7 +8,9 @@
 			<answer>
 				2
 			</answer>
-			<annotation/>
+			<annotation>
+				1 + 1 is always 2... despite what your accountant says...
+			</annotation>
 		</question>
 		<question number="2" language="vb">
 			<text>
@@ -17,7 +19,9 @@
 			<answer>
 				4
 			</answer>
-			<annotation/>
+			<annotation>
+				2 + 2 is 4. Ask a 5 year old child.
+			</annotation>
 		</question>
 		<question number="3" language="C#">
 			<text>
@@ -26,7 +30,9 @@
 			<answer>
 				3
 			</answer>
-			<annotation/>
+			<annotation>
+				1 + 2 is 3. Think about having an apple in one hand, and two in the other. When you put them togheter, you have 3 apples.
+			</annotation>
 		</question>
 		<question number="4" language="vb">
 			<text>
@@ -35,7 +41,9 @@
 			<answer>
 				4
 			</answer>
-			<annotation/>
+			<annotation>
+				1 + 3 is 4. Ask a 5 year old child.
+			</annotation>
 		</question>
 	</topic>
 	<topic name="Topic 2" topicexampercentage ="50">
@@ -55,7 +63,9 @@
 			<answer>
 				4
 			</answer>
-			<annotation/>
+			<annotation>
+				It's the same than 2 + 2 (two times add two)
+			</annotation>
 		</question>
 	</topic>
 	<topic name="Topic 3" topicexampercentage ="25">
@@ -66,7 +76,9 @@
 			<answer>
 				0
 			</answer>
-			<annotation/>
+			<annotation>
+				If you have one dollar, your bank cannot take more than one. You'll have 0 dollars.
+			</annotation>
 		</question>
 		<question number="8" language="vb">
 			<text>
@@ -75,7 +87,9 @@
 			<answer>
 				infinity
 			</answer>
-			<annotation/>
+			<annotation>
+				Please don't ask any mathematician about this. You'll get bored to death.
+			</annotation>
 		</question>
 	</topic>
 </exam>
