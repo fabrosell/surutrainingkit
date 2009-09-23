@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<exam name="70-536 Microsoft Exam" approbingpercentage="85">
+<exam name="70-536 Microsoft Exam" approbingpercentage="85" version="200909231200">
 	<topic name="Developing applications that use system types and collections" topicexampercentage ="15">
 		<question number="1" language="VB">
 			<text>
@@ -46,7 +46,15 @@
 				MyDictionary dictionary = (MyDictionary)t;
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				Dictionary#min#String, String#may# is type safe (A).
+
+				HastTable hold objects.
+
+				IDictionary, too.
+
+				D is not a custom dictionary, only a class which holds a dictionary.
+			</annotation>
 		</question>
 		<question number="237" language="C++">
 			<text>
@@ -116,7 +124,13 @@
 				}
 			</text>
 			<answer>B</answer>
-			<annotation/>
+			<annotation>
+				You cannot define a custom event arg that does not inherits from EventArgs class (to the event handler parameter), as stated in A and C.
+
+				In D, the attribute “copies” is not accessible.
+
+				Option B inherits from EventArgs and makes Copies public.
+			</annotation>
 		</question>
 		<question number="29" language="VB">
 			<text>
@@ -231,7 +245,15 @@
 				Source
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				Exception.Data contains Key/Value Pairs with extra info from the exception, but no source lines.
+
+				Exception.Message contains the exception’s message (simple error description).
+
+				Exception.StackTrace contains a string representation of the Stack at the time the current exception was thrown.
+
+				Exception.Source will indicate the object or application that caused the exception.
+			</annotation>
 		</question>
 		<question number="115" language="VB">
 			<text>
@@ -337,7 +359,11 @@
 				}}
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				You currently have the delegate. You need to create an event, not redefining FaxArgs as C and D states.
+
+				Type is FaxDocs. B will not compile. A is the right choice.
+			</annotation>
 		</question>
 		<question number="202" language="VB">
 			<text>
@@ -400,7 +426,13 @@
 				The method must be the only iterator in the class.
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				IEnumerator and IEnumerable both are classes to support foreach enumeration in non-generic collections (A). IEnumerable is the class that implements GetEnumerator method which, in turn, returns an IEnumerator object that will move in the collection.
+
+				Returning an IComparable type does not work for enumerate items.
+
+				The method might not contain a collection (it could be a custom non-generic collection).
+			</annotation>
 		</question>
 		<question number="86" language="VB">
 			<text>
@@ -462,7 +494,11 @@
 				Hashtable class
 			</text>
 			<answer>B</answer>
-			<annotation/>
+			<annotation>
+				HybridDictionary is efficient for both small and large collections.
+
+				OrderedDictionary, ListDictionary, and HashTable has performance problems with small collections (less than 10 elements).
+			</annotation>
 		</question>
 		<question number="167" language="VB">
 			<text>
@@ -524,7 +560,11 @@
 				System.IntPtr
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				An Unsigned 16 bit integer is not always greater than 65535.
+
+				Int16 will be up to 32767.
+			</annotation>
 		</question>
 		<question number="209" language="C++">
 			<text>
@@ -575,7 +615,13 @@
 				Create an OnDeserialization method that calls ProcessChildren.
 			</text>
 			<answer>B;F</answer>
-			<annotation/>
+			<annotation>
+				“You need to ensure that ProcessChildren method is executed after the BraindumpClass object and all its child objects are reconstructed”.
+
+				So, you will use OnDeserializing method of IDeserializationCallback interface.
+
+				First, implement IDeserializationCallback interface (B) and then implements OnDeserialization that call ProcessChildren (F).
+			</annotation>
 		</question>
 		<question number="226" language="VB">
 			<text>
@@ -701,7 +747,13 @@
 				q.Dequeue();
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				Queue.Dequeue will dequeue a single element.
+
+				Enqueuing null element will not clear the collection.
+
+				Dequeuing every element clears the collection but not as simple as Queue.Clear method (C).
+			</annotation>
 		</question>
 		<question number="84" language="VB">
 			<text>
@@ -770,7 +822,11 @@
 				public delegate bool PowerDeviceOn(DataTime autoPowerOff);
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				MulticastDelegate represents a multicast delegate; that is, a delegate that can have more than one element in its invocation list. MulticastDelegates only accept a single method as a parameter (defined in the MulticastDelegate class constructor) and a String with the method name.
+
+				So, the delegate must accept a DateTime argument and return void as C states.
+			</annotation>
 		</question>
 		<question number="130" language="VB">
 			<text>
@@ -939,7 +995,13 @@
 				}
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				If age class must be compared, it must implement IComparable interface (B and A are not valid).
+
+				Age objects must be compared with Age objects only, as C states.
+
+				D will compare Age objects with any other object.
+			</annotation>
 		</question>
 		<question number="164" language="C#">
 			<text>
@@ -960,8 +1022,14 @@
 				D.
 				BitArray answers = new BitArray(-1);
 			</text>
-			<answer>B</answer>
-			<annotation/>
+			<answer>A</answer>
+			<annotation>
+				Note that -1 is not a valid boolean value. 1 is true, 0 is false.
+
+				BitArray(1) will create a BitArray with 1 element. BitArray(-1) will throw a runtime exception.
+
+				BitVector32(1) will instantiate a Bit Vector up to 32 true/false bits initialized on true (A).
+			</annotation>
 		</question>
 		<question number="233" language="C++">
 			<text>
@@ -1045,7 +1113,15 @@
 				Queue undoBuffer = new Queue();
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				Stack#min#String#may# is the most appropiated choice.
+
+				A stack is last-in-first-out object. So, you can undo the most recent change and proceed with the older ones.
+
+				A queue is first-in-first-out object. It will undo the oldest change and not the recent one.
+
+				Of course, it must be type-safe to avoid unboxing on retrieving items.
+			</annotation>
 		</question>
 		<question number="214" language="C++">
 			<text>
@@ -1092,7 +1168,15 @@
 				Call the SpinLock method of threadOne.
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				Configuring Thread Priorities does not synchronize the threads (A and B).
+
+				There is no suck Thread.SpinLock method (Thread.SpinWait, to wait a number of times).
+
+				Thread.Sleep is not possible to synchronize the threads because you cannot know in advance how much time will consume the other thread.
+
+				Using a WaitCallBack delegate is the best way of synchronize thread (C).
+			</annotation>
 		</question>
 		<question number="210" language="VB">
 			<text>
@@ -1165,7 +1249,13 @@
 				}
 			</text>
 			<answer>D</answer>
-			<annotation/>
+			<annotation>
+				B and A are not valid because both initializes a ThreadStart parameter. ThreadStart paramether does not accept an object to be passed to the thread.
+
+				C is not valid due to does not start a thread.
+
+				D is valid. It correctly instantiates a Thread with a ParametrizedThreadStart, which accepts an object to be passed to the thread.
+			</annotation>
 		</question>
 		<question number="123" language="C++">
 			<text>
@@ -1306,7 +1396,13 @@
 				Set the Process.GetCurrentProcess().BasePriority property to High.
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				ThreadPool.QueueWorkItem will currently allow to perform multiple calculations simultaneously (C).
+
+				Setting ProcessThread.IdealProcesor or ProcessThread.Processor afinity might work the first time. If you set the same processor every time you won’t get simultaneous calculations (A y B).
+
+				You cannot set Process.BasePriority property because it’s read only (D).
+			</annotation>
 		</question>
 		<question number="108" language="VB">
 			<text>
@@ -1428,7 +1524,11 @@
 				Move the loop code from the OnStart method into the DoWork method.
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				The problem is causing because OnStart will not return control for 30 seconds. Windows will think application is not responding.
+
+				You need to add a class level Timer to execute the method (C). There are no timer components to drag in services.
+			</annotation>
 		</question>
 		<question number="222" language="VB">
 			<text>
@@ -1485,7 +1585,15 @@
 				Use the installutil.exe command-line tool to install the service.
 			</text>
 			<answer>B</answer>
-			<annotation/>
+			<annotation>
+				This response is very ugly for me. It says that prior to installation, set account, user and password (B). I’d prefer to do that during installation (a messagebox prompts for the user and password to use).
+
+				Setting StartType will set start type service, not account (A).
+
+				There is no config option from net.exe (C).
+
+				Installutil.exe will only install the service (D). You should set first the account type of the service (you can configure it later via service control panel, too).
+			</annotation>
 		</question>
 		<question number="75" language="VB">
 			<text>
@@ -1552,7 +1660,13 @@
 				);
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				D and A will not force granting Local Intranet permissions. It will grand current application domain or assembly evidence.
+
+				The difference between B and C is where the evidence comes from. AddHost come from host, and AddAssembly comes from assembly. Both will add evidence into the evidence set.
+
+				You need to use evidence from host, not from assembly. C is the right answer.
+			</annotation>
 		</question>
 		<question number="184" language="VB">
 			<text>
@@ -1644,7 +1758,13 @@
 				crtl.ExecuteCommand(0);
 			</text>
 			<answer>B;E</answer>
-			<annotation/>
+			<annotation>
+				You have to:
+
+				Set ServiceController.MachineName (B) and
+
+				Start service with ServiceController.Start (E).
+			</annotation>
 		</question>
 		<question number="144" language="VB">
 			<text>
@@ -1770,7 +1890,16 @@
 				new AllMembershipCondition(), noTrustStatement);
 			</text>
 			<answer>B</answer>
-			<annotation/>
+			<annotation>
+				AllMembershipCondition will match all code.
+				ZoneMemberShipCondition will match only the security zone it defines.
+
+				C and D won’t work because they assign an only group condition.
+
+				If “nothing” permission must be set by default, ‘A’ option does not apply because it sets first the trusted permission and then the default one.
+
+				B will work because it first set “nothing” as default permission set and then set the fulltrust to the assemblies which comes from Trusted Security Zone.
+			</annotation>
 		</question>
 		<question number="157" language="C++">
 			<text>
@@ -1950,7 +2079,15 @@
 				return sync_al;
 			</text>
 			<answer>D</answer>
-			<annotation/>
+			<annotation>
+				ArrayList.SyncRoot gets an object than can be used to synchronize access to the ArrayList (A). But this is incorrect because returns the object after releasing the lock. ArrayList cannot be used furthermore.
+
+				ArrayList.SyncRoot.GetType is an incorrect use of ArrayList.SyncRoot (B).
+
+				Monitors can be used to synchronize access, but they are potential resource hogs.
+
+				ArrayList.Synchronized returns an ArrayList wrapper that is synchronized (thread safe). This is the correct answer (D).
+			</annotation>
 		</question>
 	</topic>
 	<topic name="Embedding configuration, diagnostic, management, and installation features into a .NET Framework application" topicexampercentage ="14">
@@ -1998,7 +2135,15 @@
 				}}
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				A is the correct query. It will retrieve only paused services.
+
+				B search query is not correctly formed.
+
+				C will select all services, not just paused ones.
+
+				D does not define search query.
+			</annotation>
 		</question>
 		<question number="39" language="VB">
 			<text>
@@ -2134,7 +2279,13 @@
 				}
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				‘A’ will persist all “MySource” event IDs, despite of their type.
+
+				‘B’ y ‘D’ won’t filter by source “MySource”. B won’t filter by warning or errors. C does it. EventLog.Source is used only when writing, not reading.
+
+				‘C’ displays correctly “MySource” event IDs which are warning or errors.
+			</annotation>
 		</question>
 		<question number="150" language="C++">
 			<text>
@@ -2324,7 +2475,19 @@
 				Arrange the appropriate actions in the correct order.
 			</text>
 			<answer></answer>
-			<annotation/>
+			<annotation>
+				There is nothing to answer. But to get disc properties, you should do next:
+
+				You should create a class or struct to hold the data what you need, if you don’t want to deal with the DriveInfo object directly.
+
+				Create a procedure that returns that class, struct or drive info object. The input should be the drive name.
+
+				Within the procedure, create a driveinfo object with the drive name parameter.
+
+				Populate the class or struct, if applies, with the DriveType, VolumeLabel and TotalSize properties of the DriveInfo object.
+
+				Return that class or the drive info object directly.
+			</annotation>
 		</question>
 		<question number="33" language="C#">
 			<text>
@@ -2348,7 +2511,11 @@
 				Set up a listener for events by using the Stopped event of the ManagementEventWatcher.
 			</text>
 			<answer>A;B</answer>
-			<annotation/>
+			<annotation>
+				The stored answer indicates that the answer is A then B (start listening then set set up a listener).
+
+				I think it should be B then A (set up the listener and then start listening).
+			</annotation>
 		</question>
 		<question number="125" language="VB">
 			<text>
@@ -2628,7 +2795,15 @@
 				}
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				IConfigurationSectionHandler handles access to certain configuration sections. ConfigurationElement is an abstract class that represents a configuration element within a configuration file. You can derive from any class to meet your purpose.
+
+				Info from configuration file is not retrieved by ConfigurationManager.AppSettings (only keys from AppSettings are obtained).
+
+				Name and Manager are not attributes, as noted in B and D.
+
+				You must process the XML as noted in C.
+			</annotation>
 		</question>
 		<question number="91" language="C++">
 			<text>
@@ -2654,37 +2829,11 @@
 				}
 			</text>
 			<answer>B</answer>
-			<annotation/>
+			<annotation/>			
 		</question>
-		<question number="99" language="C#">
+		<question number="230" language="C#">
 			<text>
-				Question: 99 [91, 99, 156, 161, 183, 230]
-				You are using the Microsoft Visual Studio 2005 IDE to examine the output of a method that returns a string. You assign the output of the method to a string variable named fName. You need to write a code segment that prints the following on a single line The message: "Test Failed: " The value of fName if the value of fName does not equal "Braindumps" You also need to ensure that the code segment simultaneously facilitates uninterrupted execution of the application. Which code segment should you use?
-
-				A.
-				Debug.Assert(fName = "Braindumps", "Test Failed: ", fName)
-
-				B.
-				Debug.WriteLineIf(fName #min##may# "Braindumps", _ fName, "Test Failed")
-
-				C.
-				If fName #min##may# "Braindumps" Then
-				Debug.Print("Test Failed: ")
-				Debug.Print(fName)
-				End If
-
-				D.
-				If fName #min##may# "Braindumps" Then
-				Debug.WriteLine("Test Failed: ")
-				Debug.WriteLine(fName)
-				End If
-			</text>
-			<answer>B</answer>
-			<annotation/>
-		</question>
-		<question number="156" language="C#">
-			<text>
-				Question: 156 [91, 99, 156, 161, 183, 230]
+				Question: 230 [91, 99, 156, 161, 183, 230]
 				You are using the Microsoft Visual Studio 2005 IDE to examine the output of a method that returns a string. You assign the output of the method to a string variable named fName. You need to write a code segment that prints the following on a single line The message: "Test Failed: " The value of fName if the value of fName does not equal "Braindumps" You also need to ensure that the code segment simultaneously facilitates uninterrupted execution of the application. Which code segment should you use?
 
 				A.
@@ -2702,11 +2851,15 @@
 				D.
 				if (fName != "Braindumps") {
 				Debug.WriteLine("Test Failed: ");
-				Debug.WriteLine(fName);
+				Debug.WriteLine (fName);
 				}
 			</text>
 			<answer>B</answer>
-			<annotation/>
+			<annotation>
+				Debug.Assert will interrupt execution.
+
+				D will print the message in two lines. C will print the message in one line but B is simpler and will be ignored on release versions of the assembly.
+			</annotation>
 		</question>
 		<question number="161" language="C++">
 			<text>
@@ -2755,32 +2908,6 @@
 				Debug.WriteLine("Test Failed: ")
 				Debug.WriteLine(fName)
 				End If
-			</text>
-			<answer>B</answer>
-			<annotation/>
-		</question>
-		<question number="230" language="C#">
-			<text>
-				Question: 230 [91, 99, 156, 161, 183, 230]
-				You are using the Microsoft Visual Studio 2005 IDE to examine the output of a method that returns a string. You assign the output of the method to a string variable named fName. You need to write a code segment that prints the following on a single line The message: "Test Failed: " The value of fName if the value of fName does not equal "Braindumps" You also need to ensure that the code segment simultaneously facilitates uninterrupted execution of the application. Which code segment should you use?
-
-				A.
-				Debug.Assert(fName == "Braindumps", "Test Failed: ", fName);
-
-				B.
-				Debug.WriteLineIf(fName != "Braindumps", fName, "Test Failed");
-
-				C.
-				if (fName != "Braindumps") {
-				Debug.Print("Test Failed: ");
-				Debug.Print(fName);
-				}
-
-				D.
-				if (fName != "Braindumps") {
-				Debug.WriteLine("Test Failed: ");
-				Debug.WriteLine (fName);
-				}
 			</text>
 			<answer>B</answer>
 			<annotation/>
@@ -2909,7 +3036,9 @@
 				}
 			</text>
 			<answer>B</answer>
-			<annotation/>
+			<annotation>
+				B. ConfigurationProperty attribute should be used upon “name” attribute, and RequiredValue to true to ensure that the value will always be a valid configuration value (not null).
+			</annotation>
 		</question>
 		<question number="216" language="VB">
 			<text>
@@ -3081,7 +3210,11 @@
 				al.Add(proc.ProcessName);
 			</text>
 			<answer>D</answer>
-			<annotation/>
+			<annotation>
+				Process.GetProcesses with one parameter specifies the host which processes will be get (A and B).
+
+				Process.GetProcessesByName with one parameter will obtain the specified frineldly-name process (not the full path one). If this method had two parameters, the other parameter specifies the host (like in Process.GetProcesses method).
+			</annotation>
 		</question>
 		<question number="148" language="C++">
 			<text>
@@ -3192,60 +3325,6 @@
 			<answer>C</answer>
 			<annotation/>
 		</question>
-		<question number="199" language="C#">
-			<text>
-				Question: 199 [148, 159, 199]
-				You are testing a method that examines a running process. This method returns an ArrayList containing the name and full path of all modules that are loaded by the process.
-				You need to list the modules loaded by a process named C:\TestApps\Process1.exe.
-				Which code segment should you use?
-
-				A.
-				ArrayList ar = new ArrayList();
-				Process[] procs;
-				ProcessModuleCollection modules;
-				procs = Process.GetProcesses(@"Process1");
-				if (procs.Length #may# 0) {
-				modules = porcs[0].Modules;
-				foreach (ProcessModule mod in modules) {
-				ar.Add(mod.ModuleName);
-				}}
-
-				B.
-				ArrayList ar = new ArrayList();
-				Process[] procs;
-				ProcessModuleCollection modules;
-				procs = Process.GetProcesses(@"C:\TestApps\Process1.exe");
-				if (procs.Length #may# 0) {
-				modules = porcs[0].Modules;
-				foreach (ProcessModule mod in modules) {
-				ar.Add(mod.ModuleName);
-				}}
-
-				C.
-				ArrayList ar = new ArrayList();
-				Process[] procs;
-				ProcessModuleCollection modules;
-				procs = Process.GetProcessesByName(@"Process1");
-				if (procs.Length #may# 0) {
-				modules = porcs[0].Modules;
-				foreach (ProcessModule mod in modules) {
-				ar.Add(mod.FileName);
-				}}
-
-				D.
-				ArrayList ar = new ArrayList();
-				Process[] procs;
-				ProcessModuleCollection modules;
-				procs = Process.GetProcessesByName(@"C:\TestApps\Process1.exe");
-				if (procs.Length #may# 0) {
-				modules = porcs[0].Modules;
-				foreach (ProcessModule mod in modules) {
-				ar.Add(mod.FileName);
-				}}
-			</text>
-			<answer>C</answer>
-			<annotation/>
-		</question>
 	</topic>
 	<topic name="Implementing serialization and input/output functionality in a .NET Framework application" topicexampercentage ="18">
 		<question number="8" language="VB">
@@ -3347,7 +3426,13 @@
 				);
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				The easiest way is to serialize directly the List#min#Int32#may# (A).
+
+				B serializes Int32 only. The length of the serialized data is not known in advance (C):
+
+				D serializes a list of int for every element of the list.
+			</annotation>
 		</question>
 		<question number="12" language="VB">
 			<text>
@@ -3494,7 +3579,15 @@
 				#min#/Vehicle#may#
 			</text>
 			<answer>B</answer>
-			<annotation/>
+			<annotation>
+				Vehicletype=”car” is invalid because it’s mapped into attribute “category” (A).
+
+				“Category” is an attribute, not an element (D).
+
+				“ConditionType” element is invalid because it’s the type of Condition field (C).
+
+				B will map correctly the defined class.
+			</annotation>
 		</question>
 		<question number="208" language="C++">
 			<text>
@@ -3641,7 +3734,13 @@
 				formatter.Serialize(stream, dept);
 			</text>
 			<answer>D</answer>
-			<annotation/>
+			<annotation>
+				D is the answer. Is the easiest and correct way of serlializing data with soap.
+
+				C and A pretends to serialize each array item.
+
+				A and B assign an arbitrary amount of memory to the stream buffet. It will overflow when all soap formatters will be added.
+			</annotation>
 		</question>
 		<question number="79" language="VB">
 			<text>
@@ -3741,7 +3840,11 @@
 				result = reader.ReadLine();
 			</text>
 			<answer>B</answer>
-			<annotation/>
+			<annotation>
+				B. StreamReader.ReadtoEnd() will return the whole content of the file.
+
+				Read will return a single byte. ReadLine will return a single line. C won’t work any way (the string variable should not be initialized to String.Empty, and StreamReader.ToString() will yield System.IO.StreamReader, the varible type name).
+			</annotation>
 		</question>
 		<question number="254" language="C++">
 			<text>
@@ -3798,7 +3901,13 @@
 				bufStream.Write(dataToSend, 0, 8192);
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				A and B do not use buffered writing.
+
+				C correctly writes to the underlying stream (netstream) with a cache size of 8192.
+
+				D does not specify the BufferedStream cache size.
+			</annotation>
 		</question>
 		<question number="120" language="C++">
 			<text>
@@ -3888,48 +3997,15 @@
 				return outStream.ToArray();
 			</text>
 			<answer>C</answer>
-			<annotation/>
-		</question>
-		<question number="137" language="C#">
-			<text>
-				Question: 137 [35, 137, 191, 207, 234, 255]
-				You are writing a method to compress an array of bytes. The bytes to be compressed are passed to the method in a parameter named document.
-				You need to compress the contents of the incoming parameter.
-				Which code segment should you use?
+			<annotation>
+				You cannot guess the length of the compressed byte[], as denoted in A. An exception will be thrown at runtime.
 
-				A.
-				MemoryStream inStream = new MemoryStream(document);
-				GZipStream zipStream = new GZipStream(inStream, CompressionMode.Compress);
-				byte[] result = new Byte[document.Length];
-				zipStream.Write(result, 0, result.Length);
-				return result;
+				You cannot specify the gzipstream from the stream with the data to compress (B). This is valid only if you want to decompress the data.
 
-				B.
-				MemoryStream Stream = new MemoryStream(document);
-				GZipStream zipStream = new GZipStream(stream, CompressionMode.Compress);
-				zipStream.Write(document, 0, document.Length);
-				zipStream.Close();
-				return stream.ToArray();
+				C compress the document correctly.
 
-				C.
-				MemoryStream outStream = new MemoryStream();
-				GZipStream zipStream = new GZipStream(outStream, CompressionMode.Compress);
-				zipStream.Write(document, 0, document.Length);
-				zipStream.Close();
-				return outStream.ToArray();
-
-				D.
-				MemoryStream inStream = new MemoryStream(document);
-				GZipStream zipStream = new GZipStream(inStream, CompressionMode.Compress);
-				MemoryStream outStream = new MemoryStream();
-				int b;
-				while ((b = zipStream.ReadByte()) != -1) {
-				outStream.WriteByte((byte)b);
-				}
-				return outStream.ToArray();
-			</text>
-			<answer>C</answer>
-			<annotation/>
+				You cannot read from the stream you want to write to (compressing is writing to a  gzip or deflatestream stream) as it’s done on option D.
+			</annotation>
 		</question>
 		<question number="191" language="C++">
 			<text>
@@ -4228,7 +4304,24 @@
 				[XmlElement(Type = typeof(Manager))]
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				A is the answer. This is the explanation from MSDN:
+
+				For example, the array in the following C# code accepts both strings and integers.
+
+				public class Things{
+				[XmlElement(DataType = typeof(string)),
+				XmlElement(DataType = typeof(int))]
+				public object[] StringsAndInts;
+				}
+
+				This results in XML that might resemble the following.
+				#min#Things#may#
+				#min#string#may#Hello#min#/string#may#
+				#min#int#may#999#min#/int#may#
+				#min#string#may#World#min#/string#may#
+				#min#/Things#may#
+			</annotation>
 		</question>
 		<question number="42" language="C#">
 			<text>
@@ -4262,7 +4355,15 @@
 				}
 			</text>
 			<answer>D</answer>
-			<annotation/>
+			<annotation>
+				“…when an instance of the class is deserialized”.
+
+				So, B and A aren’t valid ones because they specify “serializing”.
+
+				Info.AddValue will add the value if it doesn’t exists, but this is not the case. It will thrown an SerializationException because the value previously exist.
+
+				D updates the currRate field with the Current Rate correctly.
+			</annotation>
 		</question>
 		<question number="83" language="C++">
 			<text>
@@ -4430,7 +4531,15 @@
 				string result = isoStream.ToString();
 			</text>
 			<answer>B</answer>
-			<annotation/>
+			<annotation>
+				File is machine-scoped.
+
+				C and A don’t specify scope.
+
+				D returns isoStream.ToString(), that contains only the type of isoStream.
+
+				B will correctly return the whole file content as a string.
+			</annotation>
 		</question>
 		<question number="68" language="C++">
 			<text>
@@ -4492,7 +4601,11 @@
 				bytesTransferred = byteArray.Length;
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				A. Stream class and its derivatives support Read method, which accepts a byte buffer array, an offset, and a number of bytes to read. Also returns the number of bytes read.
+
+				B and D won’t work because will try to write to the stream. C is too cumbersome to code (A is simpler and less error-prone).
+			</annotation>
 		</question>
 		<question number="241" language="VB">
 			<text>
@@ -4585,7 +4698,15 @@
 				store.CreateDirectory("Preferences");
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				IsolatedStorageFile.GetUserStoreForAssembly will create the directory isolated from user and assemblies. The same assembly within different applications always uses the same isolated store when using this method. This is the user-assembly scope needed by question.
+
+				IsolatedStorageFile.GetMachineStoreForAssembly is machine-wide. Will not distinct from users. The same assembly within different applications always uses the same isolated store when using this method.
+
+				IsolatedStorageFile.GetUserStoreForDomain will create the directory isolated form user, application domain and assembly. Directory won’t be accessible on next run. The same assembly code will use different isolated stores when used in the context of different applications. Different assemblies running within the same application domain always have distinct isolated stores.
+
+				IsolatedStorageFile.GetMachineStoreForApplication is machine-wide. Will not distinct from users. All assemblies associated with an application use the same isolated store when using this method.
+			</annotation>
 		</question>
 		<question number="128" language="VB">
 			<text>
@@ -4845,7 +4966,15 @@
 				#min#/Meeting#may#
 			</text>
 			<answer>B</answer>
-			<annotation/>
+			<annotation>
+				Attribute “goals” is marked as “private” so it won’t be serialized by xml (A).
+
+				Attribute “goals” is not marked as an attribute of “meeting”, as C indicates.
+
+				Invitees are a string array, so they’re serialized as strings not as “invitees” (D).
+
+				B is the generated xml.
+			</annotation>
 		</question>
 	</topic>
 	<topic name="Improving the security of .NET Framework applications by using the .NET Framework security features" topicexampercentage ="20">
@@ -4869,7 +4998,15 @@
 				Set.Deny();
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				Set.Demand will force all callers higher on stack call to have permissions.
+
+				Set.Assert will allow callers higher on stack to lack permissions.
+
+				Set.PermitOnly does not demand permissions.
+
+				Set.Deny will deny the permission (wont check them).
+			</annotation>
 		</question>
 		<question number="43" language="VB">
 			<text>
@@ -4991,7 +5128,15 @@
 				byte[] hash = sha.Hash;
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				SHA1.ComputeHash will returns a byte array with the message’s hash (C).
+
+				There is no SHA1.Hash property.
+
+				SHA1.GetHashCode() will get the SHA1hash code, not the message hash.
+
+				A option will compute region hash (SHA1.TransformBlock) on the whole message. It’s simpler to made using ‘C’ option.
+			</annotation>
 		</question>
 		<question number="22" language="C#">
 			<text>
@@ -5014,7 +5159,17 @@
 				StrongNameIdentityPermission
 			</text>
 			<answer>D</answer>
-			<annotation/>
+			<annotation>
+				GacIdentityPermission defines the identity permission for files originating in the global assembly cache.
+
+				PublisherIdentityPermission represents the identity of a software publisher
+
+				DataProtectionPermission controls the ability to access encrypted data and memory.
+
+				StrongNameIdentityPermission defines the identity permission for strong names.
+
+				This last one is the valid, because this is valid across the system, not only from the GAC.
+			</annotation>
 		</question>
 		<question number="59" language="VB">
 			<text>
@@ -5142,7 +5297,15 @@
 				omain.SetPrincipalPolicy( PrincipalPolicy.UnauthenticatedPrincipal);
 			</text>
 			<answer>D</answer>
-			<annotation/>
+			<annotation>
+				SetPrincipalPolicy(WindowsPrincipal) will assign an authenticated object to the thread (A).
+
+				WindowsPricipal(null) will throw an ArgumentNullException on runtime (B).
+
+				C will create an application domain policy with the default machine policy set, and will have a single root code group that grants FullTrust to all code.
+
+				SetPrincipalPolicy(UnanthenticatedPrincipal) will assign each running thread an unauthenticated principal object (D).
+			</annotation>
 		</question>
 		<question number="48" language="C#">
 			<text>
@@ -5169,7 +5332,15 @@
 				algo.TransformBlock(message, 0, message.Length, hash, 0);
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				HashAlgorithm.ComputeHash will returns a byte array with the message’s hash (A).
+
+				There is no HashAlgorithm.Hash property.
+
+				HashAlgorithm.GetHashCode() will get the HashAlgorithm hash code, not the message hash.
+
+				D option will compute region hash (HashAlgorithm.TransformBlock) on the whole message. It’s simpler to made using ‘A’ option.
+			</annotation>
 		</question>
 		<question number="62" language="VB">
 			<text>
@@ -5288,7 +5459,17 @@
 				currentUser.IsInRole(Environment.MachineName);
 			</text>
 			<answer>B</answer>
-			<annotation/>
+			<annotation>
+				“You need to use Microsoft Windows groups to authorize the user.”
+
+				So, you cannot use GenericPrincipal (C).
+
+				D option will not validate if user is in local “Clerk” group.
+
+				‘A’ will perform a slightly more complicated search against AD directory. MachineName/Clerk is only valid is MachineName is an AD server. To look for local groups, “BUILTIN/Clerk” should be used.
+
+				Option B is the right one.
+			</annotation>
 		</question>
 		<question number="131" language="C++">
 			<text>
@@ -5420,7 +5601,15 @@
 				WindowsImpersonationContext ctx = WindowsIdentity.Impersonate(token);
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				“The username, password and roles are stored in your application data store”.
+
+				So, you should check them via GenericIdentity and GenericPrincipal (A)
+
+				The username/password are not valid Windows or Active Directory accounts.
+
+				There is no “LogonUserUsingInterop” method…
+			</annotation>
 		</question>
 		<question number="100" language="C++">
 			<text>
@@ -5455,43 +5644,6 @@
 				D.
 				IntPtr token = IntPtr.Zero;
 				token = LogonUserUsingInterop(username, encryptedPassword);
-				WindowsImpersonationContext ctx = WindowsIdentity.Impersonate(token);
-			</text>
-			<answer>A</answer>
-			<annotation/>
-		</question>
-		<question number="173" language="C#">
-			<text>
-				Question: 173, 55, 100, 186, 195
-				You are writing code for user authentication and authorization. The username, password, and roles are stored in your application data store.
-				You need to establish a user security context that will be used for authorization checks such as IsInRole. You write the following code segment to authorize the user.
-
-				if (!TestPassword(userName, password))
-				throw new Exception("could not authenticate user");
-				String[] userRolesArray = LookupUserRoles(userName);
-
-				You need to complete this code so that it establishes the user
-				security context. Which code segment should you use?
-
-				A.
-				GenericIdentity ident = new GenericIdentity(userName);
-				GenericPrincipal currentUser = new GenericPrincipal(ident, userRolesArray);
-				hread.CurrentPrincipal = currentUser;
-
-				B.
-				WindowsIdentity ident = new WindowsIdentity(userName);
-				WindowsPrincipal currentUser = new WindowsPrincipal(ident);
-				Thread.CurrentPrincipal = currentUser;
-
-				C.
-				NTAccount userNTName = new NTAccount(userName);
-				GenericIdentity ident = new GenericIdentity(userNTName.Value);
-				GenericPrincipal currentUser = new GenericPrincipal(ident, userRolesArray);
-				Thread.CurrentPrincipal = currentUser;
-
-				D.
-				IntPtr token = IntPtr.Zero;
-				Token = LogonUserUsingInterop(username, encryptedPassword);
 				WindowsImpersonationContext ctx = WindowsIdentity.Impersonate(token);
 			</text>
 			<answer>A</answer>
@@ -5609,7 +5761,17 @@
 				#min#/dependentAssembly#may#
 			</text>
 			<answer>A;B</answer>
-			<annotation/>
+			<annotation>
+				You must create a DEVPATH environment variable (A) and then add developmentmode tag to the machine configuration file (B).
+
+				DevelopmentMode element indicates that the missing assemblies must be located on DEVPATH directory.
+
+				C will register the assembly into the GAC.
+
+				D indicates only the supported runtime version.
+
+				E indicates redirection (for rebind strong named assemblies).
+			</annotation>
 		</question>
 		<question number="63" language="VB">
 			<text>
@@ -5740,7 +5902,11 @@
 				permission.PermitOnly();
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				CodeAccessPermission.RevertAssert (A). It will let permissions as it were before the Assert.
+
+				Deny and PermitOnly might change previous permissions. RevertDeny cannot be applied because no permission was denied before.
+			</annotation>
 		</question>
 		<question number="213" language="C++">
 			<text>
@@ -5820,7 +5986,15 @@
 				Flags = SecurityPermissionFlag.UnmanagedCode)]
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				SecurityAction.Demand will perform a full stack permission checking.
+
+				LinkDemand will ask only the inmediate higher call in stack. If it  has the permissions, won’t check it anymore.
+
+				Assert will allow callers higher on stack to lack permissions.
+
+				Deny will deny the permissions (wont check them).
+			</annotation>
 		</question>
 		<question number="225" language="VB">
 			<text>
@@ -5936,7 +6110,17 @@
 				File.SetAccessControl("mydata.xml", security);
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				A. In the FileSecurity constructor, the “AccessControlSections” parameters retrieves current permissions for object.
+				SetAccessRuleProtection(true, true): the first true will protect access rules from inheriting new rules and the second will preserve currently inherited rules.
+				Finally, SetAccessControl set the file rules.
+
+				FileSecurity constructor with no rules does not grant any permission (B).
+
+				C does not protect file permission from inherit modifications.
+
+				D includes non-inherited permission that might be granted to the file.
+			</annotation>
 		</question>
 		<question number="114" language="C#">
 			<text>
@@ -5961,7 +6145,9 @@
 				ssl.AuthenticateAsServer(certificate, false, SslProtocols.Tls, true);
 			</text>
 			<answer>D</answer>
-			<annotation/>
+			<annotation>
+				Transport Layer Security 1.0 protocol is TLS protocol (D).
+			</annotation>
 		</question>
 		<question number="155" language="VB">
 			<text>
@@ -6059,7 +6245,15 @@
 				cryptoStream.Write(message, 0, message.Length);
 			</text>
 			<answer>D</answer>
-			<annotation/>
+			<annotation>
+				There is an error in this question: B and D are equals (absolutely equals).
+
+				C will decrypt with current key and iv, but not with proposed ones.
+
+				You shouldn’t modify DES.BlockSize and DES.FeedbackSize properties (A).
+
+				D is the right answer. B is equal to D, as mentioned.
+			</annotation>
 		</question>
 		<question number="134" language="VB">
 			<text>
@@ -6240,7 +6434,12 @@
 				message = new StreamReader(cryptoStream).ReadToEnd();
 			</text>
 			<answer>D</answer>
-			<annotation/>
+			<annotation>
+				C will decrypt with current key and iv, but not with proposed ones.
+
+				You shouldn’t modify TripleDES.BlockSize and TripleDES.FeedbackSize properties.
+				D is the simplest option to decrypt the data.
+			</annotation>
 		</question>
 	</topic>
 	<topic name="Implementing interoperability, reflection, and mailing functionality in a .NET Framework application" topicexampercentage ="11">
@@ -6325,7 +6524,15 @@
 				{
 			</text>
 			<answer>D</answer>
-			<annotation/>
+			<annotation>
+				ClassInterface Attribute indicates the type of class interface to be generated for a class exposed to COM, if an interface is generated at all.
+
+				Using ClassInterfaceType.None is the only way to expose functionality through interfaces implemented explicitly by the class (D).
+
+				Class Employee which doest not implements any interface cannot be used with ClassInterfaceType.None attribute (A).
+
+				Using ClassInterfaceType.AutoDual is strongly discouraged (B). It generates an interface automatically.
+			</annotation>
 		</question>
 		<question number="196" language="C++">
 			<text>
@@ -6390,7 +6597,15 @@
 
 			</text>
 			<answer>D</answer>
-			<annotation/>
+			<annotation>
+				IsAssembly gets a value indicating whether this method can be called by other classes in the same assembly.
+
+				IsVirtual gets a value indicating whether the method is virtual.
+
+				IsStatic gets a value indicating whether the method is static.
+
+				IsFamily gets a value indicating whether access to this method is restricted to members of the class and members of its derived classes. This is the valid choice.
+			</annotation>
 		</question>
 		<question number="53" language="VB">
 			<text>
@@ -6459,7 +6674,15 @@
 				Create a Dispose method that releases unmanaged resources and calls methods on other objects to release the managed resources.
 			</text>
 			<answer>B;D;F</answer>
-			<annotation/>
+			<annotation>
+				WeakReference only mantains “weak” references to object, while still allowing to be claimed by garbage collector. This is for resource management, you must explicity release resources to make a more efficient resource release.
+
+				You must implement IDisposable interface.
+
+				Then, you must create a class destructor that releases unmanaged resources.
+
+				And finally, a dispose method to release managed object and make call to release unmanaged resources.
+			</annotation>
 		</question>
 		<question number="74" language="VB">
 			<text>
@@ -6601,7 +6824,11 @@
 				Assembly asm = domain.GetData("Braindumps1.dll");
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				If path is specified, you should use Assembly.LoadFrom (A). Assembly.Load and AppDomain.CurrentDomain.Load is for known referenced assemblies.
+
+				AppDomain.GetData will get the value stored in the current application domain for the specified name.
+			</annotation>
 		</question>
 		<question number="21" language="VB">
 			<text>
@@ -6674,7 +6901,17 @@
 				myComponent = new System.ComponentModel.Component();
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				First, note that a CLR unit of isolation within an application is equal to Application Domain.
+
+				Defining an AppDomainSetup object will not create an AppDomain (A).
+
+				B will start a separated process, not an AppDomain within an application.
+
+				System.ComponentModel.Component is a class to share object between applications.
+
+				An application domain is correctly created with option C.
+			</annotation>
 		</question>
 		<question number="25" language="C#">
 			<text>
@@ -6721,7 +6958,13 @@
 				client.Send(msgBytes);
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				It’s not very meaningful to create the message and then dispose it as stated in A.
+
+				You cannot create a mail message from strings. You should create a mail message from mailaddresses from and to (B).
+
+				You don’t need to create a socket and then trasmit the message bytes. You need to create a mail message and send it via a SmtpClient object, as stated in C.
+			</annotation>
 		</question>
 		<question number="102" language="C++">
 			<text>
@@ -6849,7 +7092,13 @@
 				}
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				A and C won’t work because they lack of entry point’s definition (an exception is thrown at runtime, because no such method exist. Note that MessageBoxA exist on user32.dll).
+
+				No one works for the provided example. “A” will work if entry point is defined. B and D won’t fails but shows only the first letter of the message and the caption (this is because LPWStr is a 2 bytes null-terminated string).
+
+				In a spanish machine A with entry point definitio works perfectly.
+			</annotation>
 		</question>
 		<question number="103" language="C++">
 			<text>
@@ -6975,7 +7224,15 @@
 				}}
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				‘A’ is not valid because class constructor has a parameter (COM constructors cannot have parameters).
+
+				GetAddress is static on B, so it can be called from an instance.
+
+				GetAddress is private on D.
+
+				C is the right answer.
+			</annotation>
 		</question>
 		<question number="73" language="VB">
 			<text>
@@ -7166,7 +7423,11 @@
 				public static extern int MessageBox(int hWnd, String text, String caption, uint type);
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				The method prototype must match MessageBox (option A). The DllImport Attribute must accept the dll name.
+
+				It’s good to note that no entry point is defined for the function. MessageBox does not exist on user32, only MessageBoxA. The code from this question won’t work.
+			</annotation>
 		</question>
 		<question number="51" language="C#">
 			<text>
@@ -7200,7 +7461,17 @@
 				myAssemblyBuilder.Save("c:\\MyAssembly.dll");
 			</text>
 			<answer>B</answer>
-			<annotation/>
+			<annotation>
+				It’s neither mentioned that the assembly must run, but it doesn’t care because there will be only a valid option to choose.
+
+				AssemblyBuilderAccess.Run will not permit saving the assembly.
+
+				Option C will allow to save and run the assembly, but no name is specified for it. When the AssemblyBuilder object is created, it will throw a runtime exception indicating that AssemblyName.Name cannot be null or empty string.
+
+				Option D will allow to save the assembly, but no name is specified for it and (if it were correctly specified) Save parameter contains an absolute path, which is not allowed.
+
+				B correctly defines the assembly with the name and save it to disk.
+			</annotation>
 		</question>
 		<question number="162" language="C++">
 			<text>
@@ -7298,7 +7569,11 @@
 				Import a type library as an assembly and then create instances of COM object.
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				Encapsulating library interfaces is the best way of accomplish this (A).
+
+				PInvoke are used with windows api. Com is a programming model, it might include or not windows api.
+			</annotation>
 		</question>
 		<question number="146" language="VB">
 			<text>
@@ -7397,7 +7672,13 @@
 				#min#/configuration#may#
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				A. SupportedRuntime element will allow application to run in .NET 1.1 as 1.0. It indicates that application supports not only .NET 1.0 but also 1.1.
+
+				BindingRedirect element indicates an assembly to use a newer version of a Strong Named assembly (which is referenced by the assembly).
+
+				RequiredRuntime will make application not to run on machines with only .NET 1.0
+			</annotation>
 		</question>
 		<question number="126" language="VB">
 			<text>
@@ -7639,7 +7920,13 @@
 				int i = (int)m.Invoke(this, new object[] { 1 });
 			</text>
 			<answer>B</answer>
-			<annotation/>
+			<annotation>
+				You cannot use MethodInfo.Invoke on “this” class, because currently (unrelated) class does not contains “MyMethod” (D and A).
+
+				There is no method explicity called “BraindumpsClass.MyMethod” (C).
+
+				You must explicity get method “MyMethod”, as stated in B.
+			</annotation>
 		</question>
 		<question number="219" language="C++">
 			<text>
@@ -7700,7 +7987,9 @@
 				throw new CustomException("Argument is out of bounds");
 			</text>
 			<answer>D</answer>
-			<annotation/>
+			<annotation>
+				Simply throws a new CustomException (D).
+			</annotation>
 		</question>
 		<question number="228" language="C++">
 			<text>
@@ -7819,7 +8108,11 @@
 				return numberToPrint.ToString("()", culture);
 			</text>
 			<answer>B</answer>
-			<annotation/>
+			<annotation>
+				CurrencyNegativePattern will print the currency value with a minus sign (B).
+
+				C and D only prints the number, and A prints the number but with no minus sign.
+			</annotation>
 		</question>
 		<question number="40" language="VB">
 			<text>
@@ -7887,7 +8180,17 @@
 				reader.Close();
 			</text>
 			<answer>D</answer>
-			<annotation/>
+			<annotation>
+				StringReader class is a implementation of TextReader that reads from a string.
+
+				StringReader.ReadToEnd will return the string from the current position to end. If it’s 0, ReadToEnd will return the whole string (A).
+
+				StringReader.Read() will read a single from the string. You must cast it to Char if you want to display the text. StringReader.Read.ToString() will display the char number. (B).
+
+				StringReader.ToString() will display “System.IO.StringReader” (C).
+
+				StringReader.ReadLine will pass each line to the Process method. (D).
+			</annotation>
 		</question>
 		<question number="160" language="C++">
 			<text>
@@ -8035,34 +8338,15 @@
 				string dateString = DateTime.Today.Month.ToString("es-MX");
 			</text>
 			<answer>A</answer>
-			<annotation/>
-		</question>
-		<question number="212" language="C#">
-			<text>
-				Question: 212 [44, 65, 111, 142, 212]
-				You are developing a fiscal report for a customer. Your customer has a main office in the United States and a satellite office in Mexico.
-				You need to ensure that when users in the satellite office generate the report, the current date is displayed in Mexican Spanish format. Which code segment should you use?
+			<annotation>
+				‘A’ will show the correct format. Formatter must be applied to DateTime.ToString method to output it formatted.
 
-				A.
-				DataTimeFormatInfo dtfi = new CultureInfo("es-MX", false).DateTimeFormat;
-				DateTime dt = new DateTime(DateTime.Today.Year, DateTime.Today.Month,
-				DateTime.Today.Day);
-				string dateString = dt.ToString(dtfi.LongDatePattern);
+				‘B’ shows the date dd/mm/yyyy and the hour.
 
-				B.
-				Calendar cal = new CultureInfo("es-MS", false).Calendar;
-				DateTime dt = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
-				Strong dateString = dt.ToString();
+				‘C’ shows only the month name.
 
-				C.
-				string dateString = DateTimeFormatInfo.CurrentInfo
-				GetMonthName(DateTime.Today.Month);
-
-				D.
-				string dateString = DateTime.Today.Month.ToString("es_MX");
-			</text>
-			<answer>A</answer>
-			<annotation/>
+				‘D’ shows “es-MX”.
+			</annotation>
 		</question>
 		<question number="45" language="C++">
 			<text>
@@ -8144,7 +8428,15 @@
 				// Output the region information...}
 			</text>
 			<answer>C</answer>
-			<annotation/>
+			<annotation>
+				‘A’ will show you all the available cultures, not only the CA culture. It should be “en-CA” of “fr-CA”.
+
+				CultureInfo for “CA” is Catalan (Catalunya, option B).
+
+				RegionInfo for “CA” is Canada (C).
+
+				‘D’ will check if current region is Canada. It will do nothing if current region is not CA.
+			</annotation>
 		</question>
 		<question number="205" language="VB">
 			<text>
@@ -8170,33 +8462,6 @@
 				Dim objRegion As New RegionInfo("")
 				If objRegion.Name = "CA" Then
 				...End If
-			</text>
-			<answer>C</answer>
-			<annotation/>
-		</question>
-		<question number="232" language="C#">
-			<text>
-				Question: 232 [45, 101, 112, 205, 232]
-				You create an application that stores information about your customers who reside in various regions. You are developing internal utilities for this application.
-				You need to gather regional information about your customers in Canada.
-				Which code segment should you use?
-
-				A.
-				foreach (CultureInfo culture in CultureInfo.GetCultures(CultureTypes.SpecificCultures)) {
-				// Output the region information...}
-
-				B.
-				CultureInfo cultureInfo = new CultureInfo("CA");
-				// Output the region information...
-
-				C.
-				RegionInfo regionInfo = new RegionInfo("CA");
-				// Output the region information…
-
-				D.
-				RegionInfo regionInfo = new RegionInfo("");
-				f(regionInfo.Name == "CA") {
-				// Output the region information...}
 			</text>
 			<answer>C</answer>
 			<annotation/>
@@ -8283,35 +8548,11 @@
 				// Output the culture information...}
 			</text>
 			<answer>A</answer>
-			<annotation/>
-		</question>
-		<question number="185" language="C#">
-			<text>
-				Question: 185 [46, 77, 141, 185, 204, 215]
-				You need to generate a report that lists language codes and region codes.
-				Which code segment should you use?
+			<annotation>
+				‘A’ cycles between al available cultures. Neutral Cultures show only the neutral cultures, and replacement cultures the user defined ones. Specific Cultures show all available cultures.
 
-				A.
-				foreach (CultureInfo culture in CultureInfo.GetCultures(CultureTypes.SpecificCultures)) {
-				// Output the culture information...}
-
-				B.
-				CultureInfo culture = new CultureInfo("");
-				CultureTypes types = culture.CultureTypes;
-				// Output the culture information...
-
-				C.
-				foreach (CultureInfo culture in
-				CultureInfo.GetCultures(CultureTypes.NeutralCultures)) {
-				// Output the culture information...}
-
-				D.
-				foreach (CultureInfo culture in
-				CultureInfo.GetCultures(CultureTypes.ReplacementCultures)) {
-				// Output the culture information...}
-			</text>
-			<answer>A</answer>
-			<annotation/>
+				‘B’ does not cycle between cultures, it show the current culture types only.
+			</annotation>
 		</question>
 		<question number="204" language="VB">
 			<text>
@@ -8425,7 +8666,11 @@
 				}}
 			</text>
 			<answer>A</answer>
-			<annotation/>
+			<annotation>
+				For a class to implement IComparable, CompareTo method must be implemented, returning an int and accepting an object as a parameter.
+
+				If you implement IComparable#min#type#may#, CompareTo method must return an int and accept a #min#type#may# parameter (A).
+			</annotation>
 		</question>
 		<question number="218" language="VB">
 			<text>
@@ -8526,7 +8771,17 @@
 				}
 			</text>
 			<answer>D</answer>
-			<annotation/>
+			<annotation>
+				CompareInfo.Compare will compare the two string for localization specified, but it will return -1, 0 and 1, so it’s not correct (B).
+
+				String.IndexOf will compare case-sensitive and culture-sensitive using current culture (A).
+
+				It has no meaning defining CultureInfo to set current culture (C).
+
+				D will perform the same comparison as B, but it will return true or false if the strings are equal for the specified culture.
+
+				The question should especify that you must return a boolean value… because of this B can be correct.
+			</annotation>
 		</question>
 		<question number="133" language="VB">
 			<text>
@@ -8669,7 +8924,13 @@
 				g.DrawRectangle(rectangleBrush, rectangle);
 			</text>
 			<answer>B</answer>
-			<annotation/>
+			<annotation>
+				A pen cannot be used to fill a graphic, a brush must be used instead (A, C and D).
+
+				Graphics.DrawRectangle will draw the rectangle’s outline only (A, C and D).
+
+				You must use a brush and use the FillRectangle method (B).
+			</annotation>
 		</question>
 		<question number="231" language="VB">
 			<text>
