@@ -21,12 +21,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_0F083BC299976A492D8FDD5370633DEC"
-        "OwnerKey" = "8:_9F1F306151D94D199E71E36CBF2C0531"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_12CAD122069619098CE8FB1303C3765F"
         "OwnerKey" = "8:_61287386C8808AA2577F8068BDCFE750"
         "MsmSig" = "8:_UNDEFINED"
@@ -135,38 +129,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8EFB03FA502FE028DE7EF8617E360A47"
-        "OwnerKey" = "8:_0F083BC299976A492D8FDD5370633DEC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8EFB03FA502FE028DE7EF8617E360A47"
-        "OwnerKey" = "8:_9F1F306151D94D199E71E36CBF2C0531"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_9F1F306151D94D199E71E36CBF2C0531"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A1FDE96822C24864E127EAFE2F62DDF1"
-        "OwnerKey" = "8:_9F1F306151D94D199E71E36CBF2C0531"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_C4E95DFBD7313B12458C611B82A462BB"
         "OwnerKey" = "8:_9F1F306151D94D199E71E36CBF2C0531"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C4E95DFBD7313B12458C611B82A462BB"
-        "OwnerKey" = "8:_0F083BC299976A492D8FDD5370633DEC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -184,31 +154,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_12CAD122069619098CE8FB1303C3765F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_9F1F306151D94D199E71E36CBF2C0531"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A1FDE96822C24864E127EAFE2F62DDF1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0F083BC299976A492D8FDD5370633DEC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8EFB03FA502FE028DE7EF8617E360A47"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -241,6 +187,12 @@
         "OwnerKey" = "8:_7A0BFA33CA3444DB04ACFB8B52145810"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_12CAD122069619098CE8FB1303C3765F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -259,6 +211,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -275,6 +235,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -318,37 +286,6 @@
                     }
                 }
             "SourcePath" = "8:Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_67283F0717304B24A6E3829A08629F4B"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0F083BC299976A492D8FDD5370633DEC"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Suru.TrainingKit.BusinessLogic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bb7ea7f9d8b679af, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_0F083BC299976A492D8FDD5370633DEC"
-                    {
-                    "Name" = "8:Suru.TrainingKit.BusinessLogic.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Suru.TrainingKit.BusinessLogic.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_67283F0717304B24A6E3829A08629F4B"
@@ -530,68 +467,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8EFB03FA502FE028DE7EF8617E360A47"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Suru.TrainingKit.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c9b4590be1ff8f97, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_8EFB03FA502FE028DE7EF8617E360A47"
-                    {
-                    "Name" = "8:Suru.TrainingKit.Entities.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Suru.TrainingKit.Entities.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_67283F0717304B24A6E3829A08629F4B"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A1FDE96822C24864E127EAFE2F62DDF1"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Suru.TrainingKit.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=19794ed00ae374d8, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_A1FDE96822C24864E127EAFE2F62DDF1"
-                    {
-                    "Name" = "8:Suru.TrainingKit.Controls.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Suru.TrainingKit.Controls.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_67283F0717304B24A6E3829A08629F4B"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C4E95DFBD7313B12458C611B82A462BB"
             {
             "AssemblyRegister" = "3:1"
@@ -736,8 +611,8 @@
         "PackageCode" = "8:{57822F07-4280-4981-BBF2-553B70F84985}"
         "UpgradeCode" = "8:{C4F66EA4-C985-444B-A115-B3870AF4F590}"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
-        "DetectNewerInstalledVersion" = "11:TRUE"
+        "RemovePreviousVersions" = "11:TRUE"
+        "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
         "Manufacturer" = "8:SuruLabs"
