@@ -19,7 +19,7 @@ namespace Suru.TrainingKit.Controls
         public Dictionary<Int16, String> DictQuestions { get; set; }
         public Dictionary<Int16, String> DictAnswers { get; set; }
         public Dictionary<Int16, String> DictAnnotations { get; set; }
-        public Dictionary<Int16, Decimal> DictPoints { get; set; }        
+        public Dictionary<Int16, Decimal> DictPoints { get; set; }
         public Dictionary<Int16, String> DictResponses { get; set; }
         public Nullable<Int16> ExamMinutes { get; set; }
         public List<Int16> QuestionsOK { get; set; }
@@ -30,7 +30,7 @@ namespace Suru.TrainingKit.Controls
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public String ExamLanguage { get; set; }
-        
+
         private Nullable<Int16> CurrentQuestion = null;
         private Boolean AnswerWasShown = false;
         private String CurrentAnswerString = String.Empty;
@@ -83,10 +83,10 @@ namespace Suru.TrainingKit.Controls
             Points = 0;
             lblExamResult.Text = String.Empty;
 
-            DictResponses.Clear();            
+            DictResponses.Clear();
 
             txtAnswer.ReadOnly = false;
-            
+
             dgvQuestionList.Rows.Clear();
 
             if (DictQuestions == null)
@@ -99,7 +99,7 @@ namespace Suru.TrainingKit.Controls
             if (ExamMinutes != null)
             {
                 SecondsRemaining = 0;
-                
+
                 HoursRemaining = (Int16)Math.Truncate((Decimal)ExamMinutes.Value / 60);
                 MinutesRemaining = (Int16)(ExamMinutes.Value % 60);
 
@@ -138,7 +138,7 @@ namespace Suru.TrainingKit.Controls
                 dgvQuestionList.Columns.Add(ctxt);
 
                 DataGridViewImageColumn cimg = new DataGridViewImageColumn();
-                cimg.Name = ImageColumn;                
+                cimg.Name = ImageColumn;
                 cimg.ReadOnly = true;
                 cimg.CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 cimg.Width = 20;
@@ -225,7 +225,7 @@ namespace Suru.TrainingKit.Controls
                     //There are no answer
                     dimg.Value = Resources.nn;
                     QuestionsUnanswered.Add(QuestionNumber);
-                }                
+                }
             }
 
             /*
@@ -251,12 +251,12 @@ namespace Suru.TrainingKit.Controls
             {
                 lblRemainingTime.Text = "Remaining time: (stopped)";
                 lblRemainingTime.ForeColor = Color.Black;
-            }                
-            
+            }
+
             if (Math.Round(Points, 2) < ApprobationPercentage)
             {
                 if (Points != 0)
-                    lblExamResult.Text = "Exam Fails (" + Points.ToString("##.##") + "%, " + ApprobationPercentage.ToString("00") + "% needed)";               
+                    lblExamResult.Text = "Exam Fails (" + Points.ToString("##.##") + "%, " + ApprobationPercentage.ToString("00") + "% needed)";
                 else
                     lblExamResult.Text = "Exam Fails (0%, " + ApprobationPercentage.ToString("00") + "% needed)";
 
@@ -278,7 +278,7 @@ namespace Suru.TrainingKit.Controls
         /// Check if current answer is true of false.
         /// </summary>
         public void CheckAnswer()
-        {            
+        {
             if (dgvQuestionList.SelectedRows.Count == 0)
                 return;
 
@@ -287,20 +287,22 @@ namespace Suru.TrainingKit.Controls
 
             Int16 QuestionNumber = (Int16)dgvQuestionList.SelectedRows[0].Cells[QuestionColumn].Value;
 
-
             //Replacing tabs, new line and carriage returns characters
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();            
 
-            if (DictResponses.ContainsKey(QuestionNumber))
-                sb.Append(DictResponses[QuestionNumber]);
-            
+            //if (DictResponses.ContainsKey(QuestionNumber))
+            //    sb.Append(DictResponses[QuestionNumber]);
+
+            DictResponses[QuestionNumber] = txtAnswer.Text.Trim();
+            sb.Append(DictResponses[QuestionNumber]);
+
             sb.Replace("\t", String.Empty);
             sb.Replace("\r", String.Empty);
             sb.Replace("\n", String.Empty);
 
             if (DictAnswers.ContainsKey(QuestionNumber))
             {
-                if (String.Compare(sb.ToString(), DictAnswers[QuestionNumber], true) == 0)
+                if (String.Compare(sb.ToString().Trim().ToUpper(), DictAnswers[QuestionNumber].Trim().ToUpper(), true) == 0)
                 {
                     pbQuestionResult.Image = Resources.ok;
                     lblResultText.Text = "Answer is OK.";
@@ -317,8 +319,10 @@ namespace Suru.TrainingKit.Controls
                 lblResultText.Text = "There are no answer.";
             }
 
+            //Save current answer            
+
             sb = new StringBuilder();
-            sb.Append(txtAnswer.Text.Trim());
+            //sb.Append(txtAnswer.Text.Trim());
             sb.Append(Environment.NewLine);
             sb.Append(Environment.NewLine);
             sb.Append("Answer is: ");
@@ -334,9 +338,12 @@ namespace Suru.TrainingKit.Controls
                 sb.Append(Environment.NewLine);
             }
 
+            //This is the text you must remove.
             CurrentAnswerString = sb.ToString();
 
-            txtAnswer.Text = CurrentAnswerString;
+            sb.Insert(0, txtAnswer.Text.Trim());
+
+            txtAnswer.Text = sb.ToString();
         }
 
         /// <summary>
@@ -404,11 +411,11 @@ namespace Suru.TrainingKit.Controls
 
             dgvQuestionList.ClearSelection();
 
-            if (Index == 0)            
-                dgvQuestionList.Rows[dgvQuestionList.Rows.Count - 1].Selected = true;                            
-            else            
+            if (Index == 0)
+                dgvQuestionList.Rows[dgvQuestionList.Rows.Count - 1].Selected = true;
+            else
                 dgvQuestionList.Rows[Index - 1].Selected = true;
-            
+
             /*
             if (lbQuestions.SelectedIndex == 0)
                 lbQuestions.SelectedIndex = lbQuestions.Items.Count - 1;
@@ -489,9 +496,7 @@ namespace Suru.TrainingKit.Controls
 
         //dgvQuestionList Selection Changed Event Handler
         private void dgvQuestionList_SelectionChanged(Object sender, EventArgs e)
-        {
-            //Int16 SelectedQuestion = (Int16)lbQuestions.SelectedItem;
-
+        {            
             if (dgvQuestionList.SelectedRows.Count == 0)
                 return;
 
@@ -511,9 +516,15 @@ namespace Suru.TrainingKit.Controls
                         DictResponses.Add(CurrentQuestion.Value, String.Empty);
 
                     //Removes Annotation Text
-                    if (CurrentAnswerString != String.Empty)
-                        if (txtAnswer.Text.Trim() != String.Empty)
-                            txtAnswer.Text = txtAnswer.Text.Replace(CurrentAnswerString, String.Empty);
+                    if (!DictResponses.ContainsKey(CurrentQuestion.Value))
+                        DictResponses.Add(CurrentQuestion.Value, String.Empty);                        
+
+                    if (CurrentAnswerString != null)
+                        DictResponses[CurrentQuestion.Value] = txtAnswer.Text.Replace(CurrentAnswerString, String.Empty);
+                    else
+                        DictResponses[CurrentQuestion.Value] = txtAnswer.Text.Trim();
+
+                    txtAnswer.Text = DictResponses[CurrentQuestion.Value];
 
                     if (!Stopped)
                         DictResponses[CurrentQuestion.Value] = txtAnswer.Text.Trim();
@@ -537,7 +548,7 @@ namespace Suru.TrainingKit.Controls
                 //Resets label and icons
                 pbQuestionResult.Image = null;
                 lblResultText.Text = String.Empty;
-                AnswerWasShown = false;                
+                AnswerWasShown = false;
             }
         }
 
