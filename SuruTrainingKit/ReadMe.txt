@@ -4,6 +4,15 @@ Application History
 
 ==================================================================================================
 
+Version 1.0.4.0
+
+Release date: 20090924
+
+- Very stupid bug solved (you answer a question. Press next or previous. Application crashes).
+
+
+==================================================================================================
+
 Version 1.0.3.0
 
 Release date: 20090923
