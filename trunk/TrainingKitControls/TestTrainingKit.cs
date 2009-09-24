@@ -519,7 +519,7 @@ namespace Suru.TrainingKit.Controls
                     if (!DictResponses.ContainsKey(CurrentQuestion.Value))
                         DictResponses.Add(CurrentQuestion.Value, String.Empty);                        
 
-                    if (CurrentAnswerString != null)
+                    if (CurrentAnswerString != null && CurrentAnswerString != String.Empty)
                         DictResponses[CurrentQuestion.Value] = txtAnswer.Text.Replace(CurrentAnswerString, String.Empty);
                     else
                         DictResponses[CurrentQuestion.Value] = txtAnswer.Text.Trim();
